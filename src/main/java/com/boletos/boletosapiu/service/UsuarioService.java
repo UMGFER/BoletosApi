@@ -20,7 +20,6 @@ public class UsuarioService {
     private static final String BASE_URL = "https://futbolboletosapi.onrender.com/api/usuario";
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    // GET clientes
     public List<Usuario> getUsuarios() throws Exception {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpGet request = new HttpGet(BASE_URL);
@@ -30,7 +29,6 @@ public class UsuarioService {
         }
     }
 
-    // POST crear cliente
     public Usuario createUsuario(Usuario c) throws Exception {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpPost request = new HttpPost(BASE_URL + "/create");            

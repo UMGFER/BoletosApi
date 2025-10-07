@@ -18,7 +18,6 @@ public class InventarioService {
     private static final String BASE_URL = "https://futbolboletosapi.onrender.com/api/inventario";
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    // GET clientes
     public List<Inventario> getInventarios() throws Exception {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpGet request = new HttpGet(BASE_URL);
@@ -28,7 +27,6 @@ public class InventarioService {
         }
     }
 
-    // POST crear cliente
     public Inventario createInventario(Inventario c) throws Exception {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpPost request = new HttpPost(BASE_URL + "/create");            

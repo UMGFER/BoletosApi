@@ -18,7 +18,8 @@ import javax.swing.JPanel;
  * @author josef
  */
 public class UsuarioView extends javax.swing.JFrame {
- class RoundedPanel extends JPanel
+ 
+    class RoundedPanel extends JPanel
     {
         private Color backgroundColor;
         private int cornerRadius = 15;

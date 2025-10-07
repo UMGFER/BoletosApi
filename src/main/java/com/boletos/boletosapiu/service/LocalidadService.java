@@ -18,7 +18,6 @@ public class LocalidadService {
     private static final String BASE_URL = "https://futbolboletosapi.onrender.com/api/localidad";
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    // GET clientes
     public List<Localidad> getLocalidades() throws Exception {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpGet request = new HttpGet(BASE_URL);
@@ -28,7 +27,6 @@ public class LocalidadService {
         }
     }
 
-    // POST crear cliente
     public Localidad createLocalidad(Localidad c) throws Exception {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpPost request = new HttpPost(BASE_URL + "/create");            
