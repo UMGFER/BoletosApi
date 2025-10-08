@@ -12,7 +12,7 @@ import java.awt.Color;
  * @author AMD 5600G
  */
 public class LoginView extends javax.swing.JFrame {
-    
+        
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginView.class.getName());
 
     /**
@@ -31,83 +31,144 @@ public class LoginView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlBackground = new GradientPanelBoletos(Color.decode("#F2F2F2"), Color.decode("#94DBFF"));
+        pnlBackground = new GradientPanelBoletos(
+            Color.decode("#646482"),
+            Color.decode("#062857"));
         pnlLoginInfo = new RoundedPanel(100);
-        jLabel1 = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
-        txtClave = new javax.swing.JTextField();
+        lblTituloLogin = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
         lblCorreoMensaje = new javax.swing.JLabel();
         lblClaveMensaje = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
+        lblShowHidePassword = new javax.swing.JLabel();
+        lblLoginIcon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pnlBackground.setBackground(new java.awt.Color(255, 255, 255));
         pnlBackground.setPreferredSize(new java.awt.Dimension(970, 700));
 
-        pnlLoginInfo.setBackground(new java.awt.Color(102, 204, 255));
+        pnlLoginInfo.setBackground(new java.awt.Color(6, 40, 87));
         pnlLoginInfo.setOpaque(false);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Iniciar Sesión");
+        lblTituloLogin.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        lblTituloLogin.setForeground(new java.awt.Color(255, 255, 255));
+        lblTituloLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTituloLogin.setText("Iniciar Sesión");
 
-        txtCorreo.setForeground(new java.awt.Color(153, 153, 153));
-        txtCorreo.setText("Correo");
+        txtUsuario.setBackground(new java.awt.Color(0, 0, 51));
+        txtUsuario.setForeground(new java.awt.Color(153, 153, 153));
+        txtUsuario.setText("Nombre de Usuario");
+        txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusLost(evt);
+            }
+        });
 
-        txtClave.setForeground(new java.awt.Color(153, 153, 153));
-        txtClave.setText("Contraseña");
+        lblCorreoMensaje.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lblCorreoMensaje.setForeground(new java.awt.Color(255, 51, 51));
 
-        jButton1.setText("Iniciar Sesión");
+        lblClaveMensaje.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lblClaveMensaje.setForeground(new java.awt.Color(255, 51, 51));
+
+        btnLogin.setBackground(new java.awt.Color(0, 0, 51));
+        btnLogin.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Iniciar Sesión");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        txtPassword.setBackground(new java.awt.Color(0, 0, 51));
+        txtPassword.setForeground(new java.awt.Color(153, 153, 153));
+        txtPassword.setText("Contraseña");
+        txtPassword.setEchoChar('\u0000');
+        txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPasswordFocusLost(evt);
+            }
+        });
+
+        lblShowHidePassword.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lblShowHidePassword.setForeground(new java.awt.Color(255, 255, 255));
+        lblShowHidePassword.setText("Mostrar");
+        lblShowHidePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblShowHidePassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblShowHidePasswordMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlLoginInfoLayout = new javax.swing.GroupLayout(pnlLoginInfo);
         pnlLoginInfo.setLayout(pnlLoginInfoLayout);
         pnlLoginInfoLayout.setHorizontalGroup(
             pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblTituloLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlLoginInfoLayout.createSequentialGroup()
                 .addGap(113, 113, 113)
                 .addGroup(pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCorreo)
-                    .addComponent(txtClave)
+                    .addComponent(txtUsuario)
                     .addComponent(lblCorreoMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblClaveMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
-                .addContainerGap(114, Short.MAX_VALUE))
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .addComponent(txtPassword))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblShowHidePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         pnlLoginInfoLayout.setVerticalGroup(
             pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLoginInfoLayout.createSequentialGroup()
                 .addGap(115, 115, 115)
-                .addComponent(jLabel1)
-                .addGap(46, 46, 46)
-                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTituloLogin)
+                .addGap(32, 32, 32)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblCorreoMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblCorreoMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblShowHidePassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblClaveMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblClaveMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(237, Short.MAX_VALUE))
         );
+
+        lblLoginIcon.setText("ICONO");
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
         pnlBackgroundLayout.setHorizontalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(36, 36, 36)
                 .addComponent(pnlLoginInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(451, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
+                .addComponent(lblLoginIcon)
+                .addGap(202, 202, 202))
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addComponent(pnlLoginInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(pnlLoginInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                        .addGap(327, 327, 327)
+                        .addComponent(lblLoginIcon)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,6 +189,67 @@ public class LoginView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        if(txtUsuario.getText().equals("Nombre de Usuario")){
+            lblCorreoMensaje.setText("Ingrese nombre de usuario");
+            return;
+        }
+        if(new String(txtPassword.getPassword()).equals("Contraseña")){
+            lblClaveMensaje.setText("Ingrese contraseña");
+            return;
+        }
+        
+        String user = txtUsuario.getText().trim();
+        String password = new String(txtPassword.getPassword()).trim();
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
+        if("Nombre de Usuario".equals(txtUsuario.getText())){
+            txtUsuario.setText("");
+            txtUsuario.setForeground(new Color(255,255,255));
+        }
+        lblCorreoMensaje.setText("");
+    }//GEN-LAST:event_txtUsuarioFocusGained
+
+    private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
+        if("".equals(txtUsuario.getText())){
+            txtUsuario.setText("Nombre de Usuario");
+            txtUsuario.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtUsuarioFocusLost
+
+    private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
+        if("Contraseña".equals(String.valueOf(txtPassword.getPassword()))){
+            txtPassword.setText("");
+            txtPassword.setForeground(new Color(255,255,255));
+            if(txtPassword.getEchoChar()=='\u0000' && !lblShowHidePassword.getText().equals("Mostrar")){
+                txtPassword.setEchoChar('\u2022');
+            }
+        }
+        lblClaveMensaje.setText("");
+    }//GEN-LAST:event_txtPasswordFocusGained
+
+    private void lblShowHidePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblShowHidePasswordMouseClicked
+        if(lblShowHidePassword.getText().equals("Mostrar")){
+            lblShowHidePassword.setText("Ocultar");
+            txtPassword.setEchoChar('\u2022');
+        }else{
+            lblShowHidePassword.setText("Mostrar");
+            txtPassword.setEchoChar('\u0000');
+        }
+    }//GEN-LAST:event_lblShowHidePasswordMouseClicked
+
+    private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
+        if("".equals(String.valueOf(txtPassword.getPassword()))){
+            txtPassword.setText("Contraseña");
+            txtPassword.setForeground(new Color(153,153,153));
+            if(txtPassword.getEchoChar()=='\u2022' && !lblShowHidePassword.getText().equals("Ocultar")){
+                txtPassword.setEchoChar('\u0000');
+            }
+        }
+    }//GEN-LAST:event_txtPasswordFocusLost
+    
     /**
      * @param args the command line arguments
      */
@@ -154,14 +276,16 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel lblClaveMensaje;
     private javax.swing.JLabel lblCorreoMensaje;
+    private javax.swing.JLabel lblLoginIcon;
+    private javax.swing.JLabel lblShowHidePassword;
+    private javax.swing.JLabel lblTituloLogin;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JPanel pnlLoginInfo;
-    private javax.swing.JTextField txtClave;
-    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
 }
