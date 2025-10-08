@@ -4,7 +4,7 @@
  */
 package com.boletos.boletosapiu.views;
 
-import com.boletos.boletosapiu.utils.RoundedPanel;
+import com.boletos.boletosapiu.utils.RoundedGradientPanelBoletos;
 import com.boletos.boletosapiu.utils.GradientPanelBoletos;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -51,11 +51,13 @@ private void setImageLabel(javax.swing.JLabel label, String absolutePath) {
             java.awt.Color.decode("#646482"),  // color 1
             java.awt.Color.decode("#062857")   // color 2
         );
-        logn = new GradientPanelBoletos(
+        logn = new RoundedGradientPanelBoletos(
+            50,
             java.awt.Color.decode("#A1A6AD"),  // color 1
             java.awt.Color.decode("#021E45")   // color 2
         );
-        jPanel2 = new GradientPanelBoletos(
+        jPanel2 = new RoundedGradientPanelBoletos(
+            50,
             java.awt.Color.decode("#E6E6E8"),  // color 1
             java.awt.Color.decode("#FAFCFF")   // color 2
         );
@@ -78,7 +80,10 @@ private void setImageLabel(javax.swing.JLabel label, String absolutePath) {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        logn.setOpaque(false);
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel2.setText("Registro de Nuevo Usuario");

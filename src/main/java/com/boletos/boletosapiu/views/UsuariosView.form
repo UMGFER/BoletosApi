@@ -43,8 +43,11 @@
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="logn">
+          <Properties>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GradientPanelBoletos(&#xa;    java.awt.Color.decode(&quot;#A1A6AD&quot;),  // color 1&#xa;    java.awt.Color.decode(&quot;#021E45&quot;)   // color 2&#xa;)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedGradientPanelBoletos(&#xa;50,&#xa;    java.awt.Color.decode(&quot;#A1A6AD&quot;),  // color 1&#xa;    java.awt.Color.decode(&quot;#021E45&quot;)   // color 2&#xa;)"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -88,9 +91,12 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="opaque" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="false" type="code"/>
+                </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GradientPanelBoletos(&#xa;    java.awt.Color.decode(&quot;#E6E6E8&quot;),  // color 1&#xa;    java.awt.Color.decode(&quot;#FAFCFF&quot;)   // color 2&#xa;)"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedGradientPanelBoletos(&#xa;    50,&#xa;    java.awt.Color.decode(&quot;#E6E6E8&quot;),  // color 1&#xa;    java.awt.Color.decode(&quot;#FAFCFF&quot;)   // color 2&#xa;)"/>
               </AuxValues>
 
               <Layout>
