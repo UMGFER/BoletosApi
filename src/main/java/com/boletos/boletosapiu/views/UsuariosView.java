@@ -7,6 +7,7 @@ package com.boletos.boletosapiu.views;
 import com.boletos.boletosapiu.utils.RoundedGradientPanelBoletos;
 import com.boletos.boletosapiu.utils.GradientPanelBoletos;
 import java.awt.Image;
+import java.io.File;
 import javax.swing.ImageIcon;
 
 /**
@@ -22,21 +23,23 @@ public class UsuariosView extends javax.swing.JFrame {
         initComponents();
            this.setLocationRelativeTo(null);
      //foto
-    setImageLabel(LabelLogo, 
-            "C:\\Users\\josef\\OneDrive\\Documentos\\NetBeansProjects\\BoletosApiU\\src\\main\\java\\com\\boletos\\boletosapiu\\images\\LOGO GUATE SELE.png");
+    setImageLabel(LabelLogo, "/LOGO GUATE SELE.png");
     
 }
-private void setImageLabel(javax.swing.JLabel label, String absolutePath) {
-    ImageIcon icon = new ImageIcon(absolutePath);
-    Image img = icon.getImage().getScaledInstance(
-            label.getWidth(),
-            label.getHeight(),
-            Image.SCALE_SMOOTH
-    );
-    label.setIcon(new ImageIcon(img));
-    this.repaint();
-
+private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
+    java.net.URL imgURL = getClass().getResource(resourcePath);
+    if (imgURL != null) {
+        ImageIcon icon = new ImageIcon(imgURL);
+        Image img = icon.getImage().getScaledInstance(
+                label.getWidth(),
+                label.getHeight(),
+                Image.SCALE_SMOOTH
+        );
+        label.setIcon(new ImageIcon(img));
+    } else {
+        System.err.println("❌ No se encontró la imagen: " + resourcePath);
     }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
