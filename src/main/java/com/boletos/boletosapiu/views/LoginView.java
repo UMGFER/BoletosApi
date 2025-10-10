@@ -1,24 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.boletos.boletosapiu.views;
-import com.boletos.boletosapiu.utils.RoundedGradientPanelGlassBoletos;
-import com.boletos.boletosapiu.utils.RoundedGradientPanelBoletos;
 import com.boletos.boletosapiu.utils.GradientPanelBoletos;
-import com.boletos.boletosapiu.utils.RoundedPanel;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import com.boletos.boletosapiu.model.Usuario;
+import com.boletos.boletosapiu.service.UsuarioService;
+import javax.swing.JOptionPane;
+import com.boletos.boletosapiu.utils.Encriptacion;
+import java.security.NoSuchAlgorithmException;
 
-/**
- *
- * @author AMD 5600G
- */
 public class LoginView extends javax.swing.JFrame {
         
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginView.class.getName());
-
+    
+    //Declaración de objetos para importar funciones
+    UsuarioService service = new UsuarioService();
+    Encriptacion encriptar = new Encriptacion();
+    
     /**
      * Creates new form LoginView
      */
@@ -45,7 +43,38 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         System.err.println("❌ No se encontró la imagen: " + resourcePath);
     }
 }
+    private boolean login(String username, String password){
+        Usuario user = null;
+        try{
+            user = service.loginUsuario(username);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Error al iniciar sesión: " + ex.getMessage());
+        }
+        
+        if(validarUsuario(user, password)){
+            JOptionPane.showMessageDialog(this, "Se inició sesión! Usuario:" + user.toString());
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(this, "Error al iniciar sesión.");
+            return false;
+        }    
+    }
     
+    private boolean validarUsuario(Usuario user, String password){
+        /* if(user.isActive()){     
+        } */
+
+        if(user == null){
+            System.out.println("Usuario = null");
+            return false;
+        }
+        if(!user.getContrasena_hash().equals(password)){
+            lblClaveMensaje.setText("Contraseña incorrecta");
+            return false;
+        }
+        
+       return true;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -146,32 +175,26 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         pnlLoginInfoLayout.setHorizontalGroup(
             pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLoginInfoLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
                 .addGroup(pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlLoginInfoLayout.createSequentialGroup()
-                        .addGroup(pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPassword)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
+                        .addGap(113, 113, 113)
                         .addGroup(pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlLoginInfoLayout.createSequentialGroup()
-                                .addGap(87, 87, 87)
-                                .addComponent(lblClaveMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlLoginInfoLayout.createSequentialGroup()
+                                .addGroup(pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtPassword)
+                                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                                    .addComponent(lblCorreoMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblShowHidePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblCorreoMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pnlLoginInfoLayout.createSequentialGroup()
-                .addGroup(pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblShowHidePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblClaveMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlLoginInfoLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(lblTituloLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlLoginInfoLayout.createSequentialGroup()
                         .addGap(229, 229, 229)
                         .addComponent(LabelLogo3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         pnlLoginInfoLayout.setVerticalGroup(
             pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,31 +203,25 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
                 .addComponent(LabelLogo3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblTituloLogin)
+                .addGap(26, 26, 26)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlLoginInfoLayout.createSequentialGroup()
-                        .addComponent(lblCorreoMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblCorreoMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblShowHidePassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlLoginInfoLayout.createSequentialGroup()
-                        .addComponent(lblClaveMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(182, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLoginInfoLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(pnlLoginInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblShowHidePassword))
-                        .addGap(60, 60, 60)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40))))
+                .addComponent(lblClaveMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
 
         pnlBackground.add(pnlLoginInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 530, 440));
 
         LabelLogin.setText("jLabel1");
-        pnlBackground.add(LabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 0, 970, 620));
+        pnlBackground.add(LabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 620));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,7 +251,14 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         
         String user = txtUsuario.getText().trim();
         String password = new String(txtPassword.getPassword()).trim();
+        String hashPassword = null;
+        try {
+            hashPassword = encriptar.hashMD5(password);
+        } catch (NoSuchAlgorithmException ex) {
+            System.getLogger(LoginView.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
         
+        login(user, password);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
@@ -256,7 +280,7 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         if("Contraseña".equals(String.valueOf(txtPassword.getPassword()))){
             txtPassword.setText("");
             txtPassword.setForeground(new Color(255,255,255));
-            if(txtPassword.getEchoChar()=='\u0000' && !lblShowHidePassword.getText().equals("Mostrar")){
+            if(txtPassword.getEchoChar()=='\u0000' && lblShowHidePassword.getText().equals("Mostrar")){
                 txtPassword.setEchoChar('\u2022');
             }
         }
@@ -266,10 +290,11 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
     private void lblShowHidePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblShowHidePasswordMouseClicked
         if(lblShowHidePassword.getText().equals("Mostrar")){
             lblShowHidePassword.setText("Ocultar");
-            txtPassword.setEchoChar('\u2022');
+            txtPassword.setEchoChar('\u0000');
+            
         }else{
             lblShowHidePassword.setText("Mostrar");
-            txtPassword.setEchoChar('\u0000');
+            txtPassword.setEchoChar('\u2022');
         }
     }//GEN-LAST:event_lblShowHidePasswordMouseClicked
 

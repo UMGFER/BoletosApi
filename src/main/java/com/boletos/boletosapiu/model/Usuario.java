@@ -59,5 +59,15 @@ public class Usuario {
         this.fecha_creacion = fecha_creacion;
     }
     
-    
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id_usuario=" + id_usuario +
+                ", nombre_usuario='" + nombre_usuario + '\'' +
+                ", contrasena_hash='" + contrasena_hash + '\'' +
+                ", nombre_completo='" + nombre_completo + '\'' +
+                ", rol='" + rol + '\'' +
+                ", fecha_creacion=" + fecha_creacion +
+                '}';
+    }
 }

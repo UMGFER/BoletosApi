@@ -61,4 +61,12 @@ public class UsuarioService {
         }
     }
     
+    public Usuario loginUsuario(String username)throws Exception{
+        try (CloseableHttpClient client = HttpClients.createDefault()){
+            HttpGet request = new HttpGet(BASE_URL + "/nombre/" + username);
+            ClassicHttpResponse response = (ClassicHttpResponse) client.execute(request);
+            InputStream is = response.getEntity().getContent();
+            return mapper.readValue(is, Usuario.class);
+        }
+    }
 }

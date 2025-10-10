@@ -109,13 +109,13 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         jTextField2.setText("Ingrese el nombre de nuevo usuario");
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel6.setText("Contrasenia:");
+        jLabel6.setText("Contraseña:");
 
         jPasswordField1.setForeground(new java.awt.Color(204, 204, 204));
         jPasswordField1.setText("jPasswordField1");
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel7.setText("Confirme su contrasenia:");
+        jLabel7.setText("Confirme su contraseña:");
 
         jPasswordField2.setForeground(new java.awt.Color(204, 204, 204));
         jPasswordField2.setText("jPasswordField2");
@@ -124,6 +124,11 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -231,6 +236,10 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
