@@ -10,7 +10,13 @@
         <maven.compiler.release>23</maven.compiler.release>
         <exec.mainClass>com.boletos.boletosapiu.BoletosApiU</exec.mainClass>
     </properties>
-     <dependencies>
+     <dependencies>         
+         <!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.5.6</version>
+        </dependency>
         <!-- Cliente HTTP para consumir REST -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

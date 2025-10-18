@@ -6,13 +6,13 @@ import java.util.Date;
 public class Partido {
     int id_partido;
     String equipo_visitante;
-    String equipo_local;
-    Date fecha_partido;
-    String hora_inicio;
-    String tipo_partido;
+    String equipo_local;             
+    Date fecha_partido; 
+    String hora_inicio; 
+    String tipo_partido;  
     String estadio;
-    String estado;
-
+    String estado;               
+                                        
     public int getId_partido() {
         return id_partido;
     }
