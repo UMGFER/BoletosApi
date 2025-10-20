@@ -24,7 +24,7 @@ public class LoginView extends javax.swing.JFrame {
         initComponents();
          this.setLocationRelativeTo(null);
      //foto
-     setImageLabel(LabelLogin, "/another.png");
+     setImageLabel(LabelLogin, "/ChatGPT Image 19 oct 2025, 12_41_28 a.m..png");
      setImageLabel(LabelLogo3, "/LOGO GUATE SELE.png");
      
     
@@ -90,8 +90,8 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
             Color.decode("#062857"));
         pnlLoginInfo = new com.boletos.boletosapiu.utils.RoundedGradientPanelBoletos(
             40,
-            new java.awt.Color(15, 15, 15, 210),  // negro superior (muy oscuro)
-            new java.awt.Color(35, 35, 35, 210)   // negro inferior (un poco más claro)
+            new java.awt.Color(15, 15, 15, 150),  // negro superior (muy oscuro)
+            new java.awt.Color(35, 35, 35, 150)   // negro inferior (un poco más claro)
         );
         lblTituloLogin = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
@@ -221,7 +221,7 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         pnlBackground.add(pnlLoginInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 530, 440));
 
         LabelLogin.setText("jLabel1");
-        pnlBackground.add(LabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 620));
+        pnlBackground.add(LabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 630));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

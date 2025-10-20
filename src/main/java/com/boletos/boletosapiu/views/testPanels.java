@@ -25,7 +25,7 @@ public class testPanels extends javax.swing.JFrame {
 
     private void addPanel(){
         for(int i=0; i <40; i++){
-            PanelPartidos t = new PanelPartidos("Prueba");
+            PanelPartidos t = new PanelPartidos();
             mainPanel.add(t);
             mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
         }

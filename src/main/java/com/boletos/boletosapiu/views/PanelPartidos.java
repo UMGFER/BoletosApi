@@ -6,6 +6,7 @@ package com.boletos.boletosapiu.views;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -16,12 +17,20 @@ public class PanelPartidos extends javax.swing.JPanel {
     /**
      * Creates new form test
      */
+    
     public PanelPartidos() {
         initComponents();
+     //   Bandera1.setIcon(new ImageIcon(getClass().getResource("/Bandera Guatemala.jpg")));
+      //  Bandera1.setText("prueba");
+        SwingUtilities.invokeLater(() -> {
+        setImageLabel(Bandera1, "/Bandera Guatemala.jpg");
+        setImageLabel(Bandera2, "/Bandera Colombia.jpg");
+        setImageLabel(Mundialfondo, "/fondoahorano.png");
+    });
         
      //foto
-        setImageLabel(Bandera1, "/Bandera Guatemala.jpg");
-     setImageLabel(Bandera2, "/Bandera Colombia.jpg");
+        //setImageLabel(Bandera1, "/Bandera Guatemala.jpg");
+     //setImageLabel(, "/Bandera Colombia.jpg");
         
     }
 private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
@@ -38,11 +47,7 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         System.err.println("❌ No se encontró la imagen: " + resourcePath);
     }
 }
-    public PanelPartidos(String equipo1){
-        initComponents();
-        lbl.setText(equipo1);
-        
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,6 +62,7 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         jButton1 = new javax.swing.JButton();
         Bandera1 = new javax.swing.JLabel();
         Bandera2 = new javax.swing.JLabel();
+        Mundialfondo = new javax.swing.JLabel();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -72,15 +78,18 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         Bandera2.setText("jLabel1");
         jPanel1.add(Bandera2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 190, 100));
 
+        Mundialfondo.setText("j");
+        jPanel1.add(Mundialfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 270));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -88,6 +97,7 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Bandera1;
     private javax.swing.JLabel Bandera2;
+    private javax.swing.JLabel Mundialfondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl;
