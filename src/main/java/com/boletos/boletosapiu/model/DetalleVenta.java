@@ -1,6 +1,7 @@
 package com.boletos.boletosapiu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.math.BigDecimal;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class DetalleVenta {
@@ -9,7 +10,8 @@ public class DetalleVenta {
     int id_localidad;
     int id_partido;
     int cantidad;
-    String precio_unitario;
+    BigDecimal precio_unitario;
+    BigDecimal descuento;
 
     public int getId_detalle() {
         return id_detalle;
@@ -51,13 +53,20 @@ public class DetalleVenta {
         this.cantidad = cantidad;
     }
 
-    public String getPrecio_unitario() {
+    public BigDecimal getPrecio_unitario() {
         return precio_unitario;
     }
 
-    public void setPrecio_unitario(String precio_unitario) {
+    public void setPrecio_unitario(BigDecimal precio_unitario) {
         this.precio_unitario = precio_unitario;
     }
-    
+
+    public BigDecimal getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(BigDecimal descuento) {
+        this.descuento = descuento;
+    }
     
 }

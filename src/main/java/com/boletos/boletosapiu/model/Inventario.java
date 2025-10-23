@@ -7,6 +7,7 @@ public class Inventario {
     int id_partido;
     int id_localidad;
     int cantidad_total;
+    int cantidad_disponible;
 
     public int getId_inventario() {
         return id_inventario;
@@ -39,6 +40,13 @@ public class Inventario {
     public void setCantidad_total(int cantidad_total) {
         this.cantidad_total = cantidad_total;
     }
-    
+
+    public int getCantidad_disponible() {
+        return cantidad_disponible;
+    }
+
+    public void setCantidad_disponible(int cantidad_disponible) {
+        this.cantidad_disponible = cantidad_disponible;
+    }
     
 }

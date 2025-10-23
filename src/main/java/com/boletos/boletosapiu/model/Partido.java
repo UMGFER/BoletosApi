@@ -11,7 +11,8 @@ public class Partido {
     String hora_inicio; 
     String tipo_partido;  
     String estadio;
-    String estado;               
+    String estado;
+    String categoria;
                                         
     public int getId_partido() {
         return id_partido;
@@ -76,6 +77,13 @@ public class Partido {
     public void setTipo_partido(String tipo_partido) {
         this.tipo_partido = tipo_partido;
     }
-    
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
     
 }

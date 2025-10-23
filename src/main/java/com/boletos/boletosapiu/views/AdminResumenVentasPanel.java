@@ -1,9 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.boletos.boletosapiu.views;
-
 import com.boletos.boletosapiu.utils.GradientPanelBoletos;
 import com.boletos.boletosapiu.utils.RoundedPanel;
 import java.awt.BorderLayout;
@@ -25,19 +24,37 @@ import org.jfree.data.general.PieDataset;
  *
  * @author AMD 5600G
  */
-public class AdminResumenVentas extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdminResumenVentas.class.getName());
-   
+public class AdminResumenVentasPanel extends javax.swing.JPanel {
+
+    private mainPanel mainFrame;
     JFreeChart pie = ChartFactory.createPieChart("Ventas de boletos", getDatasetPie(), true, true, false);
-        
-    // Create a JSpinner with date model
     
     /**
-     * Creates new form AdminResumenVentas
+     * Creates new form AdminResumenVentasPanel
      */
-    public AdminResumenVentas() {
+    public AdminResumenVentasPanel() {
         initComponents();
+        
+        pie.getTitle().setPaint(Color.WHITE);
+        ChartPanel piePanel = new ChartPanel(pie);
+        pie.setBackgroundPaint(new Color(35,35,35));
+        
+        piePanel.setPreferredSize(new Dimension(555, 400));
+        pnlPieChart.setLayout(new BorderLayout());
+        pnlPieChart.add(piePanel, BorderLayout.CENTER);
+        
+        spinnerPrimeraFecha.setModel(new SpinnerDateModel());
+        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinnerPrimeraFecha, "dd-MM-yyyy");
+        spinnerPrimeraFecha.setEditor(dateEditor);
+        
+        spinnerSegundaFecha.setModel(new SpinnerDateModel());
+        JSpinner.DateEditor dateEditor2 = new JSpinner.DateEditor(spinnerSegundaFecha, "dd-MM-yyyy");
+        spinnerSegundaFecha.setEditor(dateEditor2);
+    }
+    
+    public AdminResumenVentasPanel(mainPanel main) {
+        initComponents();
+        this.mainFrame = main;
         
         pie.getTitle().setPaint(Color.WHITE);
         ChartPanel piePanel = new ChartPanel(pie);
@@ -90,8 +107,6 @@ public class AdminResumenVentas extends javax.swing.JFrame {
         cmbEstadoPartido = new javax.swing.JComboBox<>();
         btnClearFiltros = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -245,7 +260,7 @@ public class AdminResumenVentas extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(pnlPieChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,7 +311,7 @@ public class AdminResumenVentas extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(btnClearFiltros)))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(spinnerPrimeraFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
@@ -316,8 +331,8 @@ public class AdminResumenVentas extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -326,26 +341,24 @@ public class AdminResumenVentas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if(true){
             DefaultPieDataset newDataset = new DefaultPieDataset();
-            newDataset.setValue("Mayor", 35);  
-            newDataset.setValue("Sub17", 45);   
-            newDataset.setValue("Futsal", 20); 
-            
+            newDataset.setValue("Mayor", 35);
+            newDataset.setValue("Sub17", 45);
+            newDataset.setValue("Futsal", 20);
+
             PiePlot plot = (PiePlot)pie.getPlot();
             plot.setDataset(newDataset);
-            
+
             pie.fireChartChanged();
-            
+
             pnlPieChart.revalidate();
             pnlPieChart.repaint();
-        }                                        
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnClearFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFiltrosActionPerformed
@@ -355,30 +368,6 @@ public class AdminResumenVentas extends javax.swing.JFrame {
         cmbTipoPartido.setSelectedIndex(0);
     }//GEN-LAST:event_btnClearFiltrosActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new AdminResumenVentas().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClearFiltros;

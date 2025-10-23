@@ -1,46 +1,41 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.boletos.boletosapiu.views;
 
-import com.boletos.boletosapiu.utils.RoundedGradientPanelBoletos;
 import com.boletos.boletosapiu.utils.GradientPanelBoletos;
+import com.boletos.boletosapiu.utils.RoundedGradientPanelBoletos;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
 
 /**
  *
- * @author josef
+ * @author AMD 5600G
  */
-public class UsuariosView extends javax.swing.JFrame {
+public class UsuariosPanel extends javax.swing.JPanel {
 
+    private mainPanel mainFrame;
     /**
-     * Creates new form UsuariosView
+     * Creates new form UsuariosPanel
      */
-    public UsuariosView() {
+    public UsuariosPanel() {
         initComponents();
-           this.setLocationRelativeTo(null);
-     //foto
-    setImageLabel(LabelLogo, "/LOGO GUATE SELE.png");
-    
-}
-private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
-    java.net.URL imgURL = getClass().getResource(resourcePath);
-    if (imgURL != null) {
-        ImageIcon icon = new ImageIcon(imgURL);
-        Image img = icon.getImage().getScaledInstance(
-                label.getWidth(),
-                label.getHeight(),
-                Image.SCALE_SMOOTH
-        );
-        label.setIcon(new ImageIcon(img));
-    } else {
-        System.err.println("❌ No se encontró la imagen: " + resourcePath);
+        SwingUtilities.invokeLater(() -> {
+            setImageLabel(LabelLogo, "/LOGO GUATE SELE.png");
+        });
     }
-}
 
+    public UsuariosPanel(mainPanel main) {
+        initComponents();
+        this.mainFrame = main;
+        SwingUtilities.invokeLater(() -> {
+            setImageLabel(LabelLogo, "/LOGO GUATE SELE.png");
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,8 +77,6 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         lblMsgPassword2 = new javax.swing.JLabel();
         LabelLogo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -273,43 +266,22 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(logn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 1080, 580));
+        jPanel1.add(logn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 1080, 580));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1207, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-       if(txtNombre.getText().equals("Ingrese su nombre completo") || txtNombre.getText().equals("")){
-           lblMsgNombre.setText("Ingrese nombre completo");
-           return;
-       }
-       if(txtUsername.getText().equals("Ingrese el nombre de nuevo usuario") || txtUsername.getText().equals("")){
-           lblMsgUsername.setText("Ingrese nombre de usuario");
-           return;
-       }
-       if(new String(txtPassword.getPassword()).equals("")){
-           lblMsgPassword1.setText("Ingrese contraseña");
-           return;
-       }
-       if(!new String(txtPassword.getPassword()).equals(new String(txtConfirmPassword.getPassword()))){
-           lblMsgPassword2.setText("Las contraseñas no coinciden!");
-           return;
-       }
-    }//GEN-LAST:event_btnRegistrarActionPerformed
-
     private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
-       if(txtNombre.getText().equals("Ingrese su nombre completo")){
+        if(txtNombre.getText().equals("Ingrese su nombre completo")){
             txtNombre.setText("");
             lblMsgNombre.setText("");
             txtNombre.setForeground(new Color(0,0,0));
@@ -324,7 +296,7 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
     }//GEN-LAST:event_txtNombreFocusLost
 
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
-       if(txtUsername.getText().equals("Ingrese el nombre de nuevo usuario")){
+        if(txtUsername.getText().equals("Ingrese el nombre de nuevo usuario")){
             txtUsername.setText("");
             lblMsgUsername.setText("");
             txtUsername.setForeground(new Color(0,0,0));
@@ -346,40 +318,25 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         lblMsgPassword2.setText("");
     }//GEN-LAST:event_txtConfirmPasswordFocusGained
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UsuariosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UsuariosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UsuariosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UsuariosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        if(txtNombre.getText().equals("Ingrese su nombre completo") || txtNombre.getText().equals("")){
+            lblMsgNombre.setText("Ingrese nombre completo");
+            return;
         }
-        //</editor-fold>
+        if(txtUsername.getText().equals("Ingrese el nombre de nuevo usuario") || txtUsername.getText().equals("")){
+            lblMsgUsername.setText("Ingrese nombre de usuario");
+            return;
+        }
+        if(new String(txtPassword.getPassword()).equals("")){
+            lblMsgPassword1.setText("Ingrese contraseña");
+            return;
+        }
+        if(!new String(txtPassword.getPassword()).equals(new String(txtConfirmPassword.getPassword()))){
+            lblMsgPassword2.setText("Las contraseñas no coinciden!");
+            return;
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UsuariosView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelLogo;
@@ -404,4 +361,19 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
+        java.net.URL imgURL = getClass().getResource(resourcePath);
+        if (imgURL != null) {
+            ImageIcon icon = new ImageIcon(imgURL);
+            Image img = icon.getImage().getScaledInstance(
+                    label.getWidth(),
+                    label.getHeight(),
+                    Image.SCALE_SMOOTH
+            );
+            label.setIcon(new ImageIcon(img));
+        } else {
+            System.err.println("❌ No se encontró la imagen: " + resourcePath);
+        }
+    }
 }

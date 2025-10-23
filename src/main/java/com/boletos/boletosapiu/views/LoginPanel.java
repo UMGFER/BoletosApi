@@ -1,4 +1,9 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
 package com.boletos.boletosapiu.views;
+
 import com.boletos.boletosapiu.utils.GradientPanelBoletos;
 import java.awt.Color;
 import java.awt.Image;
@@ -7,73 +12,40 @@ import com.boletos.boletosapiu.model.Usuario;
 import com.boletos.boletosapiu.service.UsuarioService;
 import javax.swing.JOptionPane;
 import com.boletos.boletosapiu.utils.Encriptacion;
+import java.awt.event.KeyEvent;
 import java.security.NoSuchAlgorithmException;
+import javax.swing.SwingUtilities;
 
-public class LoginView extends javax.swing.JFrame {
-        
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginView.class.getName());
-    
+/**
+ *
+ * @author AMD 5600G
+ */
+public class LoginPanel extends javax.swing.JPanel {
+
     //Declaración de objetos para importar funciones
     UsuarioService service = new UsuarioService();
     Encriptacion encriptar = new Encriptacion();
     
+    private mainPanel mainFrame;
     /**
-     * Creates new form LoginView
+     * Creates new form LoginPanel
      */
-    public LoginView() {
+    public LoginPanel() {
         initComponents();
-         this.setLocationRelativeTo(null);
-     //foto
-     setImageLabel(LabelLogin, "/ChatGPT Image 19 oct 2025, 12_41_28 a.m..png");
-     setImageLabel(LabelLogo3, "/LOGO GUATE SELE.png");
-     
-    
-}
-private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
-    java.net.URL imgURL = getClass().getResource(resourcePath);
-    if (imgURL != null) {
-        ImageIcon icon = new ImageIcon(imgURL);
-        Image img = icon.getImage().getScaledInstance(
-                label.getWidth(),
-                label.getHeight(),
-                Image.SCALE_SMOOTH
-        );
-        label.setIcon(new ImageIcon(img));
-    } else {
-        System.err.println("❌ No se encontró la imagen: " + resourcePath);
-    }
-}
-    private boolean login(String username, String password){
-        Usuario user = null;
-        try{
-            user = service.loginUsuario(username);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this, "Error al iniciar sesión: " + ex.getMessage());
-        }
-        
-        if(validarUsuario(user, password)){
-            JOptionPane.showMessageDialog(this, "Se inició sesión! Usuario:" + user.toString());
-            return true;
-        }else{
-            JOptionPane.showMessageDialog(this, "Error al iniciar sesión.");
-            return false;
-        }    
+        SwingUtilities.invokeLater(() -> {
+            setImageLabel(LabelLogin, "/ChatGPT Image 19 oct 2025, 12_41_28 a.m..png");
+            setImageLabel(LabelLogo3, "/LOGO GUATE SELE.png");
+        });
     }
     
-    private boolean validarUsuario(Usuario user, String password){
-        /* if(user.isActive()){     
-        } */
-
-        if(user == null){
-            System.out.println("Usuario = null");
-            return false;
-        }
-        if(!user.getContrasena_hash().equals(password)){
-            lblClaveMensaje.setText("Contraseña incorrecta");
-            return false;
-        }
-        
-       return true;
+    
+    public LoginPanel(mainPanel main) {
+        initComponents();
+        this.mainFrame = main;
+        SwingUtilities.invokeLater(() -> {
+            setImageLabel(LabelLogin, "/ChatGPT Image 19 oct 2025, 12_41_28 a.m..png");
+            setImageLabel(LabelLogo3, "/LOGO GUATE SELE.png");
+        });
     }
 
     /**
@@ -103,10 +75,7 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         LabelLogo3 = new javax.swing.JLabel();
         LabelLogin = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         pnlBackground.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBackground.setPreferredSize(new java.awt.Dimension(970, 700));
         pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlLoginInfo.setBackground(new java.awt.Color(255, 255, 255));
@@ -126,6 +95,11 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtUsuarioFocusLost(evt);
+            }
+        });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
             }
         });
 
@@ -218,48 +192,22 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
                 .addGap(40, 40, 40))
         );
 
-        pnlBackground.add(pnlLoginInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 530, 440));
+        pnlBackground.add(pnlLoginInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, 530, 440));
 
         LabelLogin.setText("jLabel1");
-        pnlBackground.add(LabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 630));
+        pnlBackground.add(LabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 630));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(pnlBackground, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        if(txtUsuario.getText().equals("Nombre de Usuario")){
-            lblCorreoMensaje.setText("Ingrese nombre de usuario");
-            return;
-        }
-        if(new String(txtPassword.getPassword()).equals("Contraseña")){
-            lblClaveMensaje.setText("Ingrese contraseña");
-            return;
-        }
-        
-        String user = txtUsuario.getText().trim();
-        String password = new String(txtPassword.getPassword()).trim();
-        String hashPassword = null;
-        try {
-            hashPassword = encriptar.hashMD5(password);
-        } catch (NoSuchAlgorithmException ex) {
-            System.getLogger(LoginView.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        }
-        
-        login(user, password);
-    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
         if("Nombre de Usuario".equals(txtUsuario.getText())){
@@ -276,6 +224,43 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         }
     }//GEN-LAST:event_txtUsuarioFocusLost
 
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        Usuario user = null;
+        if(txtUsuario.getText().equals("Nombre de Usuario")){
+            lblCorreoMensaje.setText("Ingrese nombre de usuario");
+            return;
+        }
+        if(new String(txtPassword.getPassword()).equals("Contraseña")){
+            lblClaveMensaje.setText("Ingrese contraseña");
+            return;
+        }
+
+        String username = txtUsuario.getText().trim();
+        String password = new String(txtPassword.getPassword()).trim();
+        String hashPassword = null;
+        try {
+            hashPassword = encriptar.hashMD5(password);
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.print(ex.getMessage());
+        }
+              
+        try {
+            user = service.loginUsuario(username);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al iniciar sesión, usuario no encontrado: "+  ex.getMessage());
+            return;
+        }
+        
+        if(validarUsuario(user, password)){
+            if(user.getRol().equals("Administrador")){
+                mainFrame.loadAdminDashboard(user);
+            }else if(user.getRol().equals("Vendedor")){
+                mainFrame.loadPartidosPanel();
+            }          
+       }
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
+
     private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
         if("Contraseña".equals(String.valueOf(txtPassword.getPassword()))){
             txtPassword.setText("");
@@ -287,17 +272,6 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         lblClaveMensaje.setText("");
     }//GEN-LAST:event_txtPasswordFocusGained
 
-    private void lblShowHidePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblShowHidePasswordMouseClicked
-        if(lblShowHidePassword.getText().equals("Mostrar")){
-            lblShowHidePassword.setText("Ocultar");
-            txtPassword.setEchoChar('\u0000');
-            
-        }else{
-            lblShowHidePassword.setText("Mostrar");
-            txtPassword.setEchoChar('\u2022');
-        }
-    }//GEN-LAST:event_lblShowHidePasswordMouseClicked
-
     private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
         if("".equals(String.valueOf(txtPassword.getPassword()))){
             txtPassword.setText("Contraseña");
@@ -307,31 +281,29 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
             }
         }
     }//GEN-LAST:event_txtPasswordFocusLost
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new LoginView().setVisible(true));
-    }
+    private void lblShowHidePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblShowHidePasswordMouseClicked
+        if(lblShowHidePassword.getText().equals("Mostrar")){
+            lblShowHidePassword.setText("Ocultar");
+            txtPassword.setEchoChar('\u0000');
+
+        }else{
+            lblShowHidePassword.setText("Mostrar");
+            txtPassword.setEchoChar('\u2022');
+        }
+    }//GEN-LAST:event_lblShowHidePasswordMouseClicked
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_F1){
+            txtUsuario.setText("Erick");
+            txtPassword.setText("1234");
+        }
+        if(evt.getKeyCode()==KeyEvent.VK_F2){
+            txtUsuario.setText("user2");
+            txtPassword.setText("12345");
+        }
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelLogin;
@@ -347,4 +319,27 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
+    private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
+        java.net.URL imgURL = getClass().getResource(resourcePath);
+        if (imgURL != null) {
+            ImageIcon icon = new ImageIcon(imgURL);
+            Image img = icon.getImage().getScaledInstance(
+                    label.getWidth(),
+                    label.getHeight(),
+                    Image.SCALE_SMOOTH
+            );
+            label.setIcon(new ImageIcon(img));
+        } else {
+            System.err.println("❌ No se encontró la imagen: " + resourcePath);
+        }
+    }
+    
+    private boolean validarUsuario(Usuario user, String password){
+        if(!user.getContrasena_hash().equals(password)){
+            lblClaveMensaje.setText("Contraseña incorrecta");
+            return false;
+        }
+        //Si el usuari está inactivo (Estado = false) no se puede iniciar sesion
+        return user.isEstado();
+    }     
 }

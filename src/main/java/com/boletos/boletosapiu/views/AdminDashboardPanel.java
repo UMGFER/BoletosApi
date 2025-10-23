@@ -1,9 +1,9 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.boletos.boletosapiu.views;
-
+import com.boletos.boletosapiu.model.Usuario;
 import com.boletos.boletosapiu.utils.CustomScrollBarUI;
 import com.boletos.boletosapiu.utils.GradientPanelBoletos;
 import com.boletos.boletosapiu.utils.RoundedPanel;
@@ -25,108 +25,22 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author AMD 5600G
  */
-public class AdminDashboard extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdminDashboard.class.getName());
+public class AdminDashboardPanel extends javax.swing.JPanel {
 
+    private mainPanel mainFrame;
+    
     /**
-     * Creates new form AdminDashboard
+     * Creates new form AdminDashboardPanel
      */
-    public AdminDashboard() {
+    public AdminDashboardPanel() {
+        initComponents();       
+    }
+    
+    public AdminDashboardPanel(mainPanel main) {
         initComponents();
-        scrollDashboard.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-        
-        JFreeChart barras = ChartFactory.createBarChart("Ventas semanales", "Día", "Total (Q)", crearDatasetBarras(), PlotOrientation.VERTICAL, false, true, false);
-        JFreeChart lineas = ChartFactory.createLineChart("Ventas de boletos", "Meses", "Boletos vendidos", crearDatasetLineas(), PlotOrientation.VERTICAL, true, true, false);
-        
-        barras.setBackgroundPaint(new Color(35,35,35));
-        setChartColors(barras);
-        setChartTextColors(barras);
+        this.mainFrame = main;
+    }
 
-        lineas.setBackgroundPaint(new Color(35,35,35));
-        setChartTextColors(lineas);
-        
-        ChartPanel chartPanel2 = new ChartPanel(lineas);
-        chartPanel2.setPreferredSize(new Dimension(860, 400));
-        
-        ChartPanel chartPanel = new ChartPanel(barras);
-        chartPanel.setPreferredSize(new Dimension(860, 400));
-        
-      
-       pnlLineChart.setLayout(new BorderLayout());
-       pnlLineChart.add(chartPanel2, BorderLayout.CENTER);
-        
-        grafica.setLayout(new BorderLayout());
-        grafica.add(chartPanel, BorderLayout.CENTER);
-    }
-    
-    private void setChartColors(JFreeChart chart){
-        CategoryPlot plot = chart.getCategoryPlot();
-        BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        
-        // Pintura gradiente en barras
-        renderer.setSeriesPaint(0, new GradientPaint(0, 0, new Color(35,35,35), 0, 0, Color.decode("#021E45")));
-
-        
-        // Borde en la barra
-        renderer.setDrawBarOutline(true);
-        renderer.setSeriesOutlinePaint(0, Color.DARK_GRAY);
-        
-        // Sombras
-        renderer.setShadowVisible(true);
-        renderer.setShadowPaint(Color.GRAY);
-    }
-    
-    private CategoryDataset crearDatasetLineas(){
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
-        dataset.addValue(15, "Desktops", "Jan");
-        dataset.addValue(30, "Desktops", "Feb");
-        dataset.addValue(40, "Desktops", "Mar");
-        dataset.addValue(50, "Desktops", "Apr");
-        dataset.addValue(60, "Desktops", "May");
-        dataset.addValue(70, "Desktops", "Jun");
-        
-        dataset.addValue(10, "Laptops", "Jan");
-        dataset.addValue(5, "Laptops", "Feb");
-        dataset.addValue(20, "Laptops", "Mar");
-        dataset.addValue(60, "Laptops", "Apr");
-        dataset.addValue(80, "Laptops", "May");
-        dataset.addValue(90, "Laptops", "Jun");
-        
-        return dataset;
-    }
-    
-    private CategoryDataset crearDatasetBarras(){
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
-        dataset.addValue(0, "Ventas diarias", "Lunes");
-        dataset.addValue(20, "Ventas diarias", "Martes");
-        dataset.addValue(30, "Ventas diarias", "Miércoles");
-        dataset.addValue(40, "Ventas diarias", "Jueves");     
-        dataset.addValue(50, "Ventas diarias", "Viernes");
-
-        
-        return dataset;
-    }
-    
-    private void setChartTextColors(JFreeChart chart){
-        TextTitle title = chart.getTitle();
-        title.setPaint(Color.WHITE);
-        
-        
-        CategoryPlot plot = chart.getCategoryPlot();
-        //Color de la parte de abajo, palabra "Día"
-        plot.getDomainAxis().setLabelPaint(Color.WHITE);
-        //Color de los días de la semana, abajo
-        plot.getDomainAxis().setTickLabelPaint(Color.WHITE);
-        //Color de la parte de la izquieda, palabra "Total"
-        plot.getRangeAxis().setLabelPaint(Color.WHITE);
-        //Color de los totales
-        plot.getRangeAxis().setTickLabelPaint(Color.WHITE);
-        
-        
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -138,8 +52,8 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         MainPanel = new javax.swing.JPanel();
         Menu = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblNombreApellido = new javax.swing.JLabel();
+        lblUserName = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -159,12 +73,9 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jPanel6 = new RoundedPanel(30);
         jLabel12 = new javax.swing.JLabel();
-        grafica = new javax.swing.JPanel();
+        pnlBarChart = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         pnlLineChart = new javax.swing.JPanel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(1150, 630));
 
         MainPanel.setPreferredSize(new java.awt.Dimension(1150, 630));
         MainPanel.setLayout(new java.awt.BorderLayout());
@@ -172,16 +83,16 @@ public class AdminDashboard extends javax.swing.JFrame {
         Menu.setBackground(new java.awt.Color(35, 35, 35));
         Menu.setPreferredSize(new java.awt.Dimension(250, 600));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Nombre + Apellido");
-        jLabel1.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblNombreApellido.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblNombreApellido.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreApellido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombreApellido.setText("Nombre + Apellido");
+        lblNombreApellido.setPreferredSize(new java.awt.Dimension(250, 30));
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("NOMBRE DE USUARIO");
-        jLabel2.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblUserName.setForeground(new java.awt.Color(255, 255, 255));
+        lblUserName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUserName.setText("NOMBRE DE USUARIO");
+        lblUserName.setPreferredSize(new java.awt.Dimension(250, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,8 +133,8 @@ public class AdminDashboard extends javax.swing.JFrame {
         Menu.setLayout(MenuLayout);
         MenuLayout.setHorizontalGroup(
             MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblUserName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblNombreApellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(MenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,9 +149,9 @@ public class AdminDashboard extends javax.swing.JFrame {
             MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuLayout.createSequentialGroup()
                 .addGap(118, 118, 118)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -354,14 +265,14 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout graficaLayout = new javax.swing.GroupLayout(grafica);
-        grafica.setLayout(graficaLayout);
-        graficaLayout.setHorizontalGroup(
-            graficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlBarChartLayout = new javax.swing.GroupLayout(pnlBarChart);
+        pnlBarChart.setLayout(pnlBarChartLayout);
+        pnlBarChartLayout.setHorizontalGroup(
+            pnlBarChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        graficaLayout.setVerticalGroup(
-            graficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlBarChartLayout.setVerticalGroup(
+            pnlBarChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
@@ -394,7 +305,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(grafica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlBarChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
                     .addComponent(pnlLineChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(84, Short.MAX_VALUE))
@@ -410,7 +321,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(grafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlBarChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13)
                 .addGap(18, 18, 18)
@@ -422,8 +333,8 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         MainPanel.add(scrollDashboard, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -436,47 +347,18 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new AdminDashboard().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Dashboard;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel Menu;
-    private javax.swing.JPanel grafica;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -487,7 +369,112 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel lblNombreApellido;
+    private javax.swing.JLabel lblUserName;
+    private javax.swing.JPanel pnlBarChart;
     private javax.swing.JPanel pnlLineChart;
     private javax.swing.JScrollPane scrollDashboard;
     // End of variables declaration//GEN-END:variables
+
+    private void setChartColors(JFreeChart chart){
+        CategoryPlot plot = chart.getCategoryPlot();
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+        
+        // Pintura gradiente en barras
+        renderer.setSeriesPaint(0, new GradientPaint(0, 0, new Color(35,35,35), 0, 0, Color.decode("#021E45")));
+        
+        // Borde en la barra
+        renderer.setDrawBarOutline(true);
+        renderer.setSeriesOutlinePaint(0, Color.DARK_GRAY);
+        
+        // Sombras
+        renderer.setShadowVisible(true);
+        renderer.setShadowPaint(Color.GRAY);
+    }
+    
+    private CategoryDataset crearDatasetLineas(){
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        
+        dataset.addValue(15, "Desktops", "Jan");
+        dataset.addValue(30, "Desktops", "Feb");
+        dataset.addValue(40, "Desktops", "Mar");
+        dataset.addValue(50, "Desktops", "Apr");
+        dataset.addValue(60, "Desktops", "May");
+        dataset.addValue(70, "Desktops", "Jun");
+        
+        dataset.addValue(10, "Laptops", "Jan");
+        dataset.addValue(5, "Laptops", "Feb");
+        dataset.addValue(20, "Laptops", "Mar");
+        dataset.addValue(60, "Laptops", "Apr");
+        dataset.addValue(80, "Laptops", "May");
+        dataset.addValue(90, "Laptops", "Jun");
+        
+        return dataset;
+    }
+    
+    private CategoryDataset crearDatasetBarras(){
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        
+        dataset.addValue(0, "Ventas diarias", "Lunes");
+        dataset.addValue(20, "Ventas diarias", "Martes");
+        dataset.addValue(30, "Ventas diarias", "Miércoles");
+        dataset.addValue(40, "Ventas diarias", "Jueves");     
+        dataset.addValue(50, "Ventas diarias", "Viernes");
+        
+        return dataset;
+    }
+    
+    private void setChartTextColors(JFreeChart chart){
+        TextTitle title = chart.getTitle();
+        title.setPaint(Color.WHITE);
+        
+        
+        CategoryPlot plot = chart.getCategoryPlot();
+        //Color de la parte de abajo, palabra "Día"
+        plot.getDomainAxis().setLabelPaint(Color.WHITE);
+        //Color de los días de la semana, abajo
+        plot.getDomainAxis().setTickLabelPaint(Color.WHITE);
+        //Color de la parte de la izquieda, palabra "Total"
+        plot.getRangeAxis().setLabelPaint(Color.WHITE);
+        //Color de los totales
+        plot.getRangeAxis().setTickLabelPaint(Color.WHITE);       
+    }
+    
+    public void cargarAdminDashboard(Usuario user){
+        scrollDashboard.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        lblNombreApellido.setText(primerNombre(user.getNombre_completo()));
+        lblUserName.setText(user.getNombre_usuario());
+        
+        cargarGraficaBarras();
+        cargarGraficaLineas();
+                
+    }
+    
+    private void cargarGraficaBarras(){
+        JFreeChart barras = ChartFactory.createBarChart("Ventas semanales", "Día", "Total (Q)", crearDatasetBarras(), PlotOrientation.VERTICAL, false, true, false);
+        barras.setBackgroundPaint(new Color(35,35,35));
+        setChartColors(barras);
+        setChartTextColors(barras);
+        ChartPanel chartPanel = new ChartPanel(barras);
+        chartPanel.setPreferredSize(new Dimension(860, 400));
+        pnlBarChart.setLayout(new BorderLayout());
+        pnlBarChart.add(chartPanel, BorderLayout.CENTER);
+    }
+    
+    private void cargarGraficaLineas(){
+        JFreeChart lineas = ChartFactory.createLineChart("Ventas de boletos", "Meses", "Boletos vendidos", crearDatasetLineas(), PlotOrientation.VERTICAL, true, true, false);    
+        lineas.setBackgroundPaint(new Color(35,35,35));
+        setChartTextColors(lineas);       
+        ChartPanel chartPanel = new ChartPanel(lineas);
+        chartPanel.setPreferredSize(new Dimension(860, 400));   
+        pnlLineChart.setLayout(new BorderLayout());
+        pnlLineChart.add(chartPanel, BorderLayout.CENTER);      
+    }
+    
+    public static String primerNombre(String nombreCompleto) {
+        String nombreSinEspacios = nombreCompleto.trim();
+        String[] nombre = nombreSinEspacios.split("\\s+");
+    
+        return nombre[0] +" "+ nombre[1];
+    }
 }

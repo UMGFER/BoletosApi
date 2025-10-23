@@ -10,6 +10,7 @@ public class Usuario {
     String nombre_completo;
     String rol;
     Date fecha_creacion;
+    boolean estado;
 
     public int getId_usuario() {
         return id_usuario;
@@ -57,6 +58,14 @@ public class Usuario {
 
     public void setFecha_creacion(Date fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
     
     @Override

@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
-  </Properties>
-  <SyntheticProperties>
-    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
-  </SyntheticProperties>
+<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -23,12 +16,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="1" pref="1207" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="679" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -51,7 +44,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="60" y="50" width="1080" height="580"/>
+              <AbsoluteConstraints x="40" y="30" width="1080" height="580"/>
             </Constraint>
           </Constraints>
 
@@ -62,8 +55,8 @@
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="62" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="LabelLogo" min="-2" pref="256" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
+                          <Component id="LabelLogo" alignment="0" min="-2" pref="256" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" pref="261" max="-2" attributes="0"/>
                           </Group>
@@ -102,33 +95,33 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel4" min="-2" pref="117" max="-2" attributes="0"/>
-                                          <Component id="cmbRol" min="-2" pref="418" max="-2" attributes="0"/>
+                                          <Component id="jLabel4" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                                          <Component id="cmbRol" alignment="0" min="-2" pref="418" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel3" min="-2" pref="127" max="-2" attributes="0"/>
-                                          <Component id="txtNombre" pref="418" max="32767" attributes="0"/>
+                                          <Component id="jLabel3" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
+                                          <Component id="txtNombre" alignment="0" pref="418" max="32767" attributes="0"/>
                                           <Component id="lblMsgNombre" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel6" min="-2" pref="119" max="-2" attributes="0"/>
-                                          <Component id="txtPassword" pref="418" max="32767" attributes="0"/>
+                                          <Component id="jLabel6" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
+                                          <Component id="txtPassword" alignment="0" pref="418" max="32767" attributes="0"/>
                                           <Component id="lblMsgPassword1" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel5" min="-2" pref="162" max="-2" attributes="0"/>
-                                          <Component id="txtUsername" pref="418" max="32767" attributes="0"/>
+                                          <Component id="jLabel5" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
+                                          <Component id="txtUsername" alignment="0" pref="418" max="32767" attributes="0"/>
                                           <Component id="lblMsgUsername" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel7" min="-2" pref="188" max="-2" attributes="0"/>
-                                          <Component id="txtConfirmPassword" pref="418" max="32767" attributes="0"/>
+                                          <Component id="jLabel7" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
+                                          <Component id="txtConfirmPassword" alignment="0" pref="418" max="32767" attributes="0"/>
                                           <Component id="btnRegistrar" alignment="0" pref="418" max="32767" attributes="0"/>
                                           <Component id="lblMsgPassword2" alignment="0" max="32767" attributes="0"/>
                                       </Group>

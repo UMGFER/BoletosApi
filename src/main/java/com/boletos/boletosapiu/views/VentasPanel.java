@@ -1,44 +1,41 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.boletos.boletosapiu.views;
 
 import com.boletos.boletosapiu.utils.RoundedGradientPanelBoletos;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
 
 /**
  *
- * @author josef
+ * @author AMD 5600G
  */
-public class VentasView extends javax.swing.JFrame {
+public class VentasPanel extends javax.swing.JPanel {
 
+    private mainPanel mainFrame;
     /**
-     * Creates new form VentasView
+     * Creates new form VentasPanel
      */
-    public VentasView() {
+    public VentasPanel() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        setImageLabel(LabelFondo2, "/ChatGPT Image 19 oct 2025, 12_34_36 a.m..png");
-        setImageLabel(LabelFondoVenta, "/estadio doroteo.png");
-        
+        SwingUtilities.invokeLater(() -> {
+            setImageLabel(LabelFondo2, "/ChatGPT Image 19 oct 2025, 12_34_36 a.m..png");
+            setImageLabel(LabelFondoVenta, "/estadio doroteo.png");;
+        });
     }
-    private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
-    java.net.URL imgURL = getClass().getResource(resourcePath);
-    if (imgURL != null) {
-        ImageIcon icon = new ImageIcon(imgURL);
-        Image img = icon.getImage().getScaledInstance(
-                label.getWidth(),
-                label.getHeight(),
-                Image.SCALE_SMOOTH
-        );
-        label.setIcon(new ImageIcon(img));
-    } else {
-        System.err.println("❌ No se encontró la imagen: " + resourcePath);
-    }
-}
 
+        public VentasPanel(mainPanel main) {
+        initComponents();
+        this.mainFrame = main;
+        SwingUtilities.invokeLater(() -> {
+            setImageLabel(LabelFondo2, "/ChatGPT Image 19 oct 2025, 12_34_36 a.m..png");
+            setImageLabel(LabelFondoVenta, "/estadio doroteo.png");;
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,8 +70,7 @@ public class VentasView extends javax.swing.JFrame {
         LabelFondoVenta = new javax.swing.JLabel();
         LabelFondo2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+        jPanel1.setPreferredSize(new java.awt.Dimension(1150, 630));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -157,19 +153,19 @@ public class VentasView extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 430, 520));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 430, 470));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("SISTEMA DE GESTION DE VENTAS");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 830, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 830, 30));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -177,13 +173,13 @@ public class VentasView extends javax.swing.JFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
 
         LabelFondoVenta.setText("jLabel10");
-        jPanel1.add(LabelFondoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 550, 690));
+        jPanel1.add(LabelFondoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 520, 630));
 
         LabelFondo2.setText("jLabel1");
-        jPanel1.add(LabelFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 690));
+        jPanel1.add(LabelFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 630));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -192,44 +188,8 @@ public class VentasView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentasView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentasView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentasView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentasView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentasView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelFondo2;
@@ -253,4 +213,23 @@ public class VentasView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
+
+    private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
+        java.net.URL imgURL = getClass().getResource(resourcePath);
+        if (imgURL != null) {
+            ImageIcon icon = new ImageIcon(imgURL);
+            Image img = icon.getImage().getScaledInstance(
+                    label.getWidth(),
+                    label.getHeight(),
+                    Image.SCALE_SMOOTH
+            );
+            label.setIcon(new ImageIcon(img));
+        } else {
+            System.err.println("❌ No se encontró la imagen: " + resourcePath);
+        }
+    }
+    
+    public void cargarPanelVentas(){
+        
+    }
 }
