@@ -110,4 +110,8 @@ public class mainPanel extends javax.swing.JFrame {
        vendedorApp.cargarPartidos();
        cardLayout.show(cardPanel, "VendedorApp");
     }
+    
+    public void ShowPanel(String panelName){
+        cardLayout.show(cardPanel, panelName);
+    }
 }

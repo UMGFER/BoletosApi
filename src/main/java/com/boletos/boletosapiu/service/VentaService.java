@@ -57,5 +57,5 @@ public class VentaService {
             InputStream is = response.getEntity().getContent();
             return mapper.readValue(is, Venta.class);
         }
-    }
+    }   
 }

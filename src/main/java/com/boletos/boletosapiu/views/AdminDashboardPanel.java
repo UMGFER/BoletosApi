@@ -3,7 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.boletos.boletosapiu.views;
+import com.boletos.boletosapiu.model.DetalleVenta;
+import com.boletos.boletosapiu.model.Partido;
 import com.boletos.boletosapiu.model.Usuario;
+import com.boletos.boletosapiu.model.Venta;
+import com.boletos.boletosapiu.service.DetalleVentaService;
+import com.boletos.boletosapiu.service.VentaService;
 import com.boletos.boletosapiu.utils.CustomScrollBarUI;
 import com.boletos.boletosapiu.utils.GradientPanelBoletos;
 import com.boletos.boletosapiu.utils.RoundedPanel;
@@ -11,6 +16,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -20,6 +29,12 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  *
@@ -28,6 +43,11 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class AdminDashboardPanel extends javax.swing.JPanel {
 
     private mainPanel mainFrame;
+    VentaService serviceVentas = new VentaService();
+    DetalleVentaService serviceDetalle = new DetalleVentaService();
+    List<Venta> listaVentas;
+    List<DetalleVenta> listaDetalleVentas;
+    List<Partido> listaPartidos;
     
     /**
      * Creates new form AdminDashboardPanel
@@ -54,11 +74,12 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         Menu = new javax.swing.JPanel();
         lblNombreApellido = new javax.swing.JLabel();
         lblUserName = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lblVentas = new javax.swing.JLabel();
+        lblPartidos = new javax.swing.JLabel();
+        lblUsers = new javax.swing.JLabel();
+        lblDashboard = new javax.swing.JLabel();
+        lblCerrarSesion = new javax.swing.JLabel();
+        lblReportes = new javax.swing.JLabel();
         scrollDashboard = new javax.swing.JScrollPane();
         Dashboard = new GradientPanelBoletos(
             java.awt.Color.decode("#A1A6AD"),  // color 1
@@ -67,14 +88,14 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jPanel4 = new RoundedPanel(30);
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblVentasDiarias = new javax.swing.JLabel();
         jPanel5 = new RoundedPanel(30);
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        lblVentasTotales = new javax.swing.JLabel();
         jPanel6 = new RoundedPanel(30);
         jLabel12 = new javax.swing.JLabel();
+        lblBoletosDiarios = new javax.swing.JLabel();
         pnlBarChart = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
         pnlLineChart = new javax.swing.JPanel();
 
         MainPanel.setPreferredSize(new java.awt.Dimension(1150, 630));
@@ -94,40 +115,102 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         lblUserName.setText("NOMBRE DE USUARIO");
         lblUserName.setPreferredSize(new java.awt.Dimension(250, 30));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sales.png"))); // NOI18N
-        jLabel3.setText("RESUMEN DE VENTAS");
-        jLabel3.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblVentas.setBackground(new java.awt.Color(2, 30, 69));
+        lblVentas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblVentas.setForeground(new java.awt.Color(255, 255, 255));
+        lblVentas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sales.png"))); // NOI18N
+        lblVentas.setText("RESUMEN DE VENTAS");
+        lblVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblVentas.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblVentasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblVentasMouseExited(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/soccer.png"))); // NOI18N
-        jLabel4.setText("PARTIDOS");
-        jLabel4.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblPartidos.setBackground(new java.awt.Color(2, 30, 69));
+        lblPartidos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblPartidos.setForeground(new java.awt.Color(255, 255, 255));
+        lblPartidos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblPartidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/soccer.png"))); // NOI18N
+        lblPartidos.setText("PARTIDOS");
+        lblPartidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblPartidos.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblPartidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblPartidosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblPartidosMouseExited(evt);
+            }
+        });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png"))); // NOI18N
-        jLabel5.setText("USUARIOS");
-        jLabel5.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblUsers.setBackground(new java.awt.Color(2, 30, 69));
+        lblUsers.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblUsers.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png"))); // NOI18N
+        lblUsers.setText("USUARIOS");
+        lblUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblUsers.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblUsersMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblUsersMouseExited(evt);
+            }
+        });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboard.png"))); // NOI18N
-        jLabel6.setText("DASHBOARD");
-        jLabel6.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblDashboard.setBackground(new java.awt.Color(2, 30, 69));
+        lblDashboard.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblDashboard.setForeground(new java.awt.Color(255, 255, 255));
+        lblDashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboard.png"))); // NOI18N
+        lblDashboard.setText("DASHBOARD");
+        lblDashboard.setOpaque(true);
+        lblDashboard.setPreferredSize(new java.awt.Dimension(250, 30));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/report.png"))); // NOI18N
-        jLabel14.setText("REPORTES");
-        jLabel14.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblCerrarSesion.setBackground(new java.awt.Color(2, 30, 69));
+        lblCerrarSesion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        lblCerrarSesion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/log-out-30.png"))); // NOI18N
+        lblCerrarSesion.setText("CERRAR SESIÓN");
+        lblCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrarSesion.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarSesionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCerrarSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCerrarSesionMouseExited(evt);
+            }
+        });
+
+        lblReportes.setBackground(new java.awt.Color(2, 30, 69));
+        lblReportes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblReportes.setForeground(new java.awt.Color(255, 255, 255));
+        lblReportes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/report.png"))); // NOI18N
+        lblReportes.setText("REPORTES");
+        lblReportes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblReportes.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblReportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblReportesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblReportesMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
         Menu.setLayout(MenuLayout);
@@ -138,11 +221,12 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
             .addGroup(MenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(lblDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lblVentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lblPartidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lblUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lblCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lblReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         MenuLayout.setVerticalGroup(
@@ -152,17 +236,19 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                 .addComponent(lblNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblPartidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblUsers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         MainPanel.add(Menu, java.awt.BorderLayout.WEST);
@@ -178,14 +264,18 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Dashboard");
 
+        jPanel4.setBackground(new java.awt.Color(2, 30, 69));
         jPanel4.setOpaque(false);
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Ventas de hoy");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Q 100.00");
+        lblVentasDiarias.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblVentasDiarias.setForeground(new java.awt.Color(255, 255, 255));
+        lblVentasDiarias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVentasDiarias.setText("Q 100.00");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -194,10 +284,8 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(0, 144, Short.MAX_VALUE))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblVentasDiarias, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -206,18 +294,22 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(lblVentasDiarias, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
+        jPanel5.setBackground(new java.awt.Color(2, 30, 69));
         jPanel5.setOpaque(false);
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Ventas totales");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Q 1,000,000.00");
+        lblVentasTotales.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblVentasTotales.setForeground(new java.awt.Color(255, 255, 255));
+        lblVentasTotales.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVentasTotales.setText("Q 1,000,000.00");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -226,10 +318,8 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
+                    .addComponent(lblVentasTotales, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -238,30 +328,42 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblVentasTotales, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel6.setBackground(new java.awt.Color(2, 30, 69));
         jPanel6.setOpaque(false);
         jPanel6.setPreferredSize(new java.awt.Dimension(250, 32));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Boletos vendidos hoy");
+
+        lblBoletosDiarios.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblBoletosDiarios.setForeground(new java.awt.Color(255, 255, 255));
+        lblBoletosDiarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBoletosDiarios.setText("1000");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblBoletosDiarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12)
+                .addGap(18, 18, 18)
+                .addComponent(lblBoletosDiarios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -275,10 +377,6 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
             pnlBarChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Ventas de boletos");
 
         javax.swing.GroupLayout pnlLineChartLayout = new javax.swing.GroupLayout(pnlLineChart);
         pnlLineChart.setLayout(pnlLineChartLayout);
@@ -306,7 +404,6 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlBarChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
                     .addComponent(pnlLineChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
@@ -319,14 +416,12 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                 .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlBarChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel13)
-                .addGap(18, 18, 18)
                 .addComponent(pnlLineChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         scrollDashboard.setViewportView(Dashboard);
@@ -349,28 +444,83 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lblVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentasMouseEntered
+        lblVentas.setOpaque(true);
+        lblVentas.repaint();
+    }//GEN-LAST:event_lblVentasMouseEntered
+
+    private void lblPartidosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPartidosMouseEntered
+        lblPartidos.setOpaque(true);
+        lblPartidos.repaint();
+    }//GEN-LAST:event_lblPartidosMouseEntered
+
+    private void lblUsersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUsersMouseEntered
+        lblUsers.setOpaque(true);
+        lblUsers.repaint();
+    }//GEN-LAST:event_lblUsersMouseEntered
+
+    private void lblReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblReportesMouseEntered
+        lblReportes.setOpaque(true);
+        lblReportes.repaint();
+    }//GEN-LAST:event_lblReportesMouseEntered
+
+    private void lblCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseEntered
+        lblCerrarSesion.setOpaque(true);
+        lblCerrarSesion.repaint();
+    }//GEN-LAST:event_lblCerrarSesionMouseEntered
+
+    private void lblVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentasMouseExited
+        lblVentas.setOpaque(false);
+        lblVentas.repaint();
+    }//GEN-LAST:event_lblVentasMouseExited
+
+    private void lblPartidosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPartidosMouseExited
+        lblPartidos.setOpaque(false);
+        lblPartidos.repaint();
+    }//GEN-LAST:event_lblPartidosMouseExited
+
+    private void lblUsersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUsersMouseExited
+        lblUsers.setOpaque(false);
+        lblUsers.repaint();
+    }//GEN-LAST:event_lblUsersMouseExited
+
+    private void lblReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblReportesMouseExited
+        lblReportes.setOpaque(false);
+        lblReportes.repaint();
+    }//GEN-LAST:event_lblReportesMouseExited
+
+    private void lblCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseExited
+        lblCerrarSesion.setOpaque(false);
+        lblCerrarSesion.repaint();
+    }//GEN-LAST:event_lblCerrarSesionMouseExited
+
+    private void lblCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseClicked
+        mainFrame.ShowPanel("login");
+    }//GEN-LAST:event_lblCerrarSesionMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Dashboard;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel Menu;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel lblBoletosDiarios;
+    private javax.swing.JLabel lblCerrarSesion;
+    private javax.swing.JLabel lblDashboard;
     private javax.swing.JLabel lblNombreApellido;
+    private javax.swing.JLabel lblPartidos;
+    private javax.swing.JLabel lblReportes;
     private javax.swing.JLabel lblUserName;
+    private javax.swing.JLabel lblUsers;
+    private javax.swing.JLabel lblVentas;
+    private javax.swing.JLabel lblVentasDiarias;
+    private javax.swing.JLabel lblVentasTotales;
     private javax.swing.JPanel pnlBarChart;
     private javax.swing.JPanel pnlLineChart;
     private javax.swing.JScrollPane scrollDashboard;
@@ -408,18 +558,27 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         dataset.addValue(60, "Laptops", "Apr");
         dataset.addValue(80, "Laptops", "May");
         dataset.addValue(90, "Laptops", "Jun");
-        
+                
         return dataset;
     }
     
     private CategoryDataset crearDatasetBarras(){
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("EEEE", Locale.ENGLISH);
+        LocalDate hoy = LocalDate.now();
+        LocalDate semanaPasada = hoy.minusWeeks(1);
+        HashMap<LocalDate, BigDecimal> ventasPorFecha = new HashMap<>();
         
-        dataset.addValue(0, "Ventas diarias", "Lunes");
-        dataset.addValue(20, "Ventas diarias", "Martes");
-        dataset.addValue(30, "Ventas diarias", "Miércoles");
-        dataset.addValue(40, "Ventas diarias", "Jueves");     
-        dataset.addValue(50, "Ventas diarias", "Viernes");
+        for(Venta v : listaVentas){
+            LocalDate fechaDeLaVenta = v.getFecha_venta().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            if(!fechaDeLaVenta.isBefore(semanaPasada)){  
+                ventasPorFecha.merge(fechaDeLaVenta, v.getTotal_venta(), (oldValue, newValue) -> oldValue.add(newValue));
+            }
+        }
+                 
+        for(Map.Entry<LocalDate, BigDecimal> entry : ventasPorFecha.entrySet()){   
+            dataset.addValue(entry.getValue().doubleValue(), "VentasDiarias", entry.getKey().format(formato));
+        }
         
         return dataset;
     }
@@ -444,7 +603,9 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         scrollDashboard.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         lblNombreApellido.setText(primerNombre(user.getNombre_completo()));
         lblUserName.setText(user.getNombre_usuario());
-        
+               
+        cargarListas();    
+        llenarLabels();
         cargarGraficaBarras();
         cargarGraficaLineas();
                 
@@ -471,10 +632,57 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         pnlLineChart.add(chartPanel, BorderLayout.CENTER);      
     }
     
-    public static String primerNombre(String nombreCompleto) {
+    private static String primerNombre(String nombreCompleto) {
         String nombreSinEspacios = nombreCompleto.trim();
         String[] nombre = nombreSinEspacios.split("\\s+");
     
         return nombre[0] +" "+ nombre[1];
+    }
+    
+    private void cargarListas(){
+        try {
+            listaVentas = serviceVentas.getVentas();
+           
+        } catch (Exception ex) {
+            System.out.println("Error al cargar las ventas: "+ex.getMessage());
+        }
+        
+        try {
+            listaDetalleVentas = serviceDetalle.getDetalleVentas();
+        } catch (Exception ex) {
+            System.out.println("Error al cargar detalle de ventas : "+ex.getMessage());
+        }
+    }
+    
+    private void llenarLabels(){
+        //Para labels de ventas
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date currentDate = new Date();
+        String fechaHoy = sdf.format(currentDate);
+        BigDecimal ventasDeHoy = BigDecimal.ZERO;
+        BigDecimal ventasTotales = BigDecimal.ZERO;
+        int totalBoletos = 0;
+        
+        for(Venta v : listaVentas){     
+           if(fechaHoy.equals(sdf.format(v.getFecha_venta()))){
+               ventasDeHoy = ventasDeHoy.add(v.getTotal_venta());
+               ventasTotales = ventasTotales.add(v.getTotal_venta());
+           }else{
+               ventasTotales = ventasTotales.add(v.getTotal_venta());
+           }     
+        }
+        lblVentasDiarias.setText("Q "+ ventasDeHoy.toPlainString());
+        lblVentasTotales.setText("Q "+ ventasTotales.toPlainString());
+        
+        //Para total de boletos
+        for(int i = 0; i < listaDetalleVentas.size(); i++){
+            Venta v = listaVentas.get(i);
+            DetalleVenta dV = listaDetalleVentas.get(i);
+            if(fechaHoy.equals(sdf.format(v.getFecha_venta()))){
+                totalBoletos += dV.getCantidad();
+            }
+        }
+        
+        lblBoletosDiarios.setText(String.valueOf(totalBoletos));
     }
 }
