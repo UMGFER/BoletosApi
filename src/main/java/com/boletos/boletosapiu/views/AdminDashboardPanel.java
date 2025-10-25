@@ -80,6 +80,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         lblDashboard = new javax.swing.JLabel();
         lblCerrarSesion = new javax.swing.JLabel();
         lblReportes = new javax.swing.JLabel();
+        LabelFotoUsuario = new javax.swing.JLabel();
         scrollDashboard = new javax.swing.JScrollPane();
         Dashboard = new GradientPanelBoletos(
             java.awt.Color.decode("#A1A6AD"),  // color 1
@@ -212,6 +213,9 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
             }
         });
 
+        LabelFotoUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        LabelFotoUsuario.setText("jLabel1");
+
         javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
         Menu.setLayout(MenuLayout);
         MenuLayout.setHorizontalGroup(
@@ -228,11 +232,17 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                     .addComponent(lblCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(lblReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(MenuLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(LabelFotoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MenuLayout.setVerticalGroup(
             MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuLayout.createSequentialGroup()
-                .addGap(118, 118, 118)
+                .addContainerGap()
+                .addComponent(LabelFotoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -501,6 +511,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Dashboard;
+    private javax.swing.JLabel LabelFotoUsuario;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel Menu;
     private javax.swing.JLabel jLabel10;
@@ -603,6 +614,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         scrollDashboard.getVerticalScrollBar().setUI(new CustomScrollBarUI());
         lblNombreApellido.setText(primerNombre(user.getNombre_completo()));
         lblUserName.setText(user.getNombre_usuario());
+        setUserPhoto(user.getNombre_usuario());
                
         cargarListas();    
         llenarLabels();
@@ -684,5 +696,41 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         }
         
         lblBoletosDiarios.setText(String.valueOf(totalBoletos));
+    }
+    
+    private void setUserPhoto(String username) {
+        System.out.println("Username recibido: [" + username + "]");
+        username = username.trim().toLowerCase();
+        String path = "";
+
+        switch (username) {
+            case "erick":
+                path = "/PalomoFormal.jpeg";
+                break;
+            case "cindy":
+                path = "/CindyFace.jpeg";
+                break;
+            case "fernando":
+                path = "/JoseFace.jpeg";
+                break;
+            case "jorge":
+                path = "/Bandera Argentina.png";
+                break;
+            default:
+                path = "/AzulGuate.png";
+        }
+
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(imgURL);
+            java.awt.Image image = icon.getImage().getScaledInstance(
+                    LabelFotoUsuario.getWidth(),
+                    LabelFotoUsuario.getHeight(),
+                    java.awt.Image.SCALE_SMOOTH
+            );
+            LabelFotoUsuario.setIcon(new javax.swing.ImageIcon(image));
+        } else {
+            System.err.println("❌ Imagen no encontrada: " + path);
+        }
     }
 }
