@@ -66,13 +66,13 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         pnlPieChart.setLayout(new BorderLayout());
         pnlPieChart.add(piePanel, BorderLayout.CENTER);
         
-      /*  spinnerPrimeraFecha.setModel(new SpinnerDateModel());
+        spinnerPrimeraFecha.setModel(new SpinnerDateModel());
         JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinnerPrimeraFecha, "dd-MM-yyyy");
         spinnerPrimeraFecha.setEditor(dateEditor);
         
         spinnerSegundaFecha.setModel(new SpinnerDateModel());
         JSpinner.DateEditor dateEditor2 = new JSpinner.DateEditor(spinnerSegundaFecha, "dd-MM-yyyy");
-        spinnerSegundaFecha.setEditor(dateEditor2); */
+        spinnerSegundaFecha.setEditor(dateEditor2); 
     }
 
     /**
@@ -100,10 +100,12 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jPanel6 = new RoundedPanel(30);
         jLabel10 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblReturnDashboard = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        spinnerPrimeraFecha = new javax.swing.JSpinner();
+        jLabel7 = new javax.swing.JLabel();
+        spinnerSegundaFecha = new javax.swing.JSpinner();
 
         scrollResumen.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollResumen.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -242,10 +244,15 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addContainerGap(78, Short.MAX_VALUE))
         );
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back-30.png"))); // NOI18N
-        jLabel4.setText("Regresar al Dashboard");
+        lblReturnDashboard.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblReturnDashboard.setForeground(new java.awt.Color(255, 255, 255));
+        lblReturnDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back-30.png"))); // NOI18N
+        lblReturnDashboard.setText("Regresar al Dashboard");
+        lblReturnDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblReturnDashboardMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -256,7 +263,11 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Desde:");
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
+        spinnerPrimeraFecha.setModel(new javax.swing.SpinnerDateModel());
+
+        jLabel7.setText("Hasta:");
+
+        spinnerSegundaFecha.setModel(new javax.swing.SpinnerDateModel());
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -276,7 +287,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel4)
+                            .addComponent(lblReturnDashboard)
                             .addGap(18, 18, 18)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(pnlPieChart, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
@@ -284,7 +295,11 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(spinnerPrimeraFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(spinnerSegundaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -293,7 +308,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel4))
+                    .addComponent(lblReturnDashboard))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,7 +320,9 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spinnerPrimeraFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(spinnerSegundaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlPieChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -327,15 +344,19 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lblReturnDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblReturnDashboardMouseClicked
+        mainFrame.ShowPanel("AdminDashboard");
+    }//GEN-LAST:event_lblReturnDashboardMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -343,9 +364,11 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel lblReturnDashboard;
     private javax.swing.JPanel pnlPieChart;
     private javax.swing.JScrollPane scrollResumen;
+    private javax.swing.JSpinner spinnerPrimeraFecha;
+    private javax.swing.JSpinner spinnerSegundaFecha;
     // End of variables declaration//GEN-END:variables
 
     private PieDataset getDatasetPie() {

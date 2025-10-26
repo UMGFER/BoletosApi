@@ -22,6 +22,7 @@ public class mainPanel extends javax.swing.JFrame {
     AdminDashboardPanel adminDashboard = new AdminDashboardPanel(this);
     PartidosPanelesPanel vendedorApp = new PartidosPanelesPanel(this);
     InventariosPanel inventarioPanel = new InventariosPanel(this);
+    AdminResumenVentasPanel resumenPanel = new AdminResumenVentasPanel(this);
     
     /**
      * Creates new form mainPanel
@@ -36,6 +37,7 @@ public class mainPanel extends javax.swing.JFrame {
         cardPanel.add(adminDashboard, "AdminDashboard");
         cardPanel.add(vendedorApp, "VendedorApp");
         cardPanel.add(inventarioPanel, "InventarioApp");
+        cardPanel.add(resumenPanel, "PanelResumenVentas");
         
         setContentPane(cardPanel);
         cardLayout.show(cardPanel, "login");
@@ -107,8 +109,12 @@ public class mainPanel extends javax.swing.JFrame {
     }
     
     public void loadPartidosPanel(){
-       vendedorApp.cargarPartidos();
-       cardLayout.show(cardPanel, "VendedorApp");
+        vendedorApp.cargarPartidos();
+        cardLayout.show(cardPanel, "VendedorApp");
+    }
+    
+    public void loadDetalleVenta(){
+        cardLayout.show(cardPanel, "PanelResumenVentas");
     }
     
     public void ShowPanel(String panelName){

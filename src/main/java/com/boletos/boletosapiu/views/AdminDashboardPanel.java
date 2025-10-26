@@ -8,6 +8,7 @@ import com.boletos.boletosapiu.model.Partido;
 import com.boletos.boletosapiu.model.Usuario;
 import com.boletos.boletosapiu.model.Venta;
 import com.boletos.boletosapiu.service.DetalleVentaService;
+import com.boletos.boletosapiu.service.PartidoService;
 import com.boletos.boletosapiu.service.VentaService;
 import com.boletos.boletosapiu.utils.CustomScrollBarUI;
 import com.boletos.boletosapiu.utils.GradientPanelBoletos;
@@ -32,6 +33,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -45,6 +47,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
     private mainPanel mainFrame;
     VentaService serviceVentas = new VentaService();
     DetalleVentaService serviceDetalle = new DetalleVentaService();
+    PartidoService servicePartido = new PartidoService();
     List<Venta> listaVentas;
     List<DetalleVenta> listaDetalleVentas;
     List<Partido> listaPartidos;
@@ -125,6 +128,9 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         lblVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblVentas.setPreferredSize(new java.awt.Dimension(250, 30));
         lblVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblVentasMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblVentasMouseEntered(evt);
             }
@@ -508,6 +514,10 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         mainFrame.ShowPanel("login");
     }//GEN-LAST:event_lblCerrarSesionMouseClicked
 
+    private void lblVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentasMouseClicked
+        mainFrame.loadDetalleVenta();
+    }//GEN-LAST:event_lblVentasMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Dashboard;
@@ -555,6 +565,30 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
     
     private CategoryDataset crearDatasetLineas(){
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("MMMM", Locale.ENGLISH);
+        LocalDate hoy = LocalDate.now();
+        LocalDate lastYear = hoy.minusYears(1);
+        List<String> categoriaPartido = new ArrayList<>();
+        HashMap<String, BigDecimal> ventasPorMes = new HashMap<>();
+        
+        for(Venta v: listaVentas){
+            LocalDate fechaDeLaVenta = v.getFecha_venta().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            int idPartidoVenta = 0;
+            if(fechaDeLaVenta.isAfter(lastYear)){
+                for(DetalleVenta d: listaDetalleVentas){
+                    if(v.getId_venta() == d.getId_venta()){
+                        idPartidoVenta = d.getId_partido();
+                    }
+                }
+                for(Partido p : listaPartidos){
+                    if(idPartidoVenta == p.getId_partido()){
+                        categoriaPartido.add(p.getCategoria());
+                    }
+                }
+               // ventasPorMes.merge(fechaDeLaVenta, v.getTotal_venta(), 1);
+                System.out.println(v.getFecha_venta());
+            }
+        }
         
         dataset.addValue(15, "Desktops", "Jan");
         dataset.addValue(30, "Desktops", "Feb");
@@ -664,6 +698,12 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         } catch (Exception ex) {
             System.out.println("Error al cargar detalle de ventas : "+ex.getMessage());
         }
+        
+        try {
+            listaPartidos = servicePartido.getPartidos();
+        } catch (Exception ex) {
+            System.out.println("Error al cargar partidos : "+ex.getMessage());
+        }
     }
     
     private void llenarLabels(){
@@ -699,7 +739,6 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
     }
     
     private void setUserPhoto(String username) {
-        System.out.println("Username recibido: [" + username + "]");
         username = username.trim().toLowerCase();
         String path = "";
 

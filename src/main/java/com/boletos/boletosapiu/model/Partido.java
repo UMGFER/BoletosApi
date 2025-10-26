@@ -9,7 +9,7 @@ public class Partido {
     String equipo_local;             
     Date fecha_partido; 
     String hora_inicio; 
-    String tipo_partido;  
+    String tipo_partido;
     String estadio;
     String estado;
     String categoria;
