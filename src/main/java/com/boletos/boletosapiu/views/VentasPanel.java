@@ -35,7 +35,7 @@ public class VentasPanel extends javax.swing.JPanel {
             setImageLabel(LabelFondoVenta, "/estadio doroteo.png");;
         });
     }
-    
+    //ESTAMOS PROBANDO GIT
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,7 +57,6 @@ public class VentasPanel extends javax.swing.JPanel {
         jTextField6 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -78,8 +77,6 @@ public class VentasPanel extends javax.swing.JPanel {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta Debito", "Tarjeta Credito" }));
 
         jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
 
         jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.HOUR));
 
@@ -119,11 +116,8 @@ public class VentasPanel extends javax.swing.JPanel {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField6))
+                    .addComponent(jTextField6)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -154,9 +148,7 @@ public class VentasPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addComponent(jButton1)
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
@@ -173,7 +165,7 @@ public class VentasPanel extends javax.swing.JPanel {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
 
         LabelFondoVenta.setText("jLabel10");
-        jPanel1.add(LabelFondoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 520, 630));
+        jPanel1.add(LabelFondoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 510, 630));
 
         LabelFondo2.setText("jLabel1");
         jPanel1.add(LabelFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 630));
@@ -195,7 +187,6 @@ public class VentasPanel extends javax.swing.JPanel {
     private javax.swing.JLabel LabelFondo2;
     private javax.swing.JLabel LabelFondoVenta;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
