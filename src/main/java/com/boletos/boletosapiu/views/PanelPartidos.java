@@ -73,7 +73,7 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
 
         Bandera1.setText("jLabel1");
         jPanel1.add(Bandera1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 110, 60));

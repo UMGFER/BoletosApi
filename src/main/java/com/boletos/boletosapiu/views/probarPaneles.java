@@ -23,10 +23,8 @@ public class probarPaneles extends javax.swing.JFrame {
         initComponents();
         //Moficiar con panel y constructor deseados
         VentasPanel ventas = new VentasPanel();
-        LocalidadesPanel panel = new LocalidadesPanel();
-        AdminDashboardPanel admin = new AdminDashboardPanel();
-        AdminResumenVentasPanel ventasAdmin = new AdminResumenVentasPanel();
-        setContentPane(ventasAdmin);
+   
+        setContentPane(ventas);
     }
 
     /**
