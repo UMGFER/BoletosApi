@@ -13,6 +13,7 @@ import com.boletos.boletosapiu.service.VentaService;
 import com.boletos.boletosapiu.utils.CustomScrollBarUI;
 import com.boletos.boletosapiu.utils.GradientPanelBoletos;
 import com.boletos.boletosapiu.utils.RoundedPanel;
+import com.boletos.boletosapiu.utils.VentaFiltrada;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -31,9 +32,11 @@ import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -82,7 +85,6 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         lblUsers = new javax.swing.JLabel();
         lblDashboard = new javax.swing.JLabel();
         lblCerrarSesion = new javax.swing.JLabel();
-        lblReportes = new javax.swing.JLabel();
         LabelFotoUsuario = new javax.swing.JLabel();
         scrollDashboard = new javax.swing.JScrollPane();
         Dashboard = new GradientPanelBoletos(
@@ -165,6 +167,9 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         lblUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblUsers.setPreferredSize(new java.awt.Dimension(250, 30));
         lblUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblUsersMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblUsersMouseEntered(evt);
             }
@@ -202,23 +207,6 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
             }
         });
 
-        lblReportes.setBackground(new java.awt.Color(2, 30, 69));
-        lblReportes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblReportes.setForeground(new java.awt.Color(255, 255, 255));
-        lblReportes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/report.png"))); // NOI18N
-        lblReportes.setText("REPORTES");
-        lblReportes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblReportes.setPreferredSize(new java.awt.Dimension(250, 30));
-        lblReportes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblReportesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblReportesMouseExited(evt);
-            }
-        });
-
         LabelFotoUsuario.setBackground(new java.awt.Color(255, 255, 255));
         LabelFotoUsuario.setText("jLabel1");
 
@@ -235,8 +223,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                     .addComponent(lblVentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(lblPartidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(lblUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(lblCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(lblReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(lblCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(MenuLayout.createSequentialGroup()
                 .addGap(69, 69, 69)
@@ -261,10 +248,8 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblUsers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
 
         MainPanel.add(Menu, java.awt.BorderLayout.WEST);
@@ -475,11 +460,6 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         lblUsers.repaint();
     }//GEN-LAST:event_lblUsersMouseEntered
 
-    private void lblReportesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblReportesMouseEntered
-        lblReportes.setOpaque(true);
-        lblReportes.repaint();
-    }//GEN-LAST:event_lblReportesMouseEntered
-
     private void lblCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseEntered
         lblCerrarSesion.setOpaque(true);
         lblCerrarSesion.repaint();
@@ -500,11 +480,6 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         lblUsers.repaint();
     }//GEN-LAST:event_lblUsersMouseExited
 
-    private void lblReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblReportesMouseExited
-        lblReportes.setOpaque(false);
-        lblReportes.repaint();
-    }//GEN-LAST:event_lblReportesMouseExited
-
     private void lblCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarSesionMouseExited
         lblCerrarSesion.setOpaque(false);
         lblCerrarSesion.repaint();
@@ -517,6 +492,10 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
     private void lblVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentasMouseClicked
         mainFrame.loadDetalleVenta();
     }//GEN-LAST:event_lblVentasMouseClicked
+
+    private void lblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUsersMouseClicked
+        mainFrame.loadUsuariosPanel();
+    }//GEN-LAST:event_lblUsersMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -536,7 +515,6 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblDashboard;
     private javax.swing.JLabel lblNombreApellido;
     private javax.swing.JLabel lblPartidos;
-    private javax.swing.JLabel lblReportes;
     private javax.swing.JLabel lblUserName;
     private javax.swing.JLabel lblUsers;
     private javax.swing.JLabel lblVentas;
@@ -568,42 +546,51 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("MMMM", Locale.ENGLISH);
         LocalDate hoy = LocalDate.now();
         LocalDate lastYear = hoy.minusYears(1);
-        List<String> categoriaPartido = new ArrayList<>();
-        HashMap<String, BigDecimal> ventasPorMes = new HashMap<>();
+        List<VentaFiltrada> ventaFiltrada = new ArrayList<>();
         
         for(Venta v: listaVentas){
             LocalDate fechaDeLaVenta = v.getFecha_venta().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            int idPartidoVenta = 0;
             if(fechaDeLaVenta.isAfter(lastYear)){
-                for(DetalleVenta d: listaDetalleVentas){
-                    if(v.getId_venta() == d.getId_venta()){
-                        idPartidoVenta = d.getId_partido();
+                String fecha = fechaDeLaVenta.format(formato);
+                BigDecimal total = v.getTotal_venta();
+                String tipoPartido = "";
+                int idPartido = 0;
+                boolean registroEncontrado = false;
+                
+                for(DetalleVenta dv : listaDetalleVentas){
+                    if(dv.getId_venta() == v.getId_venta()){
+                        idPartido = dv.getId_partido();
                     }
                 }
+                
                 for(Partido p : listaPartidos){
-                    if(idPartidoVenta == p.getId_partido()){
-                        categoriaPartido.add(p.getCategoria());
+                    if(p.getId_partido() == idPartido){
+                        tipoPartido = p.getCategoria();
                     }
                 }
-               // ventasPorMes.merge(fechaDeLaVenta, v.getTotal_venta(), 1);
-                System.out.println(v.getFecha_venta());
+                
+                for(VentaFiltrada vf: ventaFiltrada){
+                    if(vf.getFecha_venta().equals(fecha) && tipoPartido.equals(vf.getTipo_partido())){            
+                        vf.setTotal(vf.getTotal().add(total));
+                            registroEncontrado = true;
+                    }
+                }
+                if(!registroEncontrado){
+                    VentaFiltrada vFil = new VentaFiltrada(total, fecha, tipoPartido);
+                    ventaFiltrada.add(vFil);
+                }
+
             }
         }
         
-        dataset.addValue(15, "Desktops", "Jan");
-        dataset.addValue(30, "Desktops", "Feb");
-        dataset.addValue(40, "Desktops", "Mar");
-        dataset.addValue(50, "Desktops", "Apr");
-        dataset.addValue(60, "Desktops", "May");
-        dataset.addValue(70, "Desktops", "Jun");
+        ventaFiltrada.sort(Comparator.comparing(
+            v -> Month.valueOf(v.getFecha_venta().toUpperCase(Locale.ENGLISH))
+        ));
         
-        dataset.addValue(10, "Laptops", "Jan");
-        dataset.addValue(5, "Laptops", "Feb");
-        dataset.addValue(20, "Laptops", "Mar");
-        dataset.addValue(60, "Laptops", "Apr");
-        dataset.addValue(80, "Laptops", "May");
-        dataset.addValue(90, "Laptops", "Jun");
-                
+       for(VentaFiltrada vf : ventaFiltrada){
+            dataset.addValue(vf.getTotal(), vf.getTipo_partido(), vf.getFecha_venta());
+        } 
+        
         return dataset;
     }
     
@@ -687,8 +674,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
     
     private void cargarListas(){
         try {
-            listaVentas = serviceVentas.getVentas();
-           
+            listaVentas = serviceVentas.getVentas();           
         } catch (Exception ex) {
             System.out.println("Error al cargar las ventas: "+ex.getMessage());
         }

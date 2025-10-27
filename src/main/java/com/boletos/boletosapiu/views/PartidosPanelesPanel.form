@@ -51,13 +51,13 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel4" alignment="1" max="32767" attributes="0"/>
                               <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="552" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                       </Group>
@@ -76,11 +76,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jPanel4" min="-2" pref="160" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="160" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jPanel5" min="-2" pref="160" max="-2" attributes="0"/>
+                  <Component id="jScrollPane3" min="-2" pref="160" max="-2" attributes="0"/>
               </Group>
               <Component id="jPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -105,36 +105,27 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel4">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GradientPanelBoletos(&#xd;&#xa;    java.awt.Color.decode(&quot;#B0B0B5&quot;), // color 1&#xd;&#xa;    java.awt.Color.decode(&quot;#DADAF2&quot;)  // color 2&#xd;&#xa;);"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
-            <Property name="axis" type="int" value="0"/>
-          </Layout>
-        </Container>
-        <Container class="javax.swing.JPanel" name="jPanel5">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GradientPanelBoletos(&#xd;&#xa;    java.awt.Color.decode(&quot;#B0B0B5&quot;), // color 1&#xd;&#xa;    java.awt.Color.decode(&quot;#DADAF2&quot;)  // color 2&#xd;&#xa;);"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
-            <Property name="axis" type="int" value="0"/>
-          </Layout>
-        </Container>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Partidos Mayor"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Partidos Sub 17 "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Partidos Futsal"/>
           </Properties>
         </Component>
@@ -143,6 +134,36 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Container class="javax.swing.JPanel" name="pnlPartidosMayor">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GradientPanelBoletos(&#xd;&#xa;    java.awt.Color.decode(&quot;#B0B0B5&quot;), // color 1&#xd;&#xa;    java.awt.Color.decode(&quot;#DADAF2&quot;)  // color 2&#xd;&#xa;);"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+                <Property name="axis" type="int" value="0"/>
+              </Layout>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="pnlPartidosSub17">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GradientPanelBoletos(&#xd;&#xa;    java.awt.Color.decode(&quot;#B0B0B5&quot;), // color 1&#xd;&#xa;    java.awt.Color.decode(&quot;#DADAF2&quot;)  // color 2&#xd;&#xa;);"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
+                <Property name="axis" type="int" value="0"/>
+              </Layout>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="pnlPartidosFutsal">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new GradientPanelBoletos(&#xd;&#xa;    java.awt.Color.decode(&quot;#B0B0B5&quot;), // color 1&#xd;&#xa;    java.awt.Color.decode(&quot;#DADAF2&quot;)  // color 2&#xd;&#xa;);"/>
               </AuxValues>

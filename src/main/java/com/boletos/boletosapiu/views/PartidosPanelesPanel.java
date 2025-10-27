@@ -67,19 +67,21 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
         );
         jPanel2 = new javax.swing.JPanel();
         LabelSele = new javax.swing.JLabel();
-        jPanel4 = new GradientPanelBoletos(
-            java.awt.Color.decode("#B0B0B5"), // color 1
-            java.awt.Color.decode("#DADAF2")  // color 2
-        );
-        jPanel5 = new GradientPanelBoletos(
-            java.awt.Color.decode("#B0B0B5"), // color 1
-            java.awt.Color.decode("#DADAF2")  // color 2
-        );
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         pnlPartidosMayor = new GradientPanelBoletos(
+            java.awt.Color.decode("#B0B0B5"), // color 1
+            java.awt.Color.decode("#DADAF2")  // color 2
+        );
+        jScrollPane2 = new javax.swing.JScrollPane();
+        pnlPartidosSub17 = new GradientPanelBoletos(
+            java.awt.Color.decode("#B0B0B5"), // color 1
+            java.awt.Color.decode("#DADAF2")  // color 2
+        );
+        jScrollPane3 = new javax.swing.JScrollPane();
+        pnlPartidosFutsal = new GradientPanelBoletos(
             java.awt.Color.decode("#B0B0B5"), // color 1
             java.awt.Color.decode("#DADAF2")  // color 2
         );
@@ -91,18 +93,23 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
         LabelSele.setText("jLabel1");
         jPanel2.add(LabelSele, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 630));
 
-        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.X_AXIS));
-
-        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.X_AXIS));
-
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Partidos Mayor");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Partidos Sub 17 ");
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Partidos Futsal");
 
         pnlPartidosMayor.setLayout(new javax.swing.BoxLayout(pnlPartidosMayor, javax.swing.BoxLayout.X_AXIS));
         jScrollPane1.setViewportView(pnlPartidosMayor);
+
+        pnlPartidosSub17.setLayout(new javax.swing.BoxLayout(pnlPartidosSub17, javax.swing.BoxLayout.X_AXIS));
+        jScrollPane2.setViewportView(pnlPartidosSub17);
+
+        pnlPartidosFutsal.setLayout(new javax.swing.BoxLayout(pnlPartidosFutsal, javax.swing.BoxLayout.X_AXIS));
+        jScrollPane3.setViewportView(pnlPartidosFutsal);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,12 +125,12 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
                             .addGap(514, 514, 514)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(0, 552, Short.MAX_VALUE)))
+                                .addGap(0, 552, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -137,11 +144,11 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -165,10 +172,12 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JPanel pnlPartidosFutsal;
     private javax.swing.JPanel pnlPartidosMayor;
+    private javax.swing.JPanel pnlPartidosSub17;
     // End of variables declaration//GEN-END:variables
 
     private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
@@ -195,12 +204,21 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
         
         for(Partido p : listaPartidos){
            if(!p.getEstado().equals("Finalizado")){                         
-                if(p.getCategoria().equals("Futbol")){
+                if(p.getCategoria().equals("Mayor")){
                     PanelPartidos panel = new PanelPartidos(p.getEquipo_local(),p.getEquipo_visitante());
                     pnlPartidosMayor.add(panel);
                     pnlPartidosMayor.add(Box.createRigidArea(new Dimension(10,0)));
                 }
- 
+                if(p.getCategoria().equals("Sub 17")){
+                    PanelPartidos panel = new PanelPartidos(p.getEquipo_local(),p.getEquipo_visitante());
+                    pnlPartidosSub17.add(panel);
+                    pnlPartidosSub17.add(Box.createRigidArea(new Dimension(10,0)));
+                }
+                if(p.getCategoria().equals("Futsal")){
+                    PanelPartidos panel = new PanelPartidos(p.getEquipo_local(),p.getEquipo_visitante());
+                    pnlPartidosFutsal.add(panel);
+                    pnlPartidosFutsal.add(Box.createRigidArea(new Dimension(10,0)));
+                }
            }
         }
     }
