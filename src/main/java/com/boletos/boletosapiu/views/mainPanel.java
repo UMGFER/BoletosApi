@@ -9,6 +9,7 @@ import com.boletos.boletosapiu.model.Partido;
 import com.boletos.boletosapiu.model.Usuario;
 import com.boletos.boletosapiu.model.Venta;
 import java.awt.CardLayout;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -30,6 +31,7 @@ public class mainPanel extends javax.swing.JFrame {
     UsuariosPanel usuariosPanel = new UsuariosPanel(this);
     PartidosPanel partidosPanel = new PartidosPanel(this);
     VentasPanel panelVentas = new VentasPanel(this);
+    ConfimacionDeVenta panelConfirmacion = new ConfimacionDeVenta(this);
     
     /**
      * Creates new form mainPanel
@@ -48,6 +50,7 @@ public class mainPanel extends javax.swing.JFrame {
         cardPanel.add(usuariosPanel, "UsuariosPanel");
         cardPanel.add(partidosPanel, "partidosPanel");
         cardPanel.add(panelVentas, "panelVentas");
+        cardPanel.add(panelConfirmacion, "confirmarVenta");
         
         setContentPane(cardPanel);
         cardLayout.show(cardPanel, "login");
@@ -118,8 +121,8 @@ public class mainPanel extends javax.swing.JFrame {
         cardLayout.show(cardPanel, "AdminDashboard");
     }
     
-    public void loadVendedorApp(){
-        vendedorApp.cargarPartidos();
+    public void loadVendedorApp(Usuario user){
+        vendedorApp.cargarPartidos(user);
         cardLayout.show(cardPanel, "VendedorApp");
     }
     
@@ -138,9 +141,14 @@ public class mainPanel extends javax.swing.JFrame {
         cardLayout.show(cardPanel, "partidosPanel");
     }
     
-    public void loadPanelVentas(Partido partido){
-        panelVentas.cargarPanelVentas(partido);
+    public void loadPanelVentas(Partido partido, Usuario user){
+        panelVentas.cargarPanelVentas(partido, user);
         cardLayout.show(cardPanel, "panelVentas");
+    }
+    
+    public void loadConfirmacionVenta(Partido partido, Venta venta, DetalleVenta detalle, String banco , String nombreLocalidad, BigDecimal subTotal){
+        panelConfirmacion.loadConfirmacionVenta(partido, venta, detalle, banco, nombreLocalidad , subTotal);
+        cardLayout.show(cardPanel, "confirmarVenta");
     }
     
     public void ShowPanel(String panelName){

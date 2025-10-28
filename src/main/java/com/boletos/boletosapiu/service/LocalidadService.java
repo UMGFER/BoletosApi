@@ -58,4 +58,13 @@ public class LocalidadService {
             return mapper.readValue(is, Localidad.class);
         }
     }        
+    
+    public Localidad getLocalidad(int id)throws Exception{
+        try (CloseableHttpClient client = HttpClients.createDefault()){
+            HttpGet request = new HttpGet(BASE_URL + "/" + id);
+            ClassicHttpResponse response = (ClassicHttpResponse) client.execute(request);
+            InputStream is = response.getEntity().getContent();
+            return mapper.readValue(is, Localidad.class);
+        }
+    }
 }

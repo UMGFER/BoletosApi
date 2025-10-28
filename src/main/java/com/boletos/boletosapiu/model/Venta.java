@@ -69,5 +69,20 @@ public class Venta {
         this.total_venta = total_venta;
     }
     
+@Override
+public String toString() {
+    // Format the date to a readable string
+
     
+    return "Venta{" +
+            "id_venta=" + id_venta +
+            ", id_usuario='" + id_usuario + '\'' +
+            ", nombre_comprador='" + nombre_comprador + '\'' +
+            ", correo_comprador=" + correo_comprador +
+            ", tipo_pago='" + tipo_pago + '\'' +
+            ", fecha_venta='" + fecha_venta + '\'' +
+            ", total_venta='" + total_venta + '\'' +
+            '}';
+    }
+
 }

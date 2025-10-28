@@ -57,5 +57,14 @@ public class InventarioService {
             InputStream is = response.getEntity().getContent();
             return mapper.readValue(is, Inventario.class);
         }
-    }    
+    }
+
+    public List<Inventario> getInventariosbyPartido(int idPartido) throws Exception {
+        try (CloseableHttpClient client = HttpClients.createDefault()) {
+            HttpGet request = new HttpGet(BASE_URL + "/?id_partido="+idPartido);
+            ClassicHttpResponse response = (ClassicHttpResponse) client.execute(request);
+            InputStream is = response.getEntity().getContent();
+            return mapper.readValue(is, new TypeReference<List<Inventario>>() {});
+        }
+    }
 }

@@ -5,6 +5,7 @@
 package com.boletos.boletosapiu.views;
 
 import com.boletos.boletosapiu.model.Partido;
+import com.boletos.boletosapiu.model.Usuario;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
@@ -16,14 +17,16 @@ import javax.swing.SwingUtilities;
 public class PanelPartidos extends javax.swing.JPanel {
     
     Partido partido;
+    Usuario user;
     private mainPanel mainFrame;
     /**
      * Creates new form test
      */
     
-    public PanelPartidos(Partido partidoRecibido, mainPanel main) {
+    public PanelPartidos(Partido partidoRecibido, mainPanel main, Usuario usuario) {
         initComponents();
         this.mainFrame = main;
+        user = usuario;
         partido = partidoRecibido;
      //   Bandera1.setIcon(new ImageIcon(getClass().getResource("/Bandera Guatemala.jpg")));
       //  Bandera1.setText("prueba");
@@ -102,7 +105,7 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        mainFrame.loadPanelVentas(partido);
+        mainFrame.loadPanelVentas(partido, user);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -44,7 +44,7 @@ public class DetalleVentaService {
         }
     }
     
-    public DetalleVenta updateInventario(int id, DetalleVenta c) throws Exception{
+    public DetalleVenta updateDetalleVenta(int id, DetalleVenta c) throws Exception{
         try(CloseableHttpClient client = HttpClients.createDefault()){
             HttpPut request = new HttpPut(BASE_URL + "/update/"+ id);
             String json = mapper.writeValueAsString(c);

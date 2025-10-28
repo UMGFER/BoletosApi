@@ -4,8 +4,16 @@
  */
 package com.boletos.boletosapiu.views;
 
+import com.boletos.boletosapiu.model.DetalleVenta;
+import com.boletos.boletosapiu.model.Partido;
+import com.boletos.boletosapiu.model.Venta;
+import com.boletos.boletosapiu.service.DetalleVentaService;
+import com.boletos.boletosapiu.service.VentaService;
 import java.awt.Image;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -14,6 +22,15 @@ import javax.swing.SwingUtilities;
  */
 public class ConfimacionDeVenta extends javax.swing.JPanel {
 
+    VentaService serviceVenta = new VentaService();
+    DetalleVentaService serviceDetalle = new DetalleVentaService();
+    
+    private mainPanel mainFrame;
+    Partido partido;
+    Venta venta;
+    DetalleVenta detalle;
+    String banco;
+    
     /**
      * Creates new form ConfimacionDeVenta
      */
@@ -26,7 +43,19 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         setImageLabel(LabelFondoCon, "/sintitulo.png");
     
                 });
-                }
+        }
+
+    public ConfimacionDeVenta(mainPanel main) {
+        initComponents();
+        this.mainFrame = main;
+        SwingUtilities.invokeLater(() -> {
+        setImageLabel(LogoFactura, "/Fuchi.png");
+        setImageLabel(Vistolbl, "/VistoLogo.png");
+        setImageLabel(lblfede, "/Fedefut.png");
+        setImageLabel(LabelFondoCon, "/sintitulo.png");
+    
+        });
+     }
     private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         java.net.URL imgURL = getClass().getResource(resourcePath);
         if (imgURL != null) {
@@ -57,27 +86,27 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         lblfede = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lblSubTotal = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        lblImpuestos = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        lblDescuento1 = new javax.swing.JLabel();
+        lblDescuento2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        lblNombreComprador = new javax.swing.JLabel();
+        lblCorreoComprador = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
+        lblTipoPartido = new javax.swing.JLabel();
+        lblCategoria = new javax.swing.JLabel();
+        lblPartidoLocal = new javax.swing.JLabel();
+        lblVisitante = new javax.swing.JLabel();
+        lblEstadio = new javax.swing.JLabel();
+        lblCantidadBoletos = new javax.swing.JLabel();
+        lblLocalidad = new javax.swing.JLabel();
+        lblTipoPago = new javax.swing.JLabel();
+        lblBanco = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         LogoFactura = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -97,17 +126,13 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         lblfede.setText("jLabel21");
         jPanel2.add(lblfede, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 810, 360, 190));
 
-        jLabel3.setText("Subtotal:");
+        lblSubTotal.setText("Subtotal:");
 
         jLabel1.setText("Descuentos:");
 
-        jLabel4.setText("IVA:");
+        lblImpuestos.setText("IVA:");
 
-        jLabel2.setText("Total:");
-
-        jLabel18.setText("//");
-
-        jLabel19.setText("//");
+        lblTotal.setText("Total:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -116,69 +141,77 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(540, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(lblImpuestos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSubTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDescuento1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblDescuento2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(34, 34, 34)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel18))
+                .addContainerGap()
+                .addComponent(lblSubTotal)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel19)
-                .addGap(17, 17, 17)
-                .addComponent(jLabel4)
-                .addGap(37, 37, 37)
-                .addComponent(jLabel2)
-                .addGap(27, 27, 27))
+                .addComponent(lblDescuento1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblDescuento2)
+                .addGap(18, 18, 18)
+                .addComponent(lblImpuestos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(lblTotal)
+                .addContainerGap())
         );
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 700, 753, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 204, 204));
         jButton1.setText("CONFIRMAR COMPRA");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 1010, 394, 49));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back-30.png"))); // NOI18N
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 59, 57));
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 0, 59, 57));
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel6.setText("Nombre Comprador:");
+        lblNombreComprador.setText("Nombre Comprador:");
 
-        jLabel7.setText("Correo Comprador:");
+        lblCorreoComprador.setText("Correo Comprador:");
 
-        jLabel8.setText("Fecha:");
+        lblFecha.setText("Fecha:");
 
-        jLabel9.setText("Tipo Partido:");
+        lblTipoPartido.setText("Tipo Partido:");
 
-        jLabel10.setText("Categoria:");
+        lblCategoria.setText("Categoria:");
 
-        jLabel11.setText("Equipo Local:");
+        lblPartidoLocal.setText("Equipo Local:");
 
-        jLabel12.setText("Equipo Visitante:");
+        lblVisitante.setText("Equipo Visitante:");
 
-        jLabel13.setText("Estadio:");
+        lblEstadio.setText("Estadio:");
 
-        jLabel14.setText("Cantidad Boletos:");
+        lblCantidadBoletos.setText("Cantidad Boletos:");
 
-        jLabel15.setText("Localidad:");
+        lblLocalidad.setText("Localidad:");
 
-        jLabel16.setText("Tipo de Pago:");
+        lblTipoPago.setText("Tipo de Pago:");
 
-        jLabel17.setText("Banco:");
+        lblBanco.setText("Banco:");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -189,49 +222,49 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblFecha)
+                            .addComponent(lblNombreComprador, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                            .addComponent(lblCorreoComprador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTipoPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(121, 121, 121)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(211, Short.MAX_VALUE))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblLocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTipoPago, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                            .addComponent(lblBanco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEstadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblCantidadBoletos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblPartidoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel13))
+                    .addComponent(lblNombreComprador)
+                    .addComponent(lblEstadio))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel14))
+                    .addComponent(lblCorreoComprador)
+                    .addComponent(lblCantidadBoletos))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel15))
+                    .addComponent(lblFecha)
+                    .addComponent(lblLocalidad))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel16))
+                    .addComponent(lblTipoPartido)
+                    .addComponent(lblTipoPago))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel17))
+                    .addComponent(lblCategoria)
+                    .addComponent(lblBanco))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel11)
+                .addComponent(lblPartidoLocal)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel12)
+                .addComponent(lblVisitante)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -275,24 +308,46 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(jPanel2);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 830, 490));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 830, 480));
 
         LabelFondoCon.setText("jLabel26");
-        jPanel1.add(LabelFondoCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, 0, 1190, 640));
+        jPanel1.add(LabelFondoCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, 0, 1140, 630));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1150, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        mainFrame.ShowPanel("panelVentas");
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Venta ventaCreada;
+        try {
+            ventaCreada = serviceVenta.createVenta(venta);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+            return;
+        }
+
+        detalle.setId_venta(ventaCreada.getId_venta());
+        
+        try{
+            serviceDetalle.createDetalleVenta(detalle);
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Venta registrada");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -301,35 +356,100 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
     private javax.swing.JLabel Vistolbl;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblBanco;
+    private javax.swing.JLabel lblCantidadBoletos;
+    private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblCorreoComprador;
+    private javax.swing.JLabel lblDescuento1;
+    private javax.swing.JLabel lblDescuento2;
+    private javax.swing.JLabel lblEstadio;
+    private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblImpuestos;
+    private javax.swing.JLabel lblLocalidad;
+    private javax.swing.JLabel lblNombreComprador;
+    private javax.swing.JLabel lblPartidoLocal;
+    private javax.swing.JLabel lblSubTotal;
+    private javax.swing.JLabel lblTipoPago;
+    private javax.swing.JLabel lblTipoPartido;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblVisitante;
     private javax.swing.JLabel lblfede;
     // End of variables declaration//GEN-END:variables
+
+    public void loadConfirmacionVenta(Partido partidoE, Venta ventaC, DetalleVenta detalleC, String bancoE, String nombreLocalidad, BigDecimal subTotal){
+        partido = partidoE;
+        venta = ventaC;
+        detalle = detalleC;
+        banco = bancoE;
+        
+        lblNombreComprador.setText("Nombre del comprador: "+venta.getNombre_comprador());
+        lblCorreoComprador.setText("Correo del comprador: "+venta.getCorreo_comprador());
+        lblFecha.setText("Fecha: " + venta.getFecha_venta());
+        lblTipoPartido.setText("Tipo partido: " + partido.getTipo_partido());
+        lblCategoria.setText("Categoria: " + partido.getCategoria());
+        lblPartidoLocal.setText("Equipo local: " + partido.getEquipo_local());
+        lblVisitante.setText("Equipo visitante: " + partido.getEquipo_visitante());
+        lblEstadio.setText("Estadio: " + partido.getEstadio());
+        lblCantidadBoletos.setText("Cantidad de boletos: " + detalle.getCantidad());
+        lblLocalidad.setText("Localidad: " + nombreLocalidad);
+        lblTipoPago.setText("Tipo pago: " + venta.getTipo_pago());
+        lblBanco.setText("Banco: " + banco);
+        
+        lblSubTotal.setText("Subtotal: Q " + subTotal);
+        BigDecimal IVA = new BigDecimal("0.12");
+        BigDecimal descuentoInicioPartido = new BigDecimal("0.5");
+        BigDecimal descuentoBanco = new BigDecimal("0.05");
+        BigDecimal descuento1 = BigDecimal.ZERO;
+        BigDecimal descuento2 = BigDecimal.ZERO;
+
+        
+        BigDecimal tempAmount = subTotal;
+
+        if(partido.getEstado().equals("En Curso")){
+            BigDecimal discount = tempAmount.multiply(descuentoInicioPartido)
+                    .setScale(2, RoundingMode.HALF_UP);
+            tempAmount = tempAmount.subtract(discount);
+            descuento1 = discount;
+            lblDescuento1.setText("Partido en curso. -Q" + discount);
+        }else{
+            lblDescuento1.setText("");
+        }
+
+        if(banco.equals("BAC Credomatic")){
+            BigDecimal discount = tempAmount.multiply(descuentoBanco)
+                    .setScale(2, RoundingMode.HALF_UP);
+            tempAmount = tempAmount.subtract(discount);
+            descuento2 = discount;
+            lblDescuento2.setText("Banco afiliado. -Q " + discount);
+        }else{
+            lblDescuento2.setText("");
+        }
+
+        BigDecimal impuestos = tempAmount.multiply(IVA)
+                .setScale(2, RoundingMode.HALF_UP);
+
+        lblImpuestos.setText("IVA. +Q " + impuestos);
+        BigDecimal total = tempAmount.add(impuestos);
+        lblTotal.setText("Total: " + total);
+        BigDecimal descuentoTotal = descuento1.add(descuento2);
+        
+        venta.setTotal_venta(total);
+        detalle.setDescuento(descuentoTotal);
+        
+        
+    }
+    
+
 }

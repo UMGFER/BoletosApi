@@ -10,6 +10,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import com.boletos.boletosapiu.service.PartidoService;
 import com.boletos.boletosapiu.model.Partido;
+import com.boletos.boletosapiu.model.Usuario;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -25,6 +26,7 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
     private mainPanel mainFrame;
     
     PartidoService service = new PartidoService();
+    Usuario user;
     List<Partido> listaPartidos;
     
     /**
@@ -223,7 +225,8 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
         }
     }
     
-    public void cargarPartidos(){
+    public void cargarPartidos(Usuario usuario){
+        user = usuario;
         try {
             listaPartidos = service.getPartidos();
         } catch (Exception ex) {
@@ -233,17 +236,17 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
         for(Partido p : listaPartidos){
            if(!p.getEstado().equals("Finalizado")){                         
                 if(p.getCategoria().equals("Mayor")){
-                    PanelPartidos panel = new PanelPartidos(p,mainFrame);
+                    PanelPartidos panel = new PanelPartidos(p,mainFrame,user);
                     pnlPartidosMayor.add(panel);
                     pnlPartidosMayor.add(Box.createRigidArea(new Dimension(10,0)));
                 }
                 if(p.getCategoria().equals("Sub 17")){
-                    PanelPartidos panel = new PanelPartidos(p,mainFrame);
+                    PanelPartidos panel = new PanelPartidos(p,mainFrame,user);
                     pnlPartidosSub17.add(panel);
                     pnlPartidosSub17.add(Box.createRigidArea(new Dimension(10,0)));
                 }
                 if(p.getCategoria().equals("Futsal")){
-                    PanelPartidos panel = new PanelPartidos(p,mainFrame);
+                    PanelPartidos panel = new PanelPartidos(p,mainFrame,user);
                     pnlPartidosFutsal.add(panel);
                     pnlPartidosFutsal.add(Box.createRigidArea(new Dimension(10,0)));
                 }

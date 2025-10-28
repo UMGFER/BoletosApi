@@ -69,4 +69,19 @@ public class DetalleVenta {
         this.descuento = descuento;
     }
     
+    @Override
+public String toString() {
+    // Format the date to a readable string
+
+    
+    return "Detalle Venta{" +
+            "id_detalle=" + id_detalle +
+            ", id_venta='" + id_venta + '\'' +
+            ", id_localidad='" + id_localidad + '\'' +
+            ", id_partido=" + id_partido +
+            ", cantidad='" + cantidad + '\'' +
+            ", precio_unitario='" + precio_unitario + '\'' +
+            ", descuento='" + descuento + '\'' +
+            '}';
+    }
 }

@@ -4,10 +4,22 @@
  */
 package com.boletos.boletosapiu.views;
 
+import com.boletos.boletosapiu.model.DetalleVenta;
+import com.boletos.boletosapiu.model.Inventario;
+import com.boletos.boletosapiu.model.Localidad;
 import com.boletos.boletosapiu.model.Partido;
+import com.boletos.boletosapiu.model.Usuario;
+import com.boletos.boletosapiu.model.Venta;
+import com.boletos.boletosapiu.service.InventarioService;
+import com.boletos.boletosapiu.service.LocalidadService;
 import com.boletos.boletosapiu.utils.RoundedGradientPanelBoletos;
 import java.awt.Image;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -18,6 +30,15 @@ public class VentasPanel extends javax.swing.JPanel {
 
     private mainPanel mainFrame;
     Partido partidoSeleccionado;
+    Usuario user;
+    
+    //Listas
+    List<Inventario> listaInventario;
+    List<Localidad> listaLocalidades = new ArrayList<>();
+    //Service
+    InventarioService serviceInventario = new InventarioService();
+    LocalidadService localidadService = new LocalidadService();
+    
     /**
      * Creates new form VentasPanel
      */
@@ -45,10 +66,10 @@ public class VentasPanel extends javax.swing.JPanel {
         LabelFondoVenta = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        txtNombre = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        cmbTipoPago = new javax.swing.JComboBox<>();
+        btnRegistrarVenta = new javax.swing.JButton();
         lblcomprador = new javax.swing.JLabel();
         lblcorreo = new javax.swing.JLabel();
         lblpago = new javax.swing.JLabel();
@@ -67,10 +88,10 @@ public class VentasPanel extends javax.swing.JPanel {
         lblcategoria = new javax.swing.JLabel();
         lblestado = new javax.swing.JLabel();
         lblcantidadbol = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
+        spnBoletos = new javax.swing.JSpinner();
         lblbanco = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cmbBanco = new javax.swing.JComboBox<>();
+        cmbLocalidad = new javax.swing.JComboBox<>();
         LabelFondo2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -94,9 +115,14 @@ public class VentasPanel extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta Debito", "Tarjeta Credito" }));
+        cmbTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta Debito", "Tarjeta Credito" }));
 
-        jButton1.setText("REGISTRAR VENTA");
+        btnRegistrarVenta.setText("REGISTRAR VENTA");
+        btnRegistrarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarVentaActionPerformed(evt);
+            }
+        });
 
         lblcomprador.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblcomprador.setText("Nombre_comprador:");
@@ -149,13 +175,18 @@ public class VentasPanel extends javax.swing.JPanel {
 
         lblcantidadbol.setText("Cantidad de Boletos:");
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, 3, 1));
+        spnBoletos.setModel(new javax.swing.SpinnerNumberModel(1, 1, 3, 1));
 
         lblbanco.setText("Banco:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banco Industrial", "BAC Credomatic", " " }));
+        cmbBanco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banco Industrial", "BAC Credomatic", " " }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Zona Tecnica / VIP", "Tribuna Norte y Sur", "Tribuna Lateral Referente", "Palcos Ejecutivos / Premium", "Tribuna Popular" }));
+        cmbLocalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Zona Tecnica - VIP", "Palcos Ejecutivos - Premium ", "Tribuna Lateral Referente", "Tribuna Popular", "Tribuna Norte", "Tribuna Sur" }));
+        cmbLocalidad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbLocalidadItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -173,7 +204,7 @@ public class VentasPanel extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(lblnombrelocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(lblrestante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -192,9 +223,9 @@ public class VentasPanel extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(65, 65, 65)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNombre)
+                                    .addComponent(txtCorreo)
+                                    .addComponent(cmbTipoPago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblbanco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,13 +234,13 @@ public class VentasPanel extends javax.swing.JPanel {
                                             .addComponent(lblcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblcomprador, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSpinner2))))
+                                    .addComponent(cmbBanco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(spnBoletos))))
                         .addGap(30, 30, 30)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -237,7 +268,7 @@ public class VentasPanel extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblnombrelocalidad)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(lblprecio)
                 .addGap(42, 42, 42)
@@ -247,25 +278,25 @@ public class VentasPanel extends javax.swing.JPanel {
                 .addGap(35, 35, 35)
                 .addComponent(lblcomprador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblcorreo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblpago)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblbanco)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblcantidadbol)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spnBoletos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
-                .addComponent(jButton1)
+                .addComponent(btnRegistrarVenta)
                 .addGap(33, 33, 33))
         );
 
@@ -291,14 +322,54 @@ public class VentasPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmbLocalidadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbLocalidadItemStateChanged
+        if(cmbLocalidad.getSelectedIndex()!=0){
+            int registro = cmbLocalidad.getSelectedIndex() - 1;
+            lblprecio.setText("Precio del boleto: " + listaLocalidades.get(registro).getPrecio());
+            lblrestante.setText("Boletos Restantes: " + listaInventario.get(registro).getCantidad_disponible());
+        }
+    }//GEN-LAST:event_cmbLocalidadItemStateChanged
+
+    private void btnRegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarVentaActionPerformed
+        int registro = 0;
+        
+        if(cmbLocalidad.getSelectedIndex()>0){
+            registro = cmbLocalidad.getSelectedIndex() - 1;          
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe elegir localidad");
+            return;
+        }
+        Venta ventaCreada = new Venta();
+        ventaCreada.setId_usuario(user.getId_usuario());
+        ventaCreada.setNombre_comprador(txtNombre.getText());
+        ventaCreada.setCorreo_comprador(txtCorreo.getText());
+        ventaCreada.setTipo_pago((String) cmbTipoPago.getSelectedItem());
+        //ventaCreada.setFecha_venta(new Date());      
+        BigDecimal precioUnitario = listaLocalidades.get(registro).getPrecio();           
+        int cantidadBoletos = (int)spnBoletos.getValue();
+        BigDecimal precioTotal = precioUnitario.multiply(BigDecimal.valueOf(cantidadBoletos));
+        
+        DetalleVenta detalleVenta = new DetalleVenta();
+        detalleVenta.setId_localidad(listaLocalidades.get(registro).getId_localidad());
+        detalleVenta.setId_partido(partidoSeleccionado.getId_partido());
+        detalleVenta.setCantidad(cantidadBoletos);
+        detalleVenta.setPrecio_unitario(precioUnitario);
+        
+        String banco = (String)cmbBanco.getSelectedItem();
+        String nombreLocalidad = cmbLocalidad.getItemAt(registro+1);
+        
+        mainFrame.loadConfirmacionVenta(partidoSeleccionado, ventaCreada, detalleVenta, banco, nombreLocalidad, precioTotal);
+        
+    }//GEN-LAST:event_btnRegistrarVentaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelFondo2;
     private javax.swing.JLabel LabelFondoVenta;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JButton btnRegistrarVenta;
+    private javax.swing.JComboBox<String> cmbBanco;
+    private javax.swing.JComboBox<String> cmbLocalidad;
+    private javax.swing.JComboBox<String> cmbTipoPago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -308,9 +379,6 @@ public class VentasPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel lblbanco;
     private javax.swing.JLabel lblcantidadbol;
     private javax.swing.JLabel lblcategoria;
@@ -327,6 +395,9 @@ public class VentasPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblrestante;
     private javax.swing.JLabel lbltipo;
     private javax.swing.JLabel lblvisita;
+    private javax.swing.JSpinner spnBoletos;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
     private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
@@ -344,14 +415,15 @@ public class VentasPanel extends javax.swing.JPanel {
         }
     }
     
-    public void cargarPanelVentas(Partido partido){
+    public void cargarPanelVentas(Partido partido, Usuario usuario){
         partidoSeleccionado = partido;
+        user = usuario;
         SwingUtilities.invokeLater(() -> {
             setImageLabel(LabelFondo2, "/ChatGPT Image 19 oct 2025, 12_34_36 a.m..png");
             setImageLabel(LabelFondoVenta, "/estadio doroteo.png"); 
         });
         cargarInformacionPartidos();
-   
+        cargarInfoBoletos();
     }
     
     private void cargarInformacionPartidos(){
@@ -363,5 +435,21 @@ public class VentasPanel extends javax.swing.JPanel {
         lblestadio.setText("Estadio: " + partidoSeleccionado.getEstadio());
         lblcategoria.setText("Categoria: " + partidoSeleccionado.getCategoria());
         lblestado.setText("Estado: " + partidoSeleccionado.getEstado());
+    }
+    
+    private void cargarInfoBoletos(){
+        try {
+            listaInventario = serviceInventario.getInventariosbyPartido(partidoSeleccionado.getId_partido());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al cargar inventarios: " + ex.getMessage());
+        }
+        
+        for(Inventario i : listaInventario){
+            try {
+                listaLocalidades.add(localidadService.getLocalidad(i.getId_localidad()));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error al cargar localidades: " + ex.getMessage());
+            }
+        }      
     }
 }

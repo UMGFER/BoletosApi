@@ -255,7 +255,7 @@ public class LoginPanel extends javax.swing.JPanel {
             if(user.getRol().equals("Administrador")){
                 mainFrame.loadAdminDashboard(user);
             }else if(user.getRol().equals("Vendedor")){
-                mainFrame.loadVendedorApp();
+                mainFrame.loadVendedorApp(user);
             }          
        }
         
