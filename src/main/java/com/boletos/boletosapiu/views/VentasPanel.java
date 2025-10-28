@@ -55,26 +55,26 @@ public class VentasPanel extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblcomprador = new javax.swing.JLabel();
+        lblcorreo = new javax.swing.JLabel();
+        lblpago = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lblnombrelocalidad = new javax.swing.JLabel();
+        lblprecio = new javax.swing.JLabel();
+        lblrestante = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
+        lbllocal = new javax.swing.JLabel();
+        lblvisita = new javax.swing.JLabel();
+        lblfecha = new javax.swing.JLabel();
+        lblhora = new javax.swing.JLabel();
+        lblestadio = new javax.swing.JLabel();
+        lbltipo = new javax.swing.JLabel();
+        lblcategoria = new javax.swing.JLabel();
+        lblestado = new javax.swing.JLabel();
+        lblcantidadbol = new javax.swing.JLabel();
         jSpinner2 = new javax.swing.JSpinner();
-        jLabel2 = new javax.swing.JLabel();
+        lblbanco = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         LabelFondo2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -103,14 +103,14 @@ public class VentasPanel extends javax.swing.JPanel {
 
         jButton1.setText("REGISTRAR VENTA");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel3.setText("Nombre_comprador:");
+        lblcomprador.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lblcomprador.setText("Nombre_comprador:");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel4.setText("Correo_comprador:");
+        lblcorreo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lblcorreo.setText("Correo_comprador:");
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel5.setText("Tipo_pago:");
+        lblpago.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lblpago.setText("Tipo_pago:");
 
         jLabel1.setBackground(new java.awt.Color(2, 30, 69));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -118,11 +118,11 @@ public class VentasPanel extends javax.swing.JPanel {
         jLabel1.setText("Informacion sobre el Partido");
         jLabel1.setOpaque(true);
 
-        jLabel10.setText("Nombre Localidad:");
+        lblnombrelocalidad.setText("Nombre Localidad:");
 
-        jLabel11.setText("Precio del boleto:");
+        lblprecio.setText("Precio del boleto:");
 
-        jLabel12.setText("Boletos Restantes:");
+        lblrestante.setText("Boletos Restantes:");
 
         jLabel13.setBackground(new java.awt.Color(2, 30, 69));
         jLabel13.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -136,27 +136,27 @@ public class VentasPanel extends javax.swing.JPanel {
         jLabel14.setText("Informacion sobre Localidad");
         jLabel14.setOpaque(true);
 
-        jLabel15.setText("Equipo Local:");
+        lbllocal.setText("Equipo Local:");
 
-        jLabel16.setText("Equipo Visitante:");
+        lblvisita.setText("Equipo Visitante:");
 
-        jLabel17.setText("Fecha:");
+        lblfecha.setText("Fecha:");
 
-        jLabel18.setText("Hora de inicio:");
+        lblhora.setText("Hora de inicio:");
 
-        jLabel19.setText("Estadio:");
+        lblestadio.setText("Estadio:");
 
-        jLabel20.setText("Tipo Partido:");
+        lbltipo.setText("Tipo Partido:");
 
-        jLabel21.setText("Categoria:");
+        lblcategoria.setText("Categoria:");
 
-        jLabel22.setText("Estado:");
+        lblestado.setText("Estado:");
 
-        jLabel23.setText("Cantidad de Boletos:");
+        lblcantidadbol.setText("Cantidad de Boletos:");
 
         jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, 3, 1));
 
-        jLabel2.setText("Banco:");
+        lblbanco.setText("Banco:");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banco Industrial", "BAC Credomatic", " " }));
 
@@ -172,35 +172,35 @@ public class VentasPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(lblprecio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblnombrelocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblrestante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(67, 67, 67)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lbllocal, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblvisita, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblhora, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblestadio, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbltipo, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblestado, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(65, 65, 65)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField3)
                                     .addComponent(jTextField4)
                                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblbanco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel23)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(lblcantidadbol)
+                                            .addComponent(lblpago, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblcomprador, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jSpinner2))))
@@ -216,49 +216,49 @@ public class VentasPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel15)
+                .addComponent(lbllocal)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel16)
+                .addComponent(lblvisita)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel17)
+                .addComponent(lblfecha)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel18)
+                .addComponent(lblhora)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel20)
+                .addComponent(lbltipo)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel19)
+                .addComponent(lblestadio)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel21)
+                .addComponent(lblcategoria)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel22)
+                .addComponent(lblestado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addGap(24, 24, 24)
-                .addComponent(jLabel10)
+                .addComponent(lblnombrelocalidad)
                 .addGap(39, 39, 39)
-                .addComponent(jLabel11)
+                .addComponent(lblprecio)
                 .addGap(42, 42, 42)
-                .addComponent(jLabel12)
+                .addComponent(lblrestante)
                 .addGap(65, 65, 65)
                 .addComponent(jLabel13)
                 .addGap(35, 35, 35)
-                .addComponent(jLabel3)
+                .addComponent(lblcomprador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(lblcorreo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addComponent(lblpago)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(lblbanco)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel23)
+                .addComponent(lblcantidadbol)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
@@ -296,24 +296,8 @@ public class VentasPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -323,6 +307,22 @@ public class VentasPanel extends javax.swing.JPanel {
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel lblbanco;
+    private javax.swing.JLabel lblcantidadbol;
+    private javax.swing.JLabel lblcategoria;
+    private javax.swing.JLabel lblcomprador;
+    private javax.swing.JLabel lblcorreo;
+    private javax.swing.JLabel lblestadio;
+    private javax.swing.JLabel lblestado;
+    private javax.swing.JLabel lblfecha;
+    private javax.swing.JLabel lblhora;
+    private javax.swing.JLabel lbllocal;
+    private javax.swing.JLabel lblnombrelocalidad;
+    private javax.swing.JLabel lblpago;
+    private javax.swing.JLabel lblprecio;
+    private javax.swing.JLabel lblrestante;
+    private javax.swing.JLabel lbltipo;
+    private javax.swing.JLabel lblvisita;
     // End of variables declaration//GEN-END:variables
 
     private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
