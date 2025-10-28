@@ -3,11 +3,9 @@ package com.boletos.boletosapiu.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
-import java.nio.file.Paths;
 
 public class Conexion {
     static Properties config = new Properties();
@@ -19,10 +17,9 @@ public class Conexion {
 
     public Conexion(){
         InputStream in;
-        String path = "C:\\Config\\DBConfig.properties";
         
         try{
-            in = Files.newInputStream(Paths.get(path));
+            in = getClass().getClassLoader().getResourceAsStream("DBConfig/DBConfig.properties");
             config.load(in);
             in.close();
             loadProperties();
