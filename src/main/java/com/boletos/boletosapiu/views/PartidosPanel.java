@@ -145,48 +145,48 @@ public class PartidosPanel extends javax.swing.JPanel {
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        jSpinner17 = new javax.swing.JSpinner();
+        spnPrecioModEj = new javax.swing.JSpinner();
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
-        jSpinner18 = new javax.swing.JSpinner();
+        spnPrecioModLat = new javax.swing.JSpinner();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        jSpinner19 = new javax.swing.JSpinner();
+        spnPrecioModPop = new javax.swing.JSpinner();
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
-        jSpinner20 = new javax.swing.JSpinner();
+        spnTotLateral = new javax.swing.JSpinner();
         jLabel49 = new javax.swing.JLabel();
-        jSpinner21 = new javax.swing.JSpinner();
+        spnTotNorte = new javax.swing.JSpinner();
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
-        jSpinner22 = new javax.swing.JSpinner();
+        spnTotSur = new javax.swing.JSpinner();
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
-        jSpinner23 = new javax.swing.JSpinner();
+        spnPrecioModVIP = new javax.swing.JSpinner();
         jLabel54 = new javax.swing.JLabel();
-        jSpinner24 = new javax.swing.JSpinner();
+        spnPrecioModNorte = new javax.swing.JSpinner();
         jLabel55 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
-        jSpinner25 = new javax.swing.JSpinner();
+        spnPrecioModSur = new javax.swing.JSpinner();
         jLabel57 = new javax.swing.JLabel();
-        spnTotMod = new javax.swing.JSpinner();
+        spnTotVIPMod = new javax.swing.JSpinner();
         jLabel58 = new javax.swing.JLabel();
-        jSpinner27 = new javax.swing.JSpinner();
-        jSpinner28 = new javax.swing.JSpinner();
-        jButton2 = new javax.swing.JButton();
+        spnTotEjeMod = new javax.swing.JSpinner();
+        spnTotPop = new javax.swing.JSpinner();
+        btnActualizarPartido = new javax.swing.JButton();
         jLabel59 = new javax.swing.JLabel();
         cmbEstadoMod = new javax.swing.JComboBox<>();
         jLabel60 = new javax.swing.JLabel();
-        jSpinner29 = new javax.swing.JSpinner();
+        spnTotDispVIP = new javax.swing.JSpinner();
         jLabel61 = new javax.swing.JLabel();
-        jSpinner30 = new javax.swing.JSpinner();
-        jSpinner31 = new javax.swing.JSpinner();
+        spnTotDispEJ = new javax.swing.JSpinner();
+        spnTotDispPop = new javax.swing.JSpinner();
         jLabel62 = new javax.swing.JLabel();
         jLabel63 = new javax.swing.JLabel();
         jLabel64 = new javax.swing.JLabel();
-        jSpinner32 = new javax.swing.JSpinner();
-        jSpinner33 = new javax.swing.JSpinner();
-        jSpinner34 = new javax.swing.JSpinner();
+        spnTotDispSur = new javax.swing.JSpinner();
+        spnTotDispLat = new javax.swing.JSpinner();
+        spnTotDispNorte = new javax.swing.JSpinner();
         jLabel65 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -604,68 +604,73 @@ public class PartidosPanel extends javax.swing.JPanel {
 
         jLabel42.setText("Precio:");
 
-        jSpinner17.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        spnPrecioModEj.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
         jLabel43.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel43.setText("Tribuna Lateral Referente");
 
         jLabel44.setText("Precio:");
 
-        jSpinner18.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        spnPrecioModLat.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
         jLabel45.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel45.setText("Tribuna Popular");
 
         jLabel46.setText("Precio:");
 
-        jSpinner19.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        spnPrecioModPop.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
         jLabel47.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel47.setText("Tribuna Norte");
 
         jLabel48.setText("Cantidad de Boletos:");
 
-        jSpinner20.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnTotLateral.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel49.setText("Cantidad de Boletos:");
 
-        jSpinner21.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnTotNorte.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel50.setText("Cantidad de Boletos:");
 
         jLabel51.setText("Cantidad de Boletos:");
 
-        jSpinner22.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnTotSur.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel52.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel52.setText("Zona Tecnica - VIP");
 
         jLabel53.setText("Precio:");
 
-        jSpinner23.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        spnPrecioModVIP.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
         jLabel54.setText("Precio:");
 
-        jSpinner24.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        spnPrecioModNorte.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
         jLabel55.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel55.setText("Tribuna Sur");
 
         jLabel56.setText("Precio:");
 
-        jSpinner25.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        spnPrecioModSur.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
         jLabel57.setText("Cantidad de Boletos:");
 
-        spnTotMod.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnTotVIPMod.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel58.setText("Cantidad de Boletos:");
 
-        jSpinner27.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnTotEjeMod.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        jSpinner28.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnTotPop.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        jButton2.setText("Modificar Partido");
+        btnActualizarPartido.setText("Modificar Partido");
+        btnActualizarPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarPartidoActionPerformed(evt);
+            }
+        });
 
         jLabel59.setText("Estado:");
 
@@ -673,13 +678,13 @@ public class PartidosPanel extends javax.swing.JPanel {
 
         jLabel60.setText("Cantidad de Boletos Disponibles:");
 
-        jSpinner29.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnTotDispVIP.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel61.setText("Cantidad de Boletos Disponibles:");
 
-        jSpinner30.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnTotDispEJ.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        jSpinner31.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnTotDispPop.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel62.setText("Cantidad de Boletos Disponibles:");
 
@@ -687,11 +692,11 @@ public class PartidosPanel extends javax.swing.JPanel {
 
         jLabel64.setText("Cantidad de Boletos Disponibles:");
 
-        jSpinner32.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnTotDispSur.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        jSpinner33.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnTotDispLat.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        jSpinner34.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spnTotDispNorte.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel65.setText("Cantidad de Boletos Disponibles:");
 
@@ -749,34 +754,34 @@ public class PartidosPanel extends javax.swing.JPanel {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel44)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSpinner18, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spnPrecioModLat, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel54)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSpinner24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spnPrecioModNorte, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel52)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel57)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(spnTotMod, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spnTotVIPMod, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel65)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner34, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spnTotDispNorte, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel48)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSpinner20, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spnTotLateral, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel43)
                             .addComponent(jLabel47)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel63)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner33, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spnTotDispLat, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel50)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSpinner21, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(spnTotNorte, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -786,8 +791,8 @@ public class PartidosPanel extends javax.swing.JPanel {
                                         .addComponent(jLabel53)
                                         .addGap(143, 143, 143)))
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jSpinner29, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                    .addComponent(jSpinner23))))
+                                    .addComponent(spnTotDispVIP, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                    .addComponent(spnPrecioModVIP))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel55)
@@ -800,49 +805,49 @@ public class PartidosPanel extends javax.swing.JPanel {
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                             .addComponent(jLabel42)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jSpinner17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(spnPrecioModEj, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                             .addComponent(jLabel58)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jSpinner27, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(spnTotEjeMod, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                             .addComponent(jLabel61)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jSpinner30, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(spnTotDispEJ, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel46)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSpinner19, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(spnPrecioModPop, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel49)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSpinner28, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(spnTotPop, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel62)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jSpinner31, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(spnTotDispPop, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel56)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSpinner25, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(spnPrecioModSur, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel51)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSpinner22, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(spnTotSur, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel64)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jSpinner32, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(spnTotDispSur, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(23, 23, 23))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane3)
                         .addContainerGap())))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(228, 228, 228)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnActualizarPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -885,87 +890,87 @@ public class PartidosPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel57)
-                            .addComponent(spnTotMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnTotVIPMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel60)
-                            .addComponent(jSpinner29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnTotDispVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jSpinner23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnPrecioModVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel53))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel43)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel48)
-                            .addComponent(jSpinner20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnTotLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel63)
-                            .addComponent(jSpinner33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnTotDispLat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel44)
-                            .addComponent(jSpinner18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnPrecioModLat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19)
                         .addComponent(jLabel47)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel50)
-                            .addComponent(jSpinner21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnTotNorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jSpinner34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnTotDispNorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel65))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel54)
-                            .addComponent(jSpinner24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(spnPrecioModNorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel41)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel58)
-                            .addComponent(jSpinner27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnTotEjeMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel61)
-                            .addComponent(jSpinner30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnTotDispEJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel42)
-                            .addComponent(jSpinner17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnPrecioModEj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel45)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel49)
-                            .addComponent(jSpinner28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnTotPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel62)
-                            .addComponent(jSpinner31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnTotDispPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel46)
-                            .addComponent(jSpinner19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnPrecioModPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19)
                         .addComponent(jLabel55)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel51)
-                            .addComponent(jSpinner22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnTotSur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel64)
-                            .addComponent(jSpinner32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spnTotDispSur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel56)
-                            .addComponent(jSpinner25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(spnPrecioModSur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnActualizarPartido)
                 .addContainerGap())
         );
 
@@ -1097,10 +1102,104 @@ public class PartidosPanel extends javax.swing.JPanel {
         loadPartidoInfo();
     }//GEN-LAST:event_tblPartidosMouseClicked
 
+    private void btnActualizarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPartidoActionPerformed
+        if(cmbEqLocalMod.getSelectedIndex() == cmbEqVisMod.getSelectedIndex()){
+            JOptionPane.showMessageDialog(this, "Equipo local y visitante deben ser diferentes");
+            return;
+        }
+        List<JLabel> lblLocalidad = new ArrayList<>();
+        lblLocalidad.add(lblZonaVIPCrear);
+        lblLocalidad.add(lblEjecutivosCrear);
+        lblLocalidad.add(lblTribunaLateralCrear); 
+        lblLocalidad.add(lblTribunaPopularCrear);
+        lblLocalidad.add(lblTribunaNorteCrear);
+        lblLocalidad.add(lblTribunaSurCrear);
+        
+        List<JSpinner> spnPrecios = new ArrayList<>();
+        spnPrecios.add(spnPrecioModVIP);
+        spnPrecios.add(spnPrecioModEj);
+        spnPrecios.add(spnPrecioModLat);
+        spnPrecios.add(spnPrecioModPop);
+        spnPrecios.add(spnPrecioModNorte);
+        spnPrecios.add(spnPrecioModSur);
+        
+        List<JSpinner> spnBoletosTotal = new ArrayList<>();
+        spnBoletosTotal.add(spnTotVIPMod);
+        spnBoletosTotal.add(spnTotEjeMod);
+        spnBoletosTotal.add(spnTotLateral);
+        spnBoletosTotal.add(spnTotPop);
+        spnBoletosTotal.add(spnTotNorte);
+        spnBoletosTotal.add(spnTotSur);
+        
+        List<JSpinner> spnBoletos = new ArrayList<>();
+        spnBoletos.add(spnTotDispVIP);
+        spnBoletos.add(spnTotDispEJ);
+        spnBoletos.add(spnTotDispLat);
+        spnBoletos.add(spnTotDispPop);
+        spnBoletos.add(spnTotDispNorte);
+        spnBoletos.add(spnTotDispSur);
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
+        
+        int row = tblPartidos.getSelectedRow();
+        Partido partido = new Partido();
+        int id = (int)tblPartidos.getValueAt(row, 0);         
+        partido.setId_partido(id);
+        partido.setEquipo_visitante((String) cmbEqVisMod.getSelectedItem());
+        partido.setEquipo_local((String)cmbEqLocalMod.getSelectedItem());
+        partido.setFecha_partido((Date) spnFechaMod.getValue());
+        partido.setHora_inicio(sdf.format((Date)spnHoraMod.getValue()));
+        partido.setTipo_partido((String)cmbTipoMod.getSelectedItem());
+        partido.setEstadio((String) cmbEstadioMod.getSelectedItem());
+        partido.setEstado((String)cmbEstadoMod.getSelectedItem());
+        partido.setCategoria((String)cmbCategoriaMod.getSelectedItem());
+        
+        try {
+           // System.out.println(partido.toString());
+            servicePartido.updatePartido(id, partido);                    
+        } catch (Exception ex) {
+           JOptionPane.showMessageDialog(this, "Error al actualizar partido: " + ex.getMessage());
+           return;
+        }      
+        
+        int idInventario = 0;
+        int idLocalidad = 0;
+        
+        for(Inventario i : listaInventarios){
+            if(i.getId_partido() == id){
+                for(Localidad l : listaLocalidades){
+                    if(l.getNombre().equals("Zona Tecnica - VIP") && l.getId_localidad() == i.getId_localidad()){
+                        idInventario = i.getId_inventario();
+                        idLocalidad = i.getId_localidad();
+                    }
+                }
+            }
+        }
+        
+        for(int i = 0; i<6; i++){
+            updateLocalidad(lblLocalidad.get(i), spnPrecios.get(i), idLocalidad + i);
+            try {          
+                Inventario inv = new Inventario();
+                inv.setId_inventario(idInventario + i);
+                inv.setId_partido(id);
+                inv.setId_localidad(idLocalidad + i);
+                int cantidadDeBoletos = (int)spnBoletosTotal.get(i).getValue();
+                inv.setCantidad_total(cantidadDeBoletos);
+                inv.setCantidad_disponible((int)spnBoletos.get(i).getValue());
+                //System.out.println(inv.toString());
+                serviceInventario.updateInventario(idInventario + i, inv);                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+            }
+        }
+        JOptionPane.showMessageDialog(this, "Partido, localidades e inventarios actualizados con éxito!");
+    }//GEN-LAST:event_btnActualizarPartidoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelLogo;
     private javax.swing.JLabel LabelLogo2;
+    private javax.swing.JButton btnActualizarPartido;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cmbCategoriaCrear;
     private javax.swing.JComboBox<String> cmbCategoriaMod;
@@ -1113,7 +1212,6 @@ public class PartidosPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cmbEstadoMod;
     private javax.swing.JComboBox<String> cmbTipoCrear;
     private javax.swing.JComboBox<String> cmbTipoMod;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1177,23 +1275,6 @@ public class PartidosPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSpinner jSpinner17;
-    private javax.swing.JSpinner jSpinner18;
-    private javax.swing.JSpinner jSpinner19;
-    private javax.swing.JSpinner jSpinner20;
-    private javax.swing.JSpinner jSpinner21;
-    private javax.swing.JSpinner jSpinner22;
-    private javax.swing.JSpinner jSpinner23;
-    private javax.swing.JSpinner jSpinner24;
-    private javax.swing.JSpinner jSpinner25;
-    private javax.swing.JSpinner jSpinner27;
-    private javax.swing.JSpinner jSpinner28;
-    private javax.swing.JSpinner jSpinner29;
-    private javax.swing.JSpinner jSpinner30;
-    private javax.swing.JSpinner jSpinner31;
-    private javax.swing.JSpinner jSpinner32;
-    private javax.swing.JSpinner jSpinner33;
-    private javax.swing.JSpinner jSpinner34;
     private javax.swing.JLabel lblEjecutivosCrear;
     private javax.swing.JLabel lblTribunaLateralCrear;
     private javax.swing.JLabel lblTribunaNorteCrear;
@@ -1212,12 +1293,29 @@ public class PartidosPanel extends javax.swing.JPanel {
     private javax.swing.JSpinner spnPopularCrear;
     private javax.swing.JSpinner spnPrecioEjecutivosCrear;
     private javax.swing.JSpinner spnPrecioLateralCrear;
+    private javax.swing.JSpinner spnPrecioModEj;
+    private javax.swing.JSpinner spnPrecioModLat;
+    private javax.swing.JSpinner spnPrecioModNorte;
+    private javax.swing.JSpinner spnPrecioModPop;
+    private javax.swing.JSpinner spnPrecioModSur;
+    private javax.swing.JSpinner spnPrecioModVIP;
     private javax.swing.JSpinner spnPrecioNorteCrear;
     private javax.swing.JSpinner spnPrecioPopularCrear;
     private javax.swing.JSpinner spnPrecioSurCrear;
     private javax.swing.JSpinner spnPrecioVIPCrear;
     private javax.swing.JSpinner spnSurCrear;
-    private javax.swing.JSpinner spnTotMod;
+    private javax.swing.JSpinner spnTotDispEJ;
+    private javax.swing.JSpinner spnTotDispLat;
+    private javax.swing.JSpinner spnTotDispNorte;
+    private javax.swing.JSpinner spnTotDispPop;
+    private javax.swing.JSpinner spnTotDispSur;
+    private javax.swing.JSpinner spnTotDispVIP;
+    private javax.swing.JSpinner spnTotEjeMod;
+    private javax.swing.JSpinner spnTotLateral;
+    private javax.swing.JSpinner spnTotNorte;
+    private javax.swing.JSpinner spnTotPop;
+    private javax.swing.JSpinner spnTotSur;
+    private javax.swing.JSpinner spnTotVIPMod;
     private javax.swing.JSpinner spnVIPCrear;
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JTable tblPartidos;
@@ -1305,10 +1403,49 @@ public class PartidosPanel extends javax.swing.JPanel {
         return localidadCreada;
     }
     
+    private void updateLocalidad(JLabel lblLoc, JSpinner spnPrecio, int id){       
+        Localidad updateLocalidad = new Localidad();
+        updateLocalidad.setId_localidad(id);
+        updateLocalidad.setNombre(lblLoc.getText());
+        BigDecimal precio = BigDecimal.valueOf((double)spnPrecio.getValue());
+        updateLocalidad.setPrecio(precio);
+        
+        try {
+            //System.out.println(updateLocalidad.toString());
+           serviceLocalidad.updateLocalidad(id, updateLocalidad);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar localidad: " + ex.getMessage());
+        }
+    }
+    
     private void loadPartidoInfo(){
         int row = tblPartidos.getSelectedRow();
         int id = (int) tblPartidos.getValueAt(row, 0);
 
+        List<JSpinner> spnPrecios = new ArrayList<>();
+        spnPrecios.add(spnPrecioModVIP);
+        spnPrecios.add(spnPrecioModEj);
+        spnPrecios.add(spnPrecioModLat);
+        spnPrecios.add(spnPrecioModPop);
+        spnPrecios.add(spnPrecioModNorte);
+        spnPrecios.add(spnPrecioModSur);
+        
+        List<JSpinner> spnBoletosTotal = new ArrayList<>();
+        spnBoletosTotal.add(spnTotVIPMod);
+        spnBoletosTotal.add(spnTotEjeMod);
+        spnBoletosTotal.add(spnTotLateral);
+        spnBoletosTotal.add(spnTotPop);
+        spnBoletosTotal.add(spnTotNorte);
+        spnBoletosTotal.add(spnTotSur);
+        
+        List<JSpinner> spnBoletos = new ArrayList<>();
+        spnBoletos.add(spnTotDispVIP);
+        spnBoletos.add(spnTotDispEJ);
+        spnBoletos.add(spnTotDispLat);
+        spnBoletos.add(spnTotDispPop);
+        spnBoletos.add(spnTotDispNorte);
+        spnBoletos.add(spnTotDispSur);
+                
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
      
         for(Partido p : listaPartidos){
@@ -1329,12 +1466,19 @@ public class PartidosPanel extends javax.swing.JPanel {
                 cmbEstadoMod.setSelectedItem(p.getEstado());
             }
         }
+        int registro = 0;
         
-        for(Inventario i : listaInventarios){
+        for(Inventario i : listaInventarios){          
             if(id == i.getId_partido()){
-                spnTotMod.setValue(i.getCantidad_total());
-               // spn
+                spnBoletosTotal.get(registro).setValue(i.getCantidad_total());
+                spnBoletos.get(registro).setValue(i.getCantidad_disponible());
                 
+                for(Localidad l : listaLocalidades){
+                    if(i.getId_localidad() == l.getId_localidad()){
+                        spnPrecios.get(registro).setValue(l.getPrecio().doubleValue());
+                    }
+                }
+                registro += 1;
             }
         }
     }

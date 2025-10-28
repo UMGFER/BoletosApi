@@ -48,5 +48,18 @@ public class Inventario {
     public void setCantidad_disponible(int cantidad_disponible) {
         this.cantidad_disponible = cantidad_disponible;
     }
+
+    @Override
+public String toString() {
+    // Format the date to a readable string
+
     
+    return "Inventario{" +
+            "id_inventario=" + id_inventario +
+            ", id_partido='" + id_partido + '\'' +
+            ", id_localidad='" + id_localidad + '\'' +
+            ", cantidad_total=" + cantidad_total +
+            ", cantidad_disponible='" + cantidad_disponible + '\'' +
+            '}';
+    }
 }

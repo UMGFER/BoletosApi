@@ -33,5 +33,16 @@ public class Localidad {
         this.precio = precio;
     }
     
+@Override
+public String toString() {
+    // Format the date to a readable string
+
     
+    return "Localidad{" +
+            "id_localidad=" + id_localidad +
+            ", nombre='" + nombre + '\'' +
+            ", precio='" + precio + '\'' +
+            '}';
+    }
+
 }
