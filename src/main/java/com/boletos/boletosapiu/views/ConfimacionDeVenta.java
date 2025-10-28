@@ -346,6 +346,8 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
             return;
         }
+        
+        
         JOptionPane.showMessageDialog(this, "Venta registrada");
     }//GEN-LAST:event_jButton1ActionPerformed
 
