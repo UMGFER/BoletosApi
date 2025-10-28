@@ -620,8 +620,6 @@ public class UsuariosPanel extends javax.swing.JPanel {
 
     private void tabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabPaneStateChanged
         switch(tabPane.getSelectedIndex()){
-            case 0 -> {
-            }
             case 1 -> {
                 loadUsuariosTable();
             }
