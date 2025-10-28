@@ -158,7 +158,7 @@ public class VentasPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Banco:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "//" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banco Industrial", "BAC Credomatic", " " }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

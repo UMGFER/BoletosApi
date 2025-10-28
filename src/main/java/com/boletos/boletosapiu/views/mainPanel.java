@@ -4,8 +4,12 @@
  */
 package com.boletos.boletosapiu.views;
 
+import com.boletos.boletosapiu.model.DetalleVenta;
+import com.boletos.boletosapiu.model.Partido;
 import com.boletos.boletosapiu.model.Usuario;
+import com.boletos.boletosapiu.model.Venta;
 import java.awt.CardLayout;
+import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 /**
@@ -24,6 +28,7 @@ public class mainPanel extends javax.swing.JFrame {
     InventariosPanel inventarioPanel = new InventariosPanel(this);
     AdminResumenVentasPanel resumenPanel = new AdminResumenVentasPanel(this);
     UsuariosPanel usuariosPanel = new UsuariosPanel(this);
+    PartidosPanel partidosPanel = new PartidosPanel(this);
     
     /**
      * Creates new form mainPanel
@@ -40,6 +45,7 @@ public class mainPanel extends javax.swing.JFrame {
         cardPanel.add(inventarioPanel, "InventarioApp");
         cardPanel.add(resumenPanel, "PanelResumenVentas");
         cardPanel.add(usuariosPanel, "UsuariosPanel");
+        cardPanel.add(partidosPanel, "partidosPanel");
         
         setContentPane(cardPanel);
         cardLayout.show(cardPanel, "login");
@@ -110,18 +116,24 @@ public class mainPanel extends javax.swing.JFrame {
         cardLayout.show(cardPanel, "AdminDashboard");
     }
     
-    public void loadPartidosPanel(){
+    public void loadVendedorApp(){
         vendedorApp.cargarPartidos();
         cardLayout.show(cardPanel, "VendedorApp");
     }
     
-    public void loadDetalleVenta(){
+    public void loadDetalleVenta(List<Venta> listVenta, List<DetalleVenta> listDetalleVenta, List<Partido> listPartidos){
+        resumenPanel.loadAdminResumenVentas(listVenta, listDetalleVenta, listPartidos);
         cardLayout.show(cardPanel, "PanelResumenVentas");
     }
     
     public void loadUsuariosPanel(){
         usuariosPanel.cargarUsuariosPanel();
         cardLayout.show(cardPanel, "UsuariosPanel");
+    }
+    
+    public void loadPartidosPanel(){
+        partidosPanel.cargarPartidosPanel();
+        cardLayout.show(cardPanel, "partidosPanel");
     }
     
     public void ShowPanel(String panelName){

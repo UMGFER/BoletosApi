@@ -3,13 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.boletos.boletosapiu.views;
+import com.boletos.boletosapiu.model.DetalleVenta;
+import com.boletos.boletosapiu.model.Partido;
+import com.boletos.boletosapiu.model.Venta;
 import com.boletos.boletosapiu.utils.CustomScrollBarUI;
 import com.boletos.boletosapiu.utils.GradientPanelBoletos;
+import com.boletos.boletosapiu.utils.RoundedGradientPanelGlassBoletos;
 import com.boletos.boletosapiu.utils.RoundedPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import org.jfree.chart.JFreeChart;
@@ -28,51 +39,23 @@ import org.jfree.data.general.PieDataset;
 public class AdminResumenVentasPanel extends javax.swing.JPanel {
 
     private mainPanel mainFrame;
-    JFreeChart pie = ChartFactory.createPieChart("Ventas de boletos", getDatasetPie(), true, true, false);
+    List<Venta> listaVentas;
+    List<DetalleVenta> listaDetalleVentas;
+    List<Partido> listaPartidos;
+    private JFreeChart pieCategoria;
+    private JFreeChart piePago;
+    
     
     /**
      * Creates new form AdminResumenVentasPanel
      */
     public AdminResumenVentasPanel() {
         initComponents();
-        
-        scrollResumen.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-        pie.getTitle().setPaint(Color.WHITE);
-        ChartPanel piePanel = new ChartPanel(pie);
-        pie.setBackgroundPaint(new Color(35,35,35));
-        
-        piePanel.setPreferredSize(new Dimension(555, 400));
-        pnlPieChart.setLayout(new BorderLayout());
-        pnlPieChart.add(piePanel, BorderLayout.CENTER);
-        
-     /*   spinnerPrimeraFecha.setModel(new SpinnerDateModel());
-        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinnerPrimeraFecha, "dd-MM-yyyy");
-        spinnerPrimeraFecha.setEditor(dateEditor);
-        
-        spinnerSegundaFecha.setModel(new SpinnerDateModel());
-        JSpinner.DateEditor dateEditor2 = new JSpinner.DateEditor(spinnerSegundaFecha, "dd-MM-yyyy");
-        spinnerSegundaFecha.setEditor(dateEditor2);*/
     }
     
     public AdminResumenVentasPanel(mainPanel main) {
         initComponents();
-        this.mainFrame = main;
-        
-        pie.getTitle().setPaint(Color.WHITE);
-        ChartPanel piePanel = new ChartPanel(pie);
-        pie.setBackgroundPaint(new Color(35,35,35));
-        
-        piePanel.setPreferredSize(new Dimension(555, 400));
-        pnlPieChart.setLayout(new BorderLayout());
-        pnlPieChart.add(piePanel, BorderLayout.CENTER);
-        
-        spinnerPrimeraFecha.setModel(new SpinnerDateModel());
-        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinnerPrimeraFecha, "dd-MM-yyyy");
-        spinnerPrimeraFecha.setEditor(dateEditor);
-        
-        spinnerSegundaFecha.setModel(new SpinnerDateModel());
-        JSpinner.DateEditor dateEditor2 = new JSpinner.DateEditor(spinnerSegundaFecha, "dd-MM-yyyy");
-        spinnerSegundaFecha.setEditor(dateEditor2); 
+        this.mainFrame = main;   
     }
 
     /**
@@ -92,20 +75,37 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new RoundedPanel(30);
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        lblPromedio = new javax.swing.JLabel();
+        pnlPieTipoPago = new javax.swing.JPanel();
         pnlPieChart = new javax.swing.JPanel();
         jPanel4 = new RoundedPanel(30);
         jLabel3 = new javax.swing.JLabel();
+        lblBoletosMayor = new javax.swing.JLabel();
         jPanel5 = new RoundedPanel(30);
         jLabel9 = new javax.swing.JLabel();
+        lblBoletosSub17 = new javax.swing.JLabel();
         jPanel6 = new RoundedPanel(30);
         jLabel10 = new javax.swing.JLabel();
+        lblBoletosFutsal = new javax.swing.JLabel();
         lblReturnDashboard = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         spinnerPrimeraFecha = new javax.swing.JSpinner();
         jLabel7 = new javax.swing.JLabel();
         spinnerSegundaFecha = new javax.swing.JSpinner();
+        jPanel7 = new RoundedPanel(30);
+        jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jPanel8 = new RoundedPanel(30);
+        jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jPanel9 = new RoundedPanel(30);
+        jLabel11 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jPanel10 = new RoundedPanel(30);
+        jLabel12 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        btnFiltro = new javax.swing.JButton();
 
         scrollResumen.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollResumen.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -113,7 +113,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Resumen de ventas");
@@ -126,13 +126,20 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Promedio de ventas diarias");
 
+        lblPromedio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblPromedio.setForeground(new java.awt.Color(255, 255, 255));
+        lblPromedio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPromedio.setText("0");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPromedio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -140,19 +147,21 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblPromedio)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(555, 400));
+        pnlPieTipoPago.setPreferredSize(new java.awt.Dimension(555, 400));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 556, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlPieTipoPagoLayout = new javax.swing.GroupLayout(pnlPieTipoPago);
+        pnlPieTipoPago.setLayout(pnlPieTipoPagoLayout);
+        pnlPieTipoPagoLayout.setHorizontalGroup(
+            pnlPieTipoPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 555, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlPieTipoPagoLayout.setVerticalGroup(
+            pnlPieTipoPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
@@ -162,7 +171,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         pnlPieChart.setLayout(pnlPieChartLayout);
         pnlPieChartLayout.setHorizontalGroup(
             pnlPieChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 555, Short.MAX_VALUE)
         );
         pnlPieChartLayout.setVerticalGroup(
             pnlPieChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,13 +186,20 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Venta de boletos para Mayor");
 
+        lblBoletosMayor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblBoletosMayor.setForeground(new java.awt.Color(255, 255, 255));
+        lblBoletosMayor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBoletosMayor.setText("0");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .addComponent(lblBoletosMayor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -191,7 +207,9 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblBoletosMayor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(2, 30, 69));
@@ -202,13 +220,20 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Venta de boletos para Sub 17");
 
+        lblBoletosSub17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblBoletosSub17.setForeground(new java.awt.Color(255, 255, 255));
+        lblBoletosSub17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBoletosSub17.setText("0");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblBoletosSub17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -216,7 +241,9 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblBoletosSub17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(2, 30, 69));
@@ -227,13 +254,20 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Venta de boletos para Futsal");
 
+        lblBoletosFutsal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblBoletosFutsal.setForeground(new java.awt.Color(255, 255, 255));
+        lblBoletosFutsal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBoletosFutsal.setText("0");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblBoletosFutsal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -241,23 +275,25 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblBoletosFutsal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         lblReturnDashboard.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblReturnDashboard.setForeground(new java.awt.Color(255, 255, 255));
         lblReturnDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back-30.png"))); // NOI18N
-        lblReturnDashboard.setText("Regresar al Dashboard");
+        lblReturnDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblReturnDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblReturnDashboardMouseClicked(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Filtrar Búsqueda");
+        jLabel5.setText("Graficas de Ventas");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -265,9 +301,150 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
 
         spinnerPrimeraFecha.setModel(new javax.swing.SpinnerDateModel());
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Hasta:");
 
         spinnerSegundaFecha.setModel(new javax.swing.SpinnerDateModel());
+
+        jPanel7.setBackground(new java.awt.Color(2, 30, 69));
+        jPanel7.setOpaque(false);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Reporte de Ventas Semanales");
+
+        jButton2.setText("Generar Reporte");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel8.setBackground(new java.awt.Color(2, 30, 69));
+        jPanel8.setOpaque(false);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Reporte de Ventas Diarias");
+
+        jButton1.setText("Generar Reporte");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel9.setBackground(new java.awt.Color(2, 30, 69));
+        jPanel9.setOpaque(false);
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Reporte de Ventas Anuales");
+
+        jButton3.setText("Generar Reporte");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(69, 69, 69))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel10.setBackground(new java.awt.Color(2, 30, 69));
+        jPanel10.setOpaque(false);
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Reporte de Ventas por Localidad");
+
+        jButton4.setText("Generar Reporte");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jButton4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnFiltro.setText("Aplicar filtros");
+        btnFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -278,29 +455,41 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(24, 24, 24)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
                             .addComponent(lblReturnDashboard)
                             .addGap(18, 18, 18)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(pnlPieChart, javax.swing.GroupLayout.DEFAULT_SIZE, 1075, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(44, 44, 44)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(spinnerPrimeraFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(spinnerSegundaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnFiltro))
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(spinnerPrimeraFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(spinnerSegundaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                        .addComponent(pnlPieChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlPieTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,25 +498,33 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(lblReturnDashboard))
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addGap(25, 25, 25)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(spinnerPrimeraFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(spinnerSegundaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlPieChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(spinnerPrimeraFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(spinnerSegundaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnFiltro))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pnlPieChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlPieTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
         );
 
         scrollResumen.setViewportView(jPanel3);
@@ -348,57 +545,239 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         mainFrame.ShowPanel("AdminDashboard");
     }//GEN-LAST:event_lblReturnDashboardMouseClicked
 
+    private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
+        updateDSCategoria();
+        updateDSTipoPago();
+    }//GEN-LAST:event_btnFiltroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFiltro;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel lblBoletosFutsal;
+    private javax.swing.JLabel lblBoletosMayor;
+    private javax.swing.JLabel lblBoletosSub17;
+    private javax.swing.JLabel lblPromedio;
     private javax.swing.JLabel lblReturnDashboard;
     private javax.swing.JPanel pnlPieChart;
+    private javax.swing.JPanel pnlPieTipoPago;
     private javax.swing.JScrollPane scrollResumen;
     private javax.swing.JSpinner spinnerPrimeraFecha;
     private javax.swing.JSpinner spinnerSegundaFecha;
     // End of variables declaration//GEN-END:variables
 
-    private PieDataset getDatasetPie() {
-      DefaultPieDataset dataset = new DefaultPieDataset( );
-      dataset.setValue( "Mayor" , 20 );  
-      dataset.setValue( "Sub 17" , 20 );   
-      dataset.setValue( "Futsal" ,40 );    
- 
+    public void loadAdminResumenVentas(List<Venta> listVenta, List<DetalleVenta> listDetalleVenta, List<Partido> listPartidos){
+        listaVentas = listVenta;
+        listaDetalleVentas = listDetalleVenta;
+        listaPartidos = listPartidos;
+        
+        scrollResumen.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        customSpinnerDate();
+        
+        llenarLabels();
+        loadGraficaPíe();
+        loadGraficaPiePago();
+    }    
+    
+    private void llenarLabels(){
+        HashMap<LocalDate, BigDecimal> ventasPorDia = new HashMap<>();
+        HashMap<String, Integer> ventasPorCategoria = new HashMap<>();
+        for(Venta v : listaVentas){
+            LocalDate fechaDeLaVenta = v.getFecha_venta().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            ventasPorDia.merge(fechaDeLaVenta, v.getTotal_venta(), (oldValue, newValue) -> oldValue.add(newValue));
+        }
+        
+        int totalDias = ventasPorDia.size();
+        BigDecimal total = BigDecimal.ZERO;
+        for(BigDecimal t : ventasPorDia.values()){
+            total = total.add(t);
+        }
+        
+        BigDecimal promedio = total.divide(BigDecimal.valueOf(totalDias));
+        lblPromedio.setText("Q " + promedio.toPlainString());
+        
+        for(DetalleVenta dv : listaDetalleVentas){
+            for(Partido p : listaPartidos){
+                if(dv.getId_detalle() == p.getId_partido()){
+                    ventasPorCategoria.merge(p.getCategoria(), dv.getCantidad(), (a, b) -> a + b);
+                }
+            }
+        }
+        
+        for(Map.Entry<String, Integer> entry : ventasPorCategoria.entrySet()){
+            if(entry.getKey().equals("Mayor")){
+                lblBoletosMayor.setText(String.valueOf(entry.getValue()));
+            }
+            if(entry.getKey().equals("Sub 17")){
+                lblBoletosSub17.setText(String.valueOf(entry.getValue()));
+            }
+            if(entry.getKey().equals("Futsal")){
+                lblBoletosFutsal.setText(String.valueOf(entry.getValue()));
+            }
+        }
+    }
+    
+    private PieDataset getDatasetPieCategoria() {
+      DefaultPieDataset dataset = new DefaultPieDataset();
+      HashMap<String, BigDecimal> ventasPorCategoria = new HashMap<>();
+      
+      for(Venta v : listaVentas){
+          int idPartido = 0;
+          String categoria = "";
+          BigDecimal total = v.getTotal_venta();
+          for(DetalleVenta dv: listaDetalleVentas){
+              if(dv.getId_detalle() == v.getId_venta()){
+                  idPartido = dv.getId_partido();
+                  break;
+              }
+          }
+          
+          for(Partido p : listaPartidos){
+              if(p.getId_partido() == idPartido){
+                  categoria = p.getCategoria();
+              }
+          }
+          
+        ventasPorCategoria.merge(categoria, total, (valorAnterior, nuevoValor) -> valorAnterior.add(nuevoValor));
+      }
+      
+      for(Map.Entry<String, BigDecimal> entry : ventasPorCategoria.entrySet()){
+          dataset.setValue( entry.getKey() , entry.getValue()); 
+      }
       return dataset; 
     }
     
-    private void setChartTextColors(JFreeChart chart){
-        TextTitle title = chart.getTitle();
-        title.setPaint(Color.WHITE);
+    private PieDataset getDatasetPieBoletos() {
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        HashMap<String, BigDecimal> ventasPorTipo = new HashMap<>();
+        for(Venta v : listaVentas){
+            ventasPorTipo.merge(v.getTipo_pago(), v.getTotal_venta(), (valorAnterior, nuevoValor) -> valorAnterior.add(nuevoValor));
+        }
         
-        
-        CategoryPlot plot = chart.getCategoryPlot();
-        //Color de la parte de abajo, palabra "Día"
-        plot.getDomainAxis().setLabelPaint(Color.WHITE);
-        //Color de los días de la semana, abajo
-        plot.getDomainAxis().setTickLabelPaint(Color.WHITE);
-        //Color de la parte de la izquieda, palabra "Total"
-        plot.getRangeAxis().setLabelPaint(Color.WHITE);
-        //Color de los totales
-        plot.getRangeAxis().setTickLabelPaint(Color.WHITE);
-        
-        
+        for(Map.Entry<String, BigDecimal> entry : ventasPorTipo.entrySet()){
+          dataset.setValue( entry.getKey() , entry.getValue()); 
+        }
+        return dataset;
     }
     
-    public void loadAdminResumenVentas(){
+    private void customSpinnerDate(){
+        spinnerPrimeraFecha.setModel(new SpinnerDateModel());
+        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(spinnerPrimeraFecha, "dd-MM-yyyy");
+        spinnerPrimeraFecha.setEditor(dateEditor);
         
+        spinnerSegundaFecha.setModel(new SpinnerDateModel());
+        JSpinner.DateEditor dateEditor2 = new JSpinner.DateEditor(spinnerSegundaFecha, "dd-MM-yyyy");
+        spinnerSegundaFecha.setEditor(dateEditor2);
+    }
+    
+    private void loadGraficaPíe(){
+        pieCategoria = ChartFactory.createPieChart("Ventas de boletos", getDatasetPieCategoria(), true, true, false);
+        pieCategoria.getTitle().setPaint(Color.WHITE);
+        ChartPanel piePanel = new ChartPanel(pieCategoria);
+        pieCategoria.setBackgroundPaint(new Color(35,35,35));
+        
+
+        pnlPieChart.setLayout(new BorderLayout());
+        pnlPieChart.add(piePanel, BorderLayout.CENTER);
+    }
+    
+    private void loadGraficaPiePago(){     
+        piePago = ChartFactory.createPieChart("Tipo de pago preferido", getDatasetPieBoletos(), true, true, false);
+        piePago.getTitle().setPaint(Color.WHITE);
+        ChartPanel piePanel = new ChartPanel(piePago);
+        piePago.setBackgroundPaint(new Color(35,35,35));
+        
+
+        pnlPieTipoPago.setLayout(new BorderLayout());
+        pnlPieTipoPago.add(piePanel, BorderLayout.CENTER);
+    }
+
+    private void updateDSCategoria(){
+        DefaultPieDataset newDataset = new DefaultPieDataset();
+        HashMap<String, BigDecimal> ventasPorCategoria = new HashMap<>();
+        Date fechaInicio = (Date)spinnerPrimeraFecha.getValue();
+        Date fechaFin = (Date)spinnerSegundaFecha.getValue();
+        
+        for(Venta v : listaVentas){
+            Date fechaDeLaVenta = v.getFecha_venta(); 
+            if(!fechaDeLaVenta.before(fechaInicio) && !fechaDeLaVenta.after(fechaFin)){
+                int idPartido = 0;
+                String categoria = "";
+                BigDecimal total = v.getTotal_venta();
+                for(DetalleVenta dv: listaDetalleVentas){
+                    if(dv.getId_detalle() == v.getId_venta()){
+                        idPartido = dv.getId_partido();
+                        break;
+                    }
+                }
+
+                for(Partido p : listaPartidos){
+                    if(p.getId_partido() == idPartido){
+                        categoria = p.getCategoria();
+                    }
+                }
+
+                ventasPorCategoria.merge(categoria, total, (valorAnterior, nuevoValor) -> valorAnterior.add(nuevoValor));
+            }      
+        }
+        for(Map.Entry<String, BigDecimal> entry : ventasPorCategoria.entrySet()){
+            newDataset.setValue( entry.getKey() , entry.getValue()); 
+        }        
+        
+        PiePlot plot = (PiePlot)pieCategoria.getPlot();
+        plot.setDataset(newDataset);
+        
+        pieCategoria.fireChartChanged();
+        pnlPieChart.revalidate();
+        pnlPieChart.repaint();
+    }
+    
+    private void updateDSTipoPago(){
+        DefaultPieDataset newDataset = new DefaultPieDataset();
+        HashMap<String, BigDecimal> ventasPorTipo = new HashMap<>();
+        Date fechaInicio = (Date)spinnerPrimeraFecha.getValue();
+        Date fechaFin = (Date)spinnerSegundaFecha.getValue();
+        for(Venta v : listaVentas){
+            Date fechaDeLaVenta = v.getFecha_venta();
+            if(!fechaDeLaVenta.before(fechaInicio) && !fechaDeLaVenta.after(fechaFin)){
+                ventasPorTipo.merge(v.getTipo_pago(), v.getTotal_venta(), (valorAnterior, nuevoValor) -> valorAnterior.add(nuevoValor));
+            }
+            
+        }
+        
+        for(Map.Entry<String, BigDecimal> entry : ventasPorTipo.entrySet()){
+          newDataset.setValue( entry.getKey() , entry.getValue()); 
+        }
+        
+        PiePlot plot = (PiePlot)piePago.getPlot();
+        plot.setDataset(newDataset);
+        
+        piePago.fireChartChanged();
+        pnlPieTipoPago.revalidate();
+        pnlPieTipoPago.repaint();
     }
 }

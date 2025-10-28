@@ -13,7 +13,8 @@ import javax.swing.SwingUtilities;
  * @author AMD 5600G
  */
 public class DetalleVentasPanel extends javax.swing.JPanel {
-    private mainPanel mainFrame;
+
+    //ESTA INTERFAZ YA NO SIRVE
     
     /**
      * Creates new form DetalleVentasPanel
@@ -27,7 +28,6 @@ public class DetalleVentasPanel extends javax.swing.JPanel {
     
     public DetalleVentasPanel(mainPanel main) {
         initComponents();
-        this.mainFrame = main;
         SwingUtilities.invokeLater(() -> {
             setImageLabel(LabelDetalle, "/AzulGuate.png");
         });

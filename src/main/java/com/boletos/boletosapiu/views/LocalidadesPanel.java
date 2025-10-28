@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
  * @author AMD 5600G
  */
 public class LocalidadesPanel extends javax.swing.JPanel {
-    private mainPanel mainFrame;
+    //ESTA INTERFAZ YA NO SIRVE
     /**
      * Creates new form LocalidadesPanel
      */
@@ -28,7 +28,6 @@ public class LocalidadesPanel extends javax.swing.JPanel {
     
     public LocalidadesPanel(mainPanel main) {
         initComponents();
-        this.mainFrame = main;
         SwingUtilities.invokeLater(() -> {
             setImageLabel(LabelEstadio, "/estadio doroteo.png");
         });

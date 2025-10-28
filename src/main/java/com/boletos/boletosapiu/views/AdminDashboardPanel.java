@@ -150,6 +150,9 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         lblPartidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblPartidos.setPreferredSize(new java.awt.Dimension(250, 30));
         lblPartidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblPartidosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblPartidosMouseEntered(evt);
             }
@@ -490,12 +493,16 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_lblCerrarSesionMouseClicked
 
     private void lblVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentasMouseClicked
-        mainFrame.loadDetalleVenta();
+        mainFrame.loadDetalleVenta(listaVentas, listaDetalleVentas, listaPartidos);
     }//GEN-LAST:event_lblVentasMouseClicked
 
     private void lblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUsersMouseClicked
         mainFrame.loadUsuariosPanel();
     }//GEN-LAST:event_lblUsersMouseClicked
+
+    private void lblPartidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPartidosMouseClicked
+        mainFrame.loadPartidosPanel();
+    }//GEN-LAST:event_lblPartidosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -560,6 +567,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                 for(DetalleVenta dv : listaDetalleVentas){
                     if(dv.getId_venta() == v.getId_venta()){
                         idPartido = dv.getId_partido();
+                        break;
                     }
                 }
                 
@@ -572,7 +580,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                 for(VentaFiltrada vf: ventaFiltrada){
                     if(vf.getFecha_venta().equals(fecha) && tipoPartido.equals(vf.getTipo_partido())){            
                         vf.setTotal(vf.getTotal().add(total));
-                            registroEncontrado = true;
+                        registroEncontrado = true;
                     }
                 }
                 if(!registroEncontrado){

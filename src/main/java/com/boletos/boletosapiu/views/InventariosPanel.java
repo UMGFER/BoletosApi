@@ -13,7 +13,9 @@ import javax.swing.SwingUtilities;
  * @author AMD 5600G
  */
 public class InventariosPanel extends javax.swing.JPanel {
-    private mainPanel mainFrame;
+
+    
+    //ESTA INTERFAZ YA NO SIRVE
     /**
      * Creates new form InventariosPanel
      */
@@ -27,7 +29,6 @@ public class InventariosPanel extends javax.swing.JPanel {
     
     public InventariosPanel(mainPanel main) {
         initComponents();
-        this.mainFrame = main;
         SwingUtilities.invokeLater(() -> {
             setImageLabel(LabelPorta, "/ChatGPT Image 20 oct 2025, 07_21_06 a.m..png");
         });
