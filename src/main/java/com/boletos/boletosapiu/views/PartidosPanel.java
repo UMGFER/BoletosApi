@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -246,6 +247,11 @@ public class PartidosPanel extends javax.swing.JPanel {
         jLabel11.setText("Categoria:");
 
         cmbCategoriaCrear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mayor", "Sub 17", "Futsal" }));
+        cmbCategoriaCrear.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbCategoriaCrearItemStateChanged(evt);
+            }
+        });
 
         jLabel13.setBackground(new java.awt.Color(2, 30, 69));
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -587,6 +593,11 @@ public class PartidosPanel extends javax.swing.JPanel {
         jLabel38.setText("Categoria:");
 
         cmbCategoriaMod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mayor", "Sub 17", "Futsal" }));
+        cmbCategoriaMod.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbCategoriaModItemStateChanged(evt);
+            }
+        });
 
         jLabel39.setText("Estadio:");
 
@@ -1194,6 +1205,104 @@ public class PartidosPanel extends javax.swing.JPanel {
         }
         JOptionPane.showMessageDialog(this, "Partido, localidades e inventarios actualizados con éxito!");
     }//GEN-LAST:event_btnActualizarPartidoActionPerformed
+
+    private void cmbCategoriaCrearItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCategoriaCrearItemStateChanged
+        if(cmbCategoriaCrear.getSelectedIndex() == 2){        
+             String[] estadiosFutsal = {
+            "Microestadio Malvinas Argentinas (Buenos Aires)",
+            "Ginasio do Maracanazinho (Rio de Janeiro)",
+            "Coliseo Bicentenario (Bucaramanga)",
+            "Polideportivo La Florida (Santiago)",
+            "Olivo Arena (Jaen, Andalucia)",
+            "Domo Polideportivo de la CDAG – (Ciudad de Guatemala)",
+            "Takeda Teva Ocean Arena – (Nagoya, Japon)",
+            "Centro Deportivo Tirso Hernandez – (Ciudad de Mexico)",
+            "Football Factory Limited – (Kingston, Jamaica)",
+            "Brunswick Steel Arena (Saskatchewan, Canada)",
+            "Ingenieros Coliseum (Tegucigalpa)",
+            "Volgograd Sports Palace of Trade Unions (Volgogrado)"
+            };
+             
+            DefaultComboBoxModel<String> modelCmb = new DefaultComboBoxModel<>();
+            modelCmb.removeAllElements();
+            
+            for (String estadio : estadiosFutsal) {
+            modelCmb.addElement(estadio);
+            cmbEstadiosCrear.setModel(modelCmb);
+            }
+        }else{
+            String[] estadiosNormal = {
+            "Estadio Monumental (Buenos Aires)",
+            "Estadio Maracana (Rio de Janeiro)",
+            "BMO Field (Toronto)",
+            "Estadio Nacional Julio Martinez Pradanos (Santiago)",
+            "Estadio Metropolitano Roberto Melendez (Barranquilla)",
+            "Estadio Santiago Bernabeu (Madrid)",
+            "Estadio Doroteo Guamuch Flores (Ciudad Guatemala)",
+            "Estadio Olimpico Metropolitano (San Pedro Sula)",
+            "Independence Park (Kingston)",
+            "Nissan Stadium (Yokohama)",
+            "Estadio Azteca (Ciudad Mexico)",
+            "Luzhniki Stadium (Moscu)"
+            };
+            DefaultComboBoxModel<String> modelCmb = new DefaultComboBoxModel<>();
+            modelCmb.removeAllElements();
+            
+            for (String estadio : estadiosNormal) {
+            modelCmb.addElement(estadio);
+            cmbEstadiosCrear.setModel(modelCmb);
+            }
+        }
+    }//GEN-LAST:event_cmbCategoriaCrearItemStateChanged
+
+    private void cmbCategoriaModItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCategoriaModItemStateChanged
+         if(cmbCategoriaMod.getSelectedIndex() == 2){        
+             String[] estadiosFutsal = {
+            "Microestadio Malvinas Argentinas (Buenos Aires)",
+            "Ginasio do Maracanazinho (Rio de Janeiro)",
+            "Coliseo Bicentenario (Bucaramanga)",
+            "Polideportivo La Florida (Santiago)",
+            "Olivo Arena (Jaen, Andalucia)",
+            "Domo Polideportivo de la CDAG – (Ciudad de Guatemala)",
+            "Takeda Teva Ocean Arena – (Nagoya, Japon)",
+            "Centro Deportivo Tirso Hernandez – (Ciudad de Mexico)",
+            "Football Factory Limited – (Kingston, Jamaica)",
+            "Brunswick Steel Arena (Saskatchewan, Canada)",
+            "Ingenieros Coliseum (Tegucigalpa)",
+            "Volgograd Sports Palace of Trade Unions (Volgogrado)"
+            };
+             
+            DefaultComboBoxModel<String> modelCmb = new DefaultComboBoxModel<>();
+            modelCmb.removeAllElements();
+            
+            for (String estadio : estadiosFutsal) {
+            modelCmb.addElement(estadio);
+            cmbEstadioMod.setModel(modelCmb);
+            }
+        }else{
+            String[] estadiosNormal = {
+            "Estadio Monumental (Buenos Aires)",
+            "Estadio Maracana (Rio de Janeiro)",
+            "BMO Field (Toronto)",
+            "Estadio Nacional Julio Martinez Pradanos (Santiago)",
+            "Estadio Metropolitano Roberto Melendez (Barranquilla)",
+            "Estadio Santiago Bernabeu (Madrid)",
+            "Estadio Doroteo Guamuch Flores (Ciudad Guatemala)",
+            "Estadio Olimpico Metropolitano (San Pedro Sula)",
+            "Independence Park (Kingston)",
+            "Nissan Stadium (Yokohama)",
+            "Estadio Azteca (Ciudad Mexico)",
+            "Luzhniki Stadium (Moscu)"
+            };
+            DefaultComboBoxModel<String> modelCmb = new DefaultComboBoxModel<>();
+            modelCmb.removeAllElements();
+            
+            for (String estadio : estadiosNormal) {
+            modelCmb.addElement(estadio);
+            cmbEstadioMod.setModel(modelCmb);
+            }
+        }
+    }//GEN-LAST:event_cmbCategoriaModItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
