@@ -34,7 +34,8 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
     public PartidosPanelesPanel(){
         initComponents();    
         SwingUtilities.invokeLater(() -> {
-            setImageLabel(LabelSele, "/panelfondo3.png");
+            setImageLabel(LabelSele, "/camisolon.png");
+            setImageLabel(Cerrar, "/log-out-30.png");
         });
         
         pnlPartidosMayor.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
@@ -45,7 +46,7 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
         this.mainFrame = main;
      
         SwingUtilities.invokeLater(() -> {
-            setImageLabel(LabelSele, "/panelfondo3.png");
+            setImageLabel(LabelSele, "/camisolon.png");
         });
         
         pnlPartidosMayor.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
@@ -66,6 +67,8 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
             java.awt.Color.decode("#33394F")  // color 2
         );
         jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        Cerrar = new javax.swing.JLabel();
         LabelSele = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -90,8 +93,31 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
+
+        Cerrar.setText("jLabel5");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(578, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 60, 630));
+
         LabelSele.setText("jLabel1");
-        jPanel2.add(LabelSele, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 630));
+        jPanel2.add(LabelSele, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 630));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Partidos Mayor");
@@ -128,7 +154,7 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(0, 552, Short.MAX_VALUE))
+                                .addGap(0, 602, Short.MAX_VALUE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)))
@@ -166,12 +192,14 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Cerrar;
     private javax.swing.JLabel LabelSele;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

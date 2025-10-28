@@ -23,6 +23,7 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         setImageLabel(LogoFactura, "/Fuchi.png");
         setImageLabel(Vistolbl, "/VistoLogo.png");
         setImageLabel(lblfede, "/Fedefut.png");
+        setImageLabel(LabelFondoCon, "/sintitulo.png");
     
                 });
                 }
@@ -52,7 +53,6 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        LabelFondoFactura = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         lblfede = new javax.swing.JLabel();
@@ -86,11 +86,9 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         jLabel24 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
+        LabelFondoCon = new javax.swing.JLabel();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        LabelFondoFactura.setText("jLabel1");
-        jPanel1.add(LabelFondoFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, -130, 1100, 650));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -279,13 +277,16 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 830, 490));
 
+        LabelFondoCon.setText("jLabel26");
+        jPanel1.add(LabelFondoCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, 0, 1190, 640));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1087, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,7 +296,7 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LabelFondoFactura;
+    private javax.swing.JLabel LabelFondoCon;
     private javax.swing.JLabel LogoFactura;
     private javax.swing.JLabel Vistolbl;
     private javax.swing.JButton jButton1;
