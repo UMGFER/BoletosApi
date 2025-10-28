@@ -29,6 +29,7 @@ public class mainPanel extends javax.swing.JFrame {
     AdminResumenVentasPanel resumenPanel = new AdminResumenVentasPanel(this);
     UsuariosPanel usuariosPanel = new UsuariosPanel(this);
     PartidosPanel partidosPanel = new PartidosPanel(this);
+    VentasPanel panelVentas = new VentasPanel(this);
     
     /**
      * Creates new form mainPanel
@@ -46,6 +47,7 @@ public class mainPanel extends javax.swing.JFrame {
         cardPanel.add(resumenPanel, "PanelResumenVentas");
         cardPanel.add(usuariosPanel, "UsuariosPanel");
         cardPanel.add(partidosPanel, "partidosPanel");
+        cardPanel.add(panelVentas, "panelVentas");
         
         setContentPane(cardPanel);
         cardLayout.show(cardPanel, "login");
@@ -134,6 +136,11 @@ public class mainPanel extends javax.swing.JFrame {
     public void loadPartidosPanel(){
         partidosPanel.cargarPartidosPanel();
         cardLayout.show(cardPanel, "partidosPanel");
+    }
+    
+    public void loadPanelVentas(Partido partido){
+        panelVentas.cargarPanelVentas(partido);
+        cardLayout.show(cardPanel, "panelVentas");
     }
     
     public void ShowPanel(String panelName){

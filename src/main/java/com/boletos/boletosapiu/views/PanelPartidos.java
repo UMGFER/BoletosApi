@@ -4,6 +4,7 @@
  */
 package com.boletos.boletosapiu.views;
 
+import com.boletos.boletosapiu.model.Partido;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
@@ -13,18 +14,22 @@ import javax.swing.SwingUtilities;
  * @author josef
  */
 public class PanelPartidos extends javax.swing.JPanel {
-
+    
+    Partido partido;
+    private mainPanel mainFrame;
     /**
      * Creates new form test
      */
     
-    public PanelPartidos(String equipoLocal, String equipoRival) {
+    public PanelPartidos(Partido partidoRecibido, mainPanel main) {
         initComponents();
+        this.mainFrame = main;
+        partido = partidoRecibido;
      //   Bandera1.setIcon(new ImageIcon(getClass().getResource("/Bandera Guatemala.jpg")));
       //  Bandera1.setText("prueba");
         SwingUtilities.invokeLater(() -> {
-        setImageLabel(Bandera1, "/Bandera "+equipoLocal+".jpg");
-        setImageLabel(Bandera2, "/Bandera "+equipoRival+".jpg");
+        setImageLabel(Bandera1, "/Bandera "+partido.getEquipo_local()+".jpg");
+        setImageLabel(Bandera2, "/Bandera "+partido.getEquipo_visitante()+".jpg");
         setImageLabel(Mundialfondo, "/fondoahorano.png");
     });
         
@@ -97,7 +102,7 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        mainFrame.loadPanelVentas(partido);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

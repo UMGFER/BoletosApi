@@ -1,6 +1,8 @@
 package com.boletos.boletosapiu.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Partido {
@@ -84,6 +86,26 @@ public class Partido {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+ 
+
+
+@Override
+public String toString() {
+    // Format the date to a readable string
+
+    
+    return "Partido{" +
+            "id_partido=" + id_partido +
+            ", equipo_visitante='" + equipo_visitante + '\'' +
+            ", equipo_local='" + equipo_local + '\'' +
+            ", fecha_partido=" + fecha_partido +
+            ", hora_inicio='" + hora_inicio + '\'' +
+            ", tipo_partido='" + tipo_partido + '\'' +
+            ", estadio='" + estadio + '\'' +
+            ", estado='" + estado + '\'' +
+            ", categoria='" + categoria + '\'' +
+            '}';
     }
     
 }

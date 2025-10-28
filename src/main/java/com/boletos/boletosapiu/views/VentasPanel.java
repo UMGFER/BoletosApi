@@ -4,6 +4,7 @@
  */
 package com.boletos.boletosapiu.views;
 
+import com.boletos.boletosapiu.model.Partido;
 import com.boletos.boletosapiu.utils.RoundedGradientPanelBoletos;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -16,24 +17,17 @@ import javax.swing.SwingUtilities;
 public class VentasPanel extends javax.swing.JPanel {
 
     private mainPanel mainFrame;
+    Partido partidoSeleccionado;
     /**
      * Creates new form VentasPanel
      */
     public VentasPanel() {
-        initComponents();
-        SwingUtilities.invokeLater(() -> {
-            setImageLabel(LabelFondo2, "/ChatGPT Image 19 oct 2025, 12_34_36 a.m..png");
-            setImageLabel(LabelFondoVenta, "/estadio doroteo.png");;
-        });
+        initComponents();     
     }
 
         public VentasPanel(mainPanel main) {
         initComponents();
         this.mainFrame = main;
-        SwingUtilities.invokeLater(() -> {
-            setImageLabel(LabelFondo2, "/ChatGPT Image 19 oct 2025, 12_34_36 a.m..png");
-            setImageLabel(LabelFondoVenta, "/estadio doroteo.png");;
-        });
     }
     //ESTAMOS PROBANDO GIT
     /**
@@ -340,7 +334,12 @@ public class VentasPanel extends javax.swing.JPanel {
         }
     }
     
-    public void cargarPanelVentas(){
-        
+    public void cargarPanelVentas(Partido partido){
+        partidoSeleccionado = partido;
+        SwingUtilities.invokeLater(() -> {
+            setImageLabel(LabelFondo2, "/ChatGPT Image 19 oct 2025, 12_34_36 a.m..png");
+            setImageLabel(LabelFondoVenta, "/estadio doroteo.png");;
+        });
+   
     }
 }

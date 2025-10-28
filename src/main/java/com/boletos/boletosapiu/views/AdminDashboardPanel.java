@@ -532,6 +532,18 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane scrollDashboard;
     // End of variables declaration//GEN-END:variables
 
+    public void cargarAdminDashboard(Usuario user){
+        scrollDashboard.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        lblNombreApellido.setText(primerNombre(user.getNombre_completo()));
+        lblUserName.setText(user.getNombre_usuario());
+        setUserPhoto(user.getNombre_usuario());
+               
+        cargarListas();    
+        llenarLabels();
+        cargarGraficaBarras();
+        cargarGraficaLineas();             
+    }
+    
     private void setChartColors(JFreeChart chart){
         CategoryPlot plot = chart.getCategoryPlot();
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
@@ -638,20 +650,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         //Color de los totales
         plot.getRangeAxis().setTickLabelPaint(Color.WHITE);       
     }
-    
-    public void cargarAdminDashboard(Usuario user){
-        scrollDashboard.getVerticalScrollBar().setUI(new CustomScrollBarUI());
-        lblNombreApellido.setText(primerNombre(user.getNombre_completo()));
-        lblUserName.setText(user.getNombre_usuario());
-        setUserPhoto(user.getNombre_usuario());
-               
-        cargarListas();    
-        llenarLabels();
-        cargarGraficaBarras();
-        cargarGraficaLineas();
-                
-    }
-    
+        
     private void cargarGraficaBarras(){
         JFreeChart barras = ChartFactory.createBarChart("Ventas semanales", "Día", "Total (Q)", crearDatasetBarras(), PlotOrientation.VERTICAL, false, true, false);
         barras.setBackgroundPaint(new Color(35,35,35));
@@ -702,7 +701,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
     
     private void llenarLabels(){
         //Para labels de ventas
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date currentDate = new Date();
         String fechaHoy = sdf.format(currentDate);
         BigDecimal ventasDeHoy = BigDecimal.ZERO;

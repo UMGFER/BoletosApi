@@ -233,17 +233,17 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
         for(Partido p : listaPartidos){
            if(!p.getEstado().equals("Finalizado")){                         
                 if(p.getCategoria().equals("Mayor")){
-                    PanelPartidos panel = new PanelPartidos(p.getEquipo_local(),p.getEquipo_visitante());
+                    PanelPartidos panel = new PanelPartidos(p,mainFrame);
                     pnlPartidosMayor.add(panel);
                     pnlPartidosMayor.add(Box.createRigidArea(new Dimension(10,0)));
                 }
                 if(p.getCategoria().equals("Sub 17")){
-                    PanelPartidos panel = new PanelPartidos(p.getEquipo_local(),p.getEquipo_visitante());
+                    PanelPartidos panel = new PanelPartidos(p,mainFrame);
                     pnlPartidosSub17.add(panel);
                     pnlPartidosSub17.add(Box.createRigidArea(new Dimension(10,0)));
                 }
                 if(p.getCategoria().equals("Futsal")){
-                    PanelPartidos panel = new PanelPartidos(p.getEquipo_local(),p.getEquipo_visitante());
+                    PanelPartidos panel = new PanelPartidos(p,mainFrame);
                     pnlPartidosFutsal.add(panel);
                     pnlPartidosFutsal.add(Box.createRigidArea(new Dimension(10,0)));
                 }
