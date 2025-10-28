@@ -6,20 +6,28 @@ package com.boletos.boletosapiu.views;
 import com.boletos.boletosapiu.model.DetalleVenta;
 import com.boletos.boletosapiu.model.Partido;
 import com.boletos.boletosapiu.model.Venta;
+import com.boletos.boletosapiu.utils.Conexion;
 import com.boletos.boletosapiu.utils.CustomScrollBarUI;
 import com.boletos.boletosapiu.utils.GradientPanelBoletos;
 import com.boletos.boletosapiu.utils.RoundedPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.math.BigDecimal;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -90,16 +98,16 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         spinnerSegundaFecha = new javax.swing.JSpinner();
         jPanel7 = new RoundedPanel(30);
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnVentasSemanales = new javax.swing.JButton();
         jPanel8 = new RoundedPanel(30);
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnReporteDiaras = new javax.swing.JButton();
         jPanel9 = new RoundedPanel(30);
         jLabel11 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnVentasAnuales = new javax.swing.JButton();
         jPanel10 = new RoundedPanel(30);
         jLabel12 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        btnReporteTipo = new javax.swing.JButton();
         btnFiltro = new javax.swing.JButton();
 
         scrollResumen.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -310,7 +318,12 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Reporte de Ventas Semanales");
 
-        jButton2.setText("Generar Reporte");
+        btnVentasSemanales.setText("Generar Reporte");
+        btnVentasSemanales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasSemanalesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -322,7 +335,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addComponent(jButton2)
+                .addComponent(btnVentasSemanales)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -331,7 +344,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(btnVentasSemanales)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -343,7 +356,12 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Reporte de Ventas Diarias");
 
-        jButton1.setText("Generar Reporte");
+        btnReporteDiaras.setText("Generar Reporte");
+        btnReporteDiaras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteDiarasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -355,7 +373,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addComponent(jButton1)
+                .addComponent(btnReporteDiaras)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -364,7 +382,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnReporteDiaras)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -376,7 +394,12 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Reporte de Ventas Anuales");
 
-        jButton3.setText("Generar Reporte");
+        btnVentasAnuales.setText("Generar Reporte");
+        btnVentasAnuales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasAnualesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -388,7 +411,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(btnVentasAnuales)
                 .addGap(69, 69, 69))
         );
         jPanel9Layout.setVerticalGroup(
@@ -397,7 +420,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel11)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(btnVentasAnuales)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -409,7 +432,12 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Reporte de Ventas por Localidad");
 
-        jButton4.setText("Generar Reporte");
+        btnReporteTipo.setText("Generar Reporte");
+        btnReporteTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteTipoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -421,7 +449,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(71, 71, 71)
-                .addComponent(jButton4)
+                .addComponent(btnReporteTipo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -430,7 +458,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(btnReporteTipo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -545,13 +573,69 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         updateDSTipoPago();
     }//GEN-LAST:event_btnFiltroActionPerformed
 
+    private void btnReporteDiarasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteDiarasActionPerformed
+    try{
+        Conexion cn = new Conexion();   
+        Connection cnn = cn.getConnection();
+        String reportPath="src/main/java/Reports/ventasDiariasReport.jrxml";
+        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        JasperPrint jp = JasperFillManager.fillReport(jr,null,cnn);
+        JasperViewer.viewReport(jp);   
+    } catch (Exception ex){
+            JOptionPane.showMessageDialog(this, "error cargando ventas "+ex.getMessage());
+            System.out.println(ex.getMessage());
+    }
+    }//GEN-LAST:event_btnReporteDiarasActionPerformed
+
+    private void btnVentasSemanalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasSemanalesActionPerformed
+    try{
+        Conexion cn = new Conexion();   
+        Connection cnn = cn.getConnection();
+        String reportPath="src/main/java/Reports/ventasSemanalesReport.jrxml";
+        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        JasperPrint jp = JasperFillManager.fillReport(jr,null,cnn);
+        JasperViewer.viewReport(jp);   
+    } catch (Exception ex){
+            JOptionPane.showMessageDialog(this, "error cargando ventas "+ex.getMessage());
+            System.out.println(ex.getMessage());
+    }
+    }//GEN-LAST:event_btnVentasSemanalesActionPerformed
+
+    private void btnVentasAnualesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasAnualesActionPerformed
+    try{
+        Conexion cn = new Conexion();   
+        Connection cnn = cn.getConnection();
+        String reportPath="src/main/java/Reports/salesByYar.jrxml";
+        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        JasperPrint jp = JasperFillManager.fillReport(jr,null,cnn);
+        JasperViewer.viewReport(jp);   
+    } catch (Exception ex){
+            JOptionPane.showMessageDialog(this, "error cargando ventas "+ex.getMessage());
+            System.out.println(ex.getMessage());
+    }
+    }//GEN-LAST:event_btnVentasAnualesActionPerformed
+
+    private void btnReporteTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteTipoActionPerformed
+    try{
+        Conexion cn = new Conexion();   
+        Connection cnn = cn.getConnection();
+        String reportPath="src/main/java/Reports/ventasPorTipo.jrxml";
+        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        JasperPrint jp = JasperFillManager.fillReport(jr,null,cnn);
+        JasperViewer.viewReport(jp);   
+    } catch (Exception ex){
+            JOptionPane.showMessageDialog(this, "error cargando ventas "+ex.getMessage());
+            System.out.println(ex.getMessage());
+    }
+    }//GEN-LAST:event_btnReporteTipoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFiltro;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnReporteDiaras;
+    private javax.swing.JButton btnReporteTipo;
+    private javax.swing.JButton btnVentasAnuales;
+    private javax.swing.JButton btnVentasSemanales;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
