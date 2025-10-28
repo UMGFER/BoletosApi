@@ -70,6 +70,7 @@ public class VentasPanel extends javax.swing.JPanel {
         jSpinner2 = new javax.swing.JSpinner();
         lblbanco = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
         LabelFondo2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -154,6 +155,8 @@ public class VentasPanel extends javax.swing.JPanel {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banco Industrial", "BAC Credomatic", " " }));
 
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Zona Tecnica / VIP", "Tribuna Norte y Sur", "Tribuna Lateral Referente", "Palcos Ejecutivos / Premium", "Tribuna Popular" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -167,7 +170,11 @@ public class VentasPanel extends javax.swing.JPanel {
                         .addGap(67, 67, 67)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblprecio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblnombrelocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblnombrelocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(lblrestante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,9 +234,11 @@ public class VentasPanel extends javax.swing.JPanel {
                 .addComponent(lblestado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jLabel14)
-                .addGap(24, 24, 24)
-                .addComponent(lblnombrelocalidad)
-                .addGap(39, 39, 39)
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblnombrelocalidad)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addComponent(lblprecio)
                 .addGap(42, 42, 42)
                 .addComponent(lblrestante)
@@ -289,6 +298,7 @@ public class VentasPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -338,8 +348,20 @@ public class VentasPanel extends javax.swing.JPanel {
         partidoSeleccionado = partido;
         SwingUtilities.invokeLater(() -> {
             setImageLabel(LabelFondo2, "/ChatGPT Image 19 oct 2025, 12_34_36 a.m..png");
-            setImageLabel(LabelFondoVenta, "/estadio doroteo.png");;
+            setImageLabel(LabelFondoVenta, "/estadio doroteo.png"); 
         });
+        cargarInformacionPartidos();
    
+    }
+    
+    private void cargarInformacionPartidos(){
+        lbllocal.setText("Equipo Local: " + partidoSeleccionado.getEquipo_local() );
+        lblvisita.setText("Equipo Visitante: " + partidoSeleccionado.getEquipo_visitante());
+        lblfecha.setText("Fecha: " + partidoSeleccionado.getFecha_partido());
+        lblhora.setText("Hora de inicio: " + partidoSeleccionado.getHora_inicio());
+        lbltipo.setText("Tipo Partido: " + partidoSeleccionado.getTipo_partido());
+        lblestadio.setText("Estadio: " + partidoSeleccionado.getEstadio());
+        lblcategoria.setText("Categoria: " + partidoSeleccionado.getCategoria());
+        lblestado.setText("Estado: " + partidoSeleccionado.getEstado());
     }
 }
