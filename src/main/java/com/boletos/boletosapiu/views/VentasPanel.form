@@ -111,9 +111,9 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel11" max="32767" attributes="0"/>
-                                      <Component id="jLabel10" max="32767" attributes="0"/>
-                                      <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="lblprecio" max="32767" attributes="0"/>
+                                      <Component id="lblnombrelocalidad" max="32767" attributes="0"/>
+                                      <Component id="lblrestante" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
@@ -121,14 +121,14 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="67" pref="67" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel15" alignment="0" min="-2" pref="288" max="-2" attributes="0"/>
-                                              <Component id="jLabel16" min="-2" pref="288" max="-2" attributes="0"/>
-                                              <Component id="jLabel17" min="-2" pref="288" max="-2" attributes="0"/>
-                                              <Component id="jLabel18" min="-2" pref="288" max="-2" attributes="0"/>
-                                              <Component id="jLabel19" min="-2" pref="288" max="-2" attributes="0"/>
-                                              <Component id="jLabel20" min="-2" pref="288" max="-2" attributes="0"/>
-                                              <Component id="jLabel21" min="-2" pref="288" max="-2" attributes="0"/>
-                                              <Component id="jLabel22" min="-2" pref="288" max="-2" attributes="0"/>
+                                              <Component id="lbllocal" alignment="0" min="-2" pref="288" max="-2" attributes="0"/>
+                                              <Component id="lblvisita" min="-2" pref="288" max="-2" attributes="0"/>
+                                              <Component id="lblfecha" min="-2" pref="288" max="-2" attributes="0"/>
+                                              <Component id="lblhora" min="-2" pref="288" max="-2" attributes="0"/>
+                                              <Component id="lblestadio" min="-2" pref="288" max="-2" attributes="0"/>
+                                              <Component id="lbltipo" min="-2" pref="288" max="-2" attributes="0"/>
+                                              <Component id="lblcategoria" min="-2" pref="288" max="-2" attributes="0"/>
+                                              <Component id="lblestado" min="-2" pref="288" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -137,13 +137,13 @@
                                               <Component id="jTextField3" max="32767" attributes="0"/>
                                               <Component id="jTextField4" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jComboBox1" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="lblbanco" alignment="0" max="32767" attributes="0"/>
                                               <Group type="102" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel5" min="-2" pref="204" max="-2" attributes="0"/>
-                                                      <Component id="jLabel4" min="-2" pref="169" max="-2" attributes="0"/>
-                                                      <Component id="jLabel3" min="-2" pref="160" max="-2" attributes="0"/>
+                                                      <Component id="lblcantidadbol" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="lblpago" min="-2" pref="204" max="-2" attributes="0"/>
+                                                      <Component id="lblcorreo" min="-2" pref="169" max="-2" attributes="0"/>
+                                                      <Component id="lblcomprador" min="-2" pref="160" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
@@ -169,49 +169,49 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbllocal" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblvisita" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblfecha" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblhora" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbltipo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblestadio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblcategoria" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblestado" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="37" max="32767" attributes="0"/>
                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblnombrelocalidad" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblprecio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblrestante" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblcomprador" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblcorreo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTextField4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblpago" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblbanco" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblcantidadbol" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSpinner2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
@@ -245,7 +245,7 @@
                     <Property name="text" type="java.lang.String" value="REGISTRAR VENTA"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel3">
+                <Component class="javax.swing.JLabel" name="lblcomprador">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="12" style="1"/>
@@ -253,7 +253,7 @@
                     <Property name="text" type="java.lang.String" value="Nombre_comprador:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel4">
+                <Component class="javax.swing.JLabel" name="lblcorreo">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="12" style="1"/>
@@ -261,7 +261,7 @@
                     <Property name="text" type="java.lang.String" value="Correo_comprador:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel5">
+                <Component class="javax.swing.JLabel" name="lblpago">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="12" style="1"/>
@@ -284,17 +284,17 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel10">
+                <Component class="javax.swing.JLabel" name="lblnombrelocalidad">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Nombre Localidad:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel11">
+                <Component class="javax.swing.JLabel" name="lblprecio">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Precio del boleto:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel12">
+                <Component class="javax.swing.JLabel" name="lblrestante">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Boletos Restantes:"/>
                   </Properties>
@@ -329,47 +329,47 @@
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel15">
+                <Component class="javax.swing.JLabel" name="lbllocal">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Equipo Local:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel16">
+                <Component class="javax.swing.JLabel" name="lblvisita">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Equipo Visitante:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel17">
+                <Component class="javax.swing.JLabel" name="lblfecha">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Fecha:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel18">
+                <Component class="javax.swing.JLabel" name="lblhora">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Hora de inicio:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel19">
+                <Component class="javax.swing.JLabel" name="lblestadio">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Estadio:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel20">
+                <Component class="javax.swing.JLabel" name="lbltipo">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Tipo Partido:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel21">
+                <Component class="javax.swing.JLabel" name="lblcategoria">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Categoria:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel22">
+                <Component class="javax.swing.JLabel" name="lblestado">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Estado:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel23">
+                <Component class="javax.swing.JLabel" name="lblcantidadbol">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cantidad de Boletos:"/>
                   </Properties>
@@ -381,7 +381,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel2">
+                <Component class="javax.swing.JLabel" name="lblbanco">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Banco:"/>
                   </Properties>
