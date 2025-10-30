@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -31,6 +32,7 @@ public class VentasPanel extends javax.swing.JPanel {
     private mainPanel mainFrame;
     Partido partidoSeleccionado;
     Usuario user;
+    Inventario inventarioSeleccionado;
     
     //Listas
     List<Inventario> listaInventario;
@@ -109,7 +111,7 @@ public class VentasPanel extends javax.swing.JPanel {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back-30.png"))); // NOI18N
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel6MouseClicked(evt);
@@ -134,13 +136,13 @@ public class VentasPanel extends javax.swing.JPanel {
         });
 
         lblcomprador.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblcomprador.setText("Nombre_comprador:");
+        lblcomprador.setText("Nombre del comprador:");
 
         lblcorreo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblcorreo.setText("Correo_comprador:");
+        lblcorreo.setText("Correo del comprador:");
 
         lblpago.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblpago.setText("Tipo_pago:");
+        lblpago.setText("Tipo de pago:");
 
         jLabel1.setBackground(new java.awt.Color(2, 30, 69));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -182,10 +184,12 @@ public class VentasPanel extends javax.swing.JPanel {
 
         lblestado.setText("Estado:");
 
+        lblcantidadbol.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblcantidadbol.setText("Cantidad de Boletos:");
 
         spnBoletos.setModel(new javax.swing.SpinnerNumberModel(1, 1, 3, 1));
 
+        lblbanco.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblbanco.setText("Banco:");
 
         cmbBanco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banco Industrial", "BAC Credomatic" }));
@@ -330,11 +334,31 @@ public class VentasPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbLocalidadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbLocalidadItemStateChanged
+
         if(cmbLocalidad.getSelectedIndex()!=0){
             int registro = cmbLocalidad.getSelectedIndex() - 1;
-            lblprecio.setText("Precio del boleto: " + listaLocalidades.get(registro).getPrecio());
+            lblprecio.setText("Precio del boleto: Q " + listaLocalidades.get(registro).getPrecio());
             lblrestante.setText("Boletos Restantes: " + listaInventario.get(registro).getCantidad_disponible());
+            
+            if(listaInventario.get(registro).getCantidad_disponible()<3){
+                if(listaInventario.get(registro).getCantidad_disponible()==0){
+                    SpinnerNumberModel model = (SpinnerNumberModel) spnBoletos.getModel();
+                    model.setValue(0);
+                    model.setMaximum(listaInventario.get(registro).getCantidad_disponible());
+                }
+                SpinnerNumberModel model = (SpinnerNumberModel) spnBoletos.getModel();
+                model.setValue(1);
+                model.setMaximum(listaInventario.get(registro).getCantidad_disponible());              
+            }else{
+                SpinnerNumberModel model = (SpinnerNumberModel) spnBoletos.getModel();
+                model.setValue(1);
+                model.setMaximum(3);
+            }
+            
+            inventarioSeleccionado =  listaInventario.get(registro);
         }
+        
+        
     }//GEN-LAST:event_cmbLocalidadItemStateChanged
 
     private void btnRegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarVentaActionPerformed
@@ -343,9 +367,15 @@ public class VentasPanel extends javax.swing.JPanel {
         if(cmbLocalidad.getSelectedIndex()>0){
             registro = cmbLocalidad.getSelectedIndex() - 1;          
         }else{
-            JOptionPane.showMessageDialog(this, "Debe elegir localidad");
+            JOptionPane.showMessageDialog(this, "Debe elegir localidad." , "Error al elegir información", 0);
+            return;
+        }   
+
+        if(listaInventario.get(registro).getCantidad_disponible()==0){
+            JOptionPane.showMessageDialog(this, "No quedan suficientes boletos para esa localidad.", "Boletos agotados", 0);
             return;
         }
+        
         Venta ventaCreada = new Venta();
         ventaCreada.setId_usuario(user.getId_usuario());
         ventaCreada.setNombre_comprador(txtNombre.getText());
@@ -365,7 +395,7 @@ public class VentasPanel extends javax.swing.JPanel {
         String banco = (String)cmbBanco.getSelectedItem();
         String nombreLocalidad = cmbLocalidad.getItemAt(registro+1);
         
-        mainFrame.loadConfirmacionVenta(partidoSeleccionado, ventaCreada, detalleVenta, banco, nombreLocalidad, precioTotal);
+        mainFrame.loadConfirmacionVenta(inventarioSeleccionado, partidoSeleccionado, ventaCreada, detalleVenta, banco, nombreLocalidad, precioTotal);
         
     }//GEN-LAST:event_btnRegistrarVentaActionPerformed
 
@@ -462,5 +492,8 @@ public class VentasPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Error al cargar localidades: " + ex.getMessage());
             }
         }      
+        
+        listaInventario.sort((id1, id2) -> Integer.compare(id1.getId_inventario(), id2.getId_inventario()));
+        listaLocalidades.sort((id1, id2) -> Integer.compare(id1.getId_localidad(), id2.getId_localidad()));
     }
 }

@@ -5,9 +5,11 @@
 package com.boletos.boletosapiu.views;
 
 import com.boletos.boletosapiu.model.DetalleVenta;
+import com.boletos.boletosapiu.model.Inventario;
 import com.boletos.boletosapiu.model.Partido;
 import com.boletos.boletosapiu.model.Venta;
 import com.boletos.boletosapiu.service.DetalleVentaService;
+import com.boletos.boletosapiu.service.InventarioService;
 import com.boletos.boletosapiu.service.VentaService;
 import java.awt.Image;
 import java.math.BigDecimal;
@@ -24,53 +26,26 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
 
     VentaService serviceVenta = new VentaService();
     DetalleVentaService serviceDetalle = new DetalleVentaService();
+    InventarioService serviceInventario = new InventarioService();
     
     private mainPanel mainFrame;
     Partido partido;
     Venta venta;
     DetalleVenta detalle;
+    Inventario inventario;
     String banco;
     
     /**
      * Creates new form ConfimacionDeVenta
      */
     public ConfimacionDeVenta() {
-        initComponents();
-        SwingUtilities.invokeLater(() -> {
-        setImageLabel(LogoFactura, "/Fuchi.png");
-        setImageLabel(Vistolbl, "/VistoLogo.png");
-        setImageLabel(lblfede, "/Fedefut.png");
-        setImageLabel(LabelFondoCon, "/sintitulo.png");
-    
-                });
+        initComponents();   
         }
 
     public ConfimacionDeVenta(mainPanel main) {
         initComponents();
-        this.mainFrame = main;
-        SwingUtilities.invokeLater(() -> {
-        setImageLabel(LogoFactura, "/Fuchi.png");
-        setImageLabel(Vistolbl, "/VistoLogo.png");
-        setImageLabel(lblfede, "/Fedefut.png");
-        setImageLabel(LabelFondoCon, "/sintitulo.png");
-    
-        });
+        this.mainFrame = main;     
      }
-    private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
-        java.net.URL imgURL = getClass().getResource(resourcePath);
-        if (imgURL != null) {
-            ImageIcon icon = new ImageIcon(imgURL);
-            Image img = icon.getImage().getScaledInstance(
-                    label.getWidth(),
-                    label.getHeight(),
-                    Image.SCALE_SMOOTH
-            );
-            label.setIcon(new ImageIcon(img));
-        } else {
-            System.err.println("❌ No se encontró la imagen: " + resourcePath);
-        }
-    }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,7 +59,6 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
-        lblfede = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lblSubTotal = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -92,8 +66,8 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         lblTotal = new javax.swing.JLabel();
         lblDescuento1 = new javax.swing.JLabel();
         lblDescuento2 = new javax.swing.JLabel();
+        lblfede = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         lblNombreComprador = new javax.swing.JLabel();
         lblCorreoComprador = new javax.swing.JLabel();
@@ -107,24 +81,19 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         lblLocalidad = new javax.swing.JLabel();
         lblTipoPago = new javax.swing.JLabel();
         lblBanco = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        LogoFactura = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        Vistolbl = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
         LabelFondoCon = new javax.swing.JLabel();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblfede.setText("jLabel21");
-        jPanel2.add(lblfede, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 810, 360, 190));
 
         lblSubTotal.setText("Subtotal:");
 
@@ -134,12 +103,16 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
 
         lblTotal.setText("Total:");
 
+        lblfede.setText("jLabel21");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(540, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lblfede, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblImpuestos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -153,39 +126,37 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblSubTotal)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblDescuento1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblDescuento2)
-                .addGap(18, 18, 18)
-                .addComponent(lblImpuestos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(lblTotal)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblSubTotal)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblDescuento1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblDescuento2)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblImpuestos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                        .addComponent(lblTotal))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblfede, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 700, 753, -1));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 753, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 204, 204));
+        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("CONFIRMAR COMPRA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 1010, 394, 49));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back-30.png"))); // NOI18N
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 0, 59, 57));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 620, 394, 49));
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -268,43 +239,28 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back-30.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Estimado cliente, por favor verifique que sus datos sean los correctos antes de confirmar su compra:");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 735, -1));
-
-        LogoFactura.setText("jLabel22");
-        jPanel2.add(LogoFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 130, 130));
-
-        jLabel22.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel22.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Federacion Nacional ");
-        jLabel22.setOpaque(true);
-        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, -1));
-
-        Vistolbl.setText("jLabel24");
-        jPanel2.add(Vistolbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 100, 100));
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 735, -1));
 
         jLabel23.setBackground(new java.awt.Color(0, 153, 153));
         jLabel23.setOpaque(true);
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1096, 840, 30));
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 710, 840, 30));
 
         jLabel24.setBackground(new java.awt.Color(0, 153, 153));
         jLabel24.setOpaque(true);
-        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 840, 30));
-
-        jLabel21.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel21.setText("Compra confirmada con exito");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, -1));
-
-        jLabel25.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel25.setText("Numero de boleta: 0000");
-        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 190, -1));
+        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 50));
 
         jScrollPane1.setViewportView(jPanel2);
 
@@ -325,10 +281,6 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        mainFrame.ShowPanel("panelVentas");
-    }//GEN-LAST:event_jLabel5MouseClicked
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Venta ventaCreada;
         try {
@@ -339,7 +291,6 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         }
 
         detalle.setId_venta(ventaCreada.getId_venta());
-        //detalle.setId_detalle(null); 
         try{
             serviceDetalle.createDetalleVenta(detalle);
         }catch (Exception ex) {
@@ -347,23 +298,33 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
             return;
         }
         
-        JOptionPane.showMessageDialog(this, "Venta registrada");
+        inventario.setCantidad_disponible(inventario.getCantidad_disponible() - detalle.getCantidad());
+        try {
+            serviceInventario.updateInventario(inventario.getId_inventario(), inventario);
+    
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+            return;
+        } 
+    
+        VentaConfirmada ventaRealizada = new VentaConfirmada();
+        JOptionPane.showMessageDialog(this, ventaRealizada, "Venta registrada", 1);
+        mainFrame.ShowPanel("VendedorApp");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        mainFrame.ShowPanel("panelVentas");
+    }//GEN-LAST:event_jLabel2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelFondoCon;
-    private javax.swing.JLabel LogoFactura;
-    private javax.swing.JLabel Vistolbl;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -389,11 +350,17 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
     private javax.swing.JLabel lblfede;
     // End of variables declaration//GEN-END:variables
 
-    public void loadConfirmacionVenta(Partido partidoE, Venta ventaC, DetalleVenta detalleC, String bancoE, String nombreLocalidad, BigDecimal subTotal){
+    public void loadConfirmacionVenta(Inventario inv, Partido partidoE, Venta ventaC, DetalleVenta detalleC, String bancoE, String nombreLocalidad, BigDecimal subTotal){
         partido = partidoE;
         venta = ventaC;
         detalle = detalleC;
         banco = bancoE;
+        inventario = inv;
+        
+        SwingUtilities.invokeLater(() -> {
+        setImageLabel(lblfede, "/Fedefut.png");
+        setImageLabel(LabelFondoCon, "/sintitulo.png");
+        });
         
         lblNombreComprador.setText("Nombre del comprador: "+venta.getNombre_comprador());
         lblCorreoComprador.setText("Correo del comprador: "+venta.getCorreo_comprador());
@@ -449,5 +416,20 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         venta.setTotal_venta(total);
         detalle.setDescuento(descuentoTotal);
                
+    }
+    
+    private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
+        java.net.URL imgURL = getClass().getResource(resourcePath);
+        if (imgURL != null) {
+            ImageIcon icon = new ImageIcon(imgURL);
+            Image img = icon.getImage().getScaledInstance(
+                    label.getWidth(),
+                    label.getHeight(),
+                    Image.SCALE_SMOOTH
+            );
+            label.setIcon(new ImageIcon(img));
+        } else {
+            System.err.println("❌ No se encontró la imagen: " + resourcePath);
+        }
     }
 }

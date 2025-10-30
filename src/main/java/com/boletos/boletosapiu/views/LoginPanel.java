@@ -296,11 +296,15 @@ public class LoginPanel extends javax.swing.JPanel {
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_F1){
             txtUsuario.setText("Erick");
-            txtPassword.setText("1234");
+            txtPassword.setText("1234");         
         }
         if(evt.getKeyCode()==KeyEvent.VK_F2){
             txtUsuario.setText("user2");
             txtPassword.setText("12345");
+        }
+        
+        if(txtPassword.getEchoChar()=='\u0000' && lblShowHidePassword.getText().equals("Mostrar")){
+                txtPassword.setEchoChar('\u2022');
         }
     }//GEN-LAST:event_txtUsuarioKeyPressed
 

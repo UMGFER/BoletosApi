@@ -12,6 +12,7 @@ import com.boletos.boletosapiu.service.PartidoService;
 import com.boletos.boletosapiu.model.Partido;
 import com.boletos.boletosapiu.model.Usuario;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -238,6 +239,11 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
     
     public void cargarPartidos(Usuario usuario){
         user = usuario;
+        
+        pnlPartidosMayor.removeAll();
+        pnlPartidosSub17.removeAll();
+        pnlPartidosFutsal.removeAll();
+        
         try {
             listaPartidos = service.getPartidos();
         } catch (Exception ex) {

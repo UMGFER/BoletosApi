@@ -86,6 +86,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         lblDashboard = new javax.swing.JLabel();
         lblCerrarSesion = new javax.swing.JLabel();
         LabelFotoUsuario = new javax.swing.JLabel();
+        lblCRUDVentas = new javax.swing.JLabel();
         scrollDashboard = new javax.swing.JScrollPane();
         Dashboard = new GradientPanelBoletos(
             java.awt.Color.decode("#A1A6AD"),  // color 1
@@ -213,6 +214,26 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         LabelFotoUsuario.setBackground(new java.awt.Color(255, 255, 255));
         LabelFotoUsuario.setText("jLabel1");
 
+        lblCRUDVentas.setBackground(new java.awt.Color(2, 30, 69));
+        lblCRUDVentas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCRUDVentas.setForeground(new java.awt.Color(255, 255, 255));
+        lblCRUDVentas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCRUDVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png"))); // NOI18N
+        lblCRUDVentas.setText("CRUD Ventas");
+        lblCRUDVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCRUDVentas.setPreferredSize(new java.awt.Dimension(250, 30));
+        lblCRUDVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCRUDVentasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCRUDVentasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCRUDVentasMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
         Menu.setLayout(MenuLayout);
         MenuLayout.setHorizontalGroup(
@@ -226,7 +247,8 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                     .addComponent(lblVentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(lblPartidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(lblUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(lblCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(lblCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lblCRUDVentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(MenuLayout.createSequentialGroup()
                 .addGap(69, 69, 69)
@@ -251,8 +273,10 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblUsers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCRUDVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         MainPanel.add(Menu, java.awt.BorderLayout.WEST);
@@ -504,6 +528,20 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         mainFrame.loadPartidosPanel();
     }//GEN-LAST:event_lblPartidosMouseClicked
 
+    private void lblCRUDVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCRUDVentasMouseClicked
+        mainFrame.loadCRUDVenta();
+    }//GEN-LAST:event_lblCRUDVentasMouseClicked
+
+    private void lblCRUDVentasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCRUDVentasMouseEntered
+        lblCRUDVentas.setOpaque(true);
+        lblCRUDVentas.repaint();
+    }//GEN-LAST:event_lblCRUDVentasMouseEntered
+
+    private void lblCRUDVentasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCRUDVentasMouseExited
+        lblCRUDVentas.setOpaque(false);
+        lblCRUDVentas.repaint();
+    }//GEN-LAST:event_lblCRUDVentasMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Dashboard;
@@ -518,6 +556,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel lblBoletosDiarios;
+    private javax.swing.JLabel lblCRUDVentas;
     private javax.swing.JLabel lblCerrarSesion;
     private javax.swing.JLabel lblDashboard;
     private javax.swing.JLabel lblNombreApellido;

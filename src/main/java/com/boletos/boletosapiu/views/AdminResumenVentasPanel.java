@@ -701,7 +701,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         
         for(DetalleVenta dv : listaDetalleVentas){
             for(Partido p : listaPartidos){
-                if(dv.getId_detalle() == p.getId_partido()){
+                if(dv.getId_partido()== p.getId_partido()){
                     ventasPorCategoria.merge(p.getCategoria(), dv.getCantidad(), (a, b) -> a + b);
                 }
             }

@@ -5,6 +5,7 @@
 package com.boletos.boletosapiu.views;
 
 import com.boletos.boletosapiu.model.DetalleVenta;
+import com.boletos.boletosapiu.model.Inventario;
 import com.boletos.boletosapiu.model.Partido;
 import com.boletos.boletosapiu.model.Usuario;
 import com.boletos.boletosapiu.model.Venta;
@@ -32,6 +33,7 @@ public class mainPanel extends javax.swing.JFrame {
     PartidosPanel partidosPanel = new PartidosPanel(this);
     VentasPanel panelVentas = new VentasPanel(this);
     ConfimacionDeVenta panelConfirmacion = new ConfimacionDeVenta(this);
+    CRUDVenta crudVenta = new CRUDVenta(this);
     
     /**
      * Creates new form mainPanel
@@ -51,6 +53,7 @@ public class mainPanel extends javax.swing.JFrame {
         cardPanel.add(partidosPanel, "partidosPanel");
         cardPanel.add(panelVentas, "panelVentas");
         cardPanel.add(panelConfirmacion, "confirmarVenta");
+        cardPanel.add(crudVenta, "CRUDVenta");
         
         setContentPane(cardPanel);
         cardLayout.show(cardPanel, "login");
@@ -146,9 +149,14 @@ public class mainPanel extends javax.swing.JFrame {
         cardLayout.show(cardPanel, "panelVentas");
     }
     
-    public void loadConfirmacionVenta(Partido partido, Venta venta, DetalleVenta detalle, String banco , String nombreLocalidad, BigDecimal subTotal){
-        panelConfirmacion.loadConfirmacionVenta(partido, venta, detalle, banco, nombreLocalidad , subTotal);
+    public void loadConfirmacionVenta(Inventario inv, Partido partido, Venta venta, DetalleVenta detalle, String banco , String nombreLocalidad, BigDecimal subTotal){
+        panelConfirmacion.loadConfirmacionVenta(inv, partido, venta, detalle, banco, nombreLocalidad , subTotal);
         cardLayout.show(cardPanel, "confirmarVenta");
+    }
+    
+    public void loadCRUDVenta(){
+        crudVenta.cargarCRUDVenta();
+        cardLayout.show(cardPanel, "CRUDVenta");
     }
     
     public void ShowPanel(String panelName){
