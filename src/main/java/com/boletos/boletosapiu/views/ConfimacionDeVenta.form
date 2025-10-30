@@ -186,11 +186,11 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblFecha" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblNombreComprador" pref="292" max="32767" attributes="0"/>
                                           <Component id="lblCorreoComprador" max="32767" attributes="0"/>
                                           <Component id="lblTipoPartido" alignment="0" max="32767" attributes="0"/>
                                           <Component id="lblCategoria" max="32767" attributes="0"/>
+                                          <Component id="lblFecha" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">

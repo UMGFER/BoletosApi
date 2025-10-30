@@ -785,7 +785,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                 path = "/JoseFace.jpeg";
                 break;
             case "jorge":
-                path = "/Bandera Argentina.png";
+                path = "/jorge.png";
                 break;
             default:
                 path = "/AzulGuate.png";

@@ -14,6 +14,8 @@ import com.boletos.boletosapiu.service.VentaService;
 import java.awt.Image;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -193,11 +195,11 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblFecha)
                             .addComponent(lblNombreComprador, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                             .addComponent(lblCorreoComprador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblTipoPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(121, 121, 121)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblLocalidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -356,6 +358,8 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         detalle = detalleC;
         banco = bancoE;
         inventario = inv;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
+        Date now = new Date();
         
         SwingUtilities.invokeLater(() -> {
         setImageLabel(lblfede, "/Fedefut.png");
@@ -364,7 +368,7 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         
         lblNombreComprador.setText("Nombre del comprador: "+venta.getNombre_comprador());
         lblCorreoComprador.setText("Correo del comprador: "+venta.getCorreo_comprador());
-        lblFecha.setText("Fecha: " + venta.getFecha_venta());
+        lblFecha.setText("Fecha: " + sdf.format(now));
         lblTipoPartido.setText("Tipo partido: " + partido.getTipo_partido());
         lblCategoria.setText("Categoria: " + partido.getCategoria());
         lblPartidoLocal.setText("Equipo local: " + partido.getEquipo_local());

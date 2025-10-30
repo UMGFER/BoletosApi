@@ -461,7 +461,7 @@ public class VentasPanel extends javax.swing.JPanel {
         user = usuario;
         SwingUtilities.invokeLater(() -> {
             setImageLabel(LabelFondo2, "/ChatGPT Image 19 oct 2025, 12_34_36 a.m..png");
-            setImageLabel(LabelFondoVenta, "/estadio doroteo.png"); 
+             
         });
         cargarInformacionPartidos();
         cargarInfoBoletos();
@@ -476,6 +476,12 @@ public class VentasPanel extends javax.swing.JPanel {
         lblestadio.setText("Estadio: " + partidoSeleccionado.getEstadio());
         lblcategoria.setText("Categoria: " + partidoSeleccionado.getCategoria());
         lblestado.setText("Estado: " + partidoSeleccionado.getEstado());
+        
+        if(partidoSeleccionado.getCategoria().equals("Futsal")){
+            setImageLabel(LabelFondoVenta, "/mateo flores.png");
+        }else{
+            setImageLabel(LabelFondoVenta, "/estadio doroteo.png");
+        }
     }
     
     private void cargarInfoBoletos(){
