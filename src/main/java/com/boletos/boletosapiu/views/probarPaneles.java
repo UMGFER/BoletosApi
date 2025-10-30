@@ -22,7 +22,7 @@ public class probarPaneles extends javax.swing.JFrame {
     public probarPaneles() {
         initComponents();
         //Moficiar con panel y constructor deseados
-        ConfimacionDeVenta ventas = new ConfimacionDeVenta();
+        VentaConfirmada ventas = new VentaConfirmada();
    
         setContentPane(ventas);
     }

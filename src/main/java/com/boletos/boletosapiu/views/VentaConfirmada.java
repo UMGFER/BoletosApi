@@ -25,7 +25,7 @@ public class VentaConfirmada extends javax.swing.JPanel {
          int random4Digit = random.nextInt(9000) + 1000;
         SwingUtilities.invokeLater(() -> {
         setImageLabel(LogoFactura, "/Fuchi.png");
-        setImageLabel(Vistolbl, "/VistoLogo.png");    
+        setImageLabel(Vistolbl, "/Verdecito.png");    
         });
         
         lblNumBoleta.setText("Numero de boleta: " + random4Digit);
@@ -40,68 +40,70 @@ public class VentaConfirmada extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        LogoFactura = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        Vistolbl = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         lblNumBoleta = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        LogoFactura = new javax.swing.JLabel();
+        Vistolbl = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        LogoFactura.setText("jLabel22");
+        setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel22.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel22.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Federacion Nacional ");
-        jLabel22.setOpaque(true);
-
-        Vistolbl.setText("jLabel24");
-
-        jLabel21.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel21.setText("Compra confirmada con éxito");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNumBoleta.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblNumBoleta.setForeground(new java.awt.Color(0, 153, 153));
+        lblNumBoleta.setForeground(new java.awt.Color(0, 0, 102));
         lblNumBoleta.setText("Numero de boleta: 0000");
+        jPanel1.add(lblNumBoleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel21.setText("Compra confirmada con éxito");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
+
+        LogoFactura.setText("jLabel22");
+        jPanel1.add(LogoFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 81, 82));
+
+        Vistolbl.setText("jLabel24");
+        jPanel1.add(Vistolbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 100, 100));
+
+        jLabel22.setBackground(new java.awt.Color(0, 51, 102));
+        jLabel22.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("Federacion Nacional de Futbol de Guatemala");
+        jLabel22.setOpaque(true);
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, -1));
+
+        jLabel1.setBackground(new java.awt.Color(0, 51, 102));
+        jLabel1.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Vistolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(242, 242, 242)
-                        .addComponent(LogoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addGap(247, 247, 247))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblNumBoleta, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(305, 305, 305))))
+                .addContainerGap(112, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(137, 137, 137))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(LogoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(Vistolbl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNumBoleta)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -109,8 +111,10 @@ public class VentaConfirmada extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogoFactura;
     private javax.swing.JLabel Vistolbl;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblNumBoleta;
     // End of variables declaration//GEN-END:variables
 

@@ -358,7 +358,7 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         detalle = detalleC;
         banco = bancoE;
         inventario = inv;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm a");
         Date now = new Date();
         
         SwingUtilities.invokeLater(() -> {

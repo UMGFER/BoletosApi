@@ -544,7 +544,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel15">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio:"/>
+                        <Property name="text" type="java.lang.String" value="Precio: Q"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="spnPrecioVIPCrear">
@@ -564,7 +564,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel17">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio:"/>
+                        <Property name="text" type="java.lang.String" value="Precio: Q"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="spnPrecioEjecutivosCrear">
@@ -584,7 +584,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel19">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio:"/>
+                        <Property name="text" type="java.lang.String" value="Precio: Q"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="spnPrecioLateralCrear">
@@ -604,7 +604,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel21">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio:"/>
+                        <Property name="text" type="java.lang.String" value="Precio: Q"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="spnPrecioPopularCrear">
@@ -624,7 +624,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel23">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio:"/>
+                        <Property name="text" type="java.lang.String" value="Precio: Q"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="spnPrecioNorteCrear">
@@ -644,7 +644,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel25">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio:"/>
+                        <Property name="text" type="java.lang.String" value="Precio: Q"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="spnPrecioSurCrear">
@@ -825,42 +825,44 @@
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Component id="spnTotVIPMod" min="-2" pref="100" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel65" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="spnTotDispNorte" min="-2" pref="100" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="spnTotLateral" min="-2" pref="100" max="-2" attributes="0"/>
-                                          </Group>
                                           <Component id="jLabel43" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel47" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel63" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="spnTotDispLat" min="-2" pref="100" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel50" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="spnTotNorte" min="-2" pref="100" max="-2" attributes="0"/>
-                                          </Group>
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="jLabel60" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Group type="102" attributes="0">
                                                       <Component id="jLabel53" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="jLabel60" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                   <Component id="spnTotDispVIP" pref="100" max="32767" attributes="0"/>
                                                   <Component id="spnPrecioModVIP" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel50" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel65" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="14" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="spnTotDispNorte" max="32767" attributes="0"/>
+                                                  <Component id="spnTotNorte" pref="100" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel48" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel63" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="14" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="spnTotDispLat" max="32767" attributes="0"/>
+                                                  <Component id="spnTotLateral" pref="100" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -1354,7 +1356,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel42">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio:"/>
+                        <Property name="text" type="java.lang.String" value="Precio: Q"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="spnPrecioModEj">
@@ -1374,7 +1376,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel44">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio:"/>
+                        <Property name="text" type="java.lang.String" value="Precio: Q"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="spnPrecioModLat">
@@ -1394,7 +1396,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel46">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio:"/>
+                        <Property name="text" type="java.lang.String" value="Precio: Q"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="spnPrecioModPop">
@@ -1463,7 +1465,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel53">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio:"/>
+                        <Property name="text" type="java.lang.String" value="Precio: Q"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="spnPrecioModVIP">
@@ -1475,7 +1477,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel54">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio:"/>
+                        <Property name="text" type="java.lang.String" value="Precio: Q"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="spnPrecioModNorte">
@@ -1495,7 +1497,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel56">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Precio:"/>
+                        <Property name="text" type="java.lang.String" value="Precio: Q"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSpinner" name="spnPrecioModSur">

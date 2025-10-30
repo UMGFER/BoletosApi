@@ -12,6 +12,7 @@ import com.boletos.boletosapiu.utils.GradientPanelBoletos;
 import com.boletos.boletosapiu.utils.RoundedPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.time.LocalDate;
@@ -286,7 +287,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         lblReturnDashboard.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblReturnDashboard.setForeground(new java.awt.Color(255, 255, 255));
         lblReturnDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back-30.png"))); // NOI18N
-        lblReturnDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblReturnDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblReturnDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblReturnDashboardMouseClicked(evt);
@@ -430,7 +431,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Reporte de Ventas por Localidad");
+        jLabel12.setText("Reporte de Ventas por tipo de pago");
 
         btnReporteTipo.setText("Generar Reporte");
         btnReporteTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -574,11 +575,11 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnFiltroActionPerformed
 
     private void btnReporteDiarasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteDiarasActionPerformed
-    try{
+   try{
         Conexion cn = new Conexion();   
         Connection cnn = cn.getConnection();
-        String reportPath="src/main/java/Reports/ventasDiariasReport.jrxml";
-        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        InputStream reportStream = getClass().getResourceAsStream("/Reports/ventasDiariasReport.jrxml");
+        JasperReport jr = JasperCompileManager.compileReport(reportStream);
         JasperPrint jp = JasperFillManager.fillReport(jr,null,cnn);
         JasperViewer.viewReport(jp);   
     } catch (Exception ex){
@@ -591,8 +592,8 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
     try{
         Conexion cn = new Conexion();   
         Connection cnn = cn.getConnection();
-        String reportPath="src/main/java/Reports/ventasSemanalesReport.jrxml";
-        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        InputStream reportStream = getClass().getResourceAsStream("/Reports/ventasSemanalesReport.jrxml");
+        JasperReport jr = JasperCompileManager.compileReport(reportStream);
         JasperPrint jp = JasperFillManager.fillReport(jr,null,cnn);
         JasperViewer.viewReport(jp);   
     } catch (Exception ex){
@@ -605,8 +606,8 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
     try{
         Conexion cn = new Conexion();   
         Connection cnn = cn.getConnection();
-        String reportPath="src/main/java/Reports/salesByYar.jrxml";
-        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        InputStream reportStream = getClass().getResourceAsStream("/Reports/salesByYar.jrxml");
+        JasperReport jr = JasperCompileManager.compileReport(reportStream);
         JasperPrint jp = JasperFillManager.fillReport(jr,null,cnn);
         JasperViewer.viewReport(jp);   
     } catch (Exception ex){
@@ -619,8 +620,8 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
     try{
         Conexion cn = new Conexion();   
         Connection cnn = cn.getConnection();
-        String reportPath="src/main/java/Reports/ventasPorTipo.jrxml";
-        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        InputStream reportStream = getClass().getResourceAsStream("/Reports/ventasPorTipo.jrxml");
+        JasperReport jr = JasperCompileManager.compileReport(reportStream);
         JasperPrint jp = JasperFillManager.fillReport(jr,null,cnn);
         JasperViewer.viewReport(jp);   
     } catch (Exception ex){

@@ -7,6 +7,7 @@ package com.boletos.boletosapiu.views;
 import com.boletos.boletosapiu.model.Partido;
 import com.boletos.boletosapiu.model.Usuario;
 import java.awt.Image;
+import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
@@ -15,6 +16,7 @@ import javax.swing.SwingUtilities;
  * @author josef
  */
 public class PanelPartidos extends javax.swing.JPanel {
+    
     
     Partido partido;
     Usuario user;
@@ -28,12 +30,14 @@ public class PanelPartidos extends javax.swing.JPanel {
         this.mainFrame = main;
         user = usuario;
         partido = partidoRecibido;
+        
      //   Bandera1.setIcon(new ImageIcon(getClass().getResource("/Bandera Guatemala.jpg")));
       //  Bandera1.setText("prueba");
         SwingUtilities.invokeLater(() -> {
         setImageLabel(Bandera1, "/Bandera "+partido.getEquipo_local()+".jpg");
         setImageLabel(Bandera2, "/Bandera "+partido.getEquipo_visitante()+".jpg");
         setImageLabel(Mundialfondo, "/fondoahorano.png");
+        cargarInformacionPartidos();
     });
         
      //foto
@@ -69,6 +73,7 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
         jButton1 = new javax.swing.JButton();
         Bandera1 = new javax.swing.JLabel();
         Bandera2 = new javax.swing.JLabel();
+        lblFechaa = new javax.swing.JLabel();
         Mundialfondo = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(300, 110));
@@ -81,13 +86,18 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
 
         Bandera1.setText("jLabel1");
         jPanel1.add(Bandera1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 110, 60));
 
         Bandera2.setText("jLabel1");
         jPanel1.add(Bandera2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 110, 60));
+
+        lblFechaa.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lblFechaa.setForeground(new java.awt.Color(255, 255, 255));
+        lblFechaa.setText("Fecha:");
+        jPanel1.add(lblFechaa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
         Mundialfondo.setText("j");
         jPanel1.add(Mundialfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 110));
@@ -115,5 +125,18 @@ private void setImageLabel(javax.swing.JLabel label, String resourcePath) {
     private javax.swing.JLabel Mundialfondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblFechaa;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarInformacionPartidos(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        lblFechaa.setText("Fecha: " + sdf.format(partido.getFecha_partido()) + " " + partido.getHora_inicio());
+         
+    }
+    
+    
+    
+    
+    
+    
 }
