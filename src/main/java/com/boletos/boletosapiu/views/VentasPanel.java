@@ -63,6 +63,7 @@ public class VentasPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         LabelFondoVenta = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
@@ -93,7 +94,6 @@ public class VentasPanel extends javax.swing.JPanel {
         cmbBanco = new javax.swing.JComboBox<>();
         cmbLocalidad = new javax.swing.JComboBox<>();
         LabelFondo2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1150, 630));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,14 +108,23 @@ public class VentasPanel extends javax.swing.JPanel {
         jLabel9.setText("Federacion Nacional de Futbol de Guatemala");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back-30.png"))); // NOI18N
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1097, 0, 50, 50));
+
         LabelFondoVenta.setText("jLabel10");
-        jPanel1.add(LabelFondoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 510, 630));
+        jPanel1.add(LabelFondoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 510, 630));
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(460, 450));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        cmbTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta Debito", "Tarjeta Credito" }));
+        cmbTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Tarjeta Credito" }));
 
         btnRegistrarVenta.setText("REGISTRAR VENTA");
         btnRegistrarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +188,7 @@ public class VentasPanel extends javax.swing.JPanel {
 
         lblbanco.setText("Banco:");
 
-        cmbBanco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banco Industrial", "BAC Credomatic", " " }));
+        cmbBanco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banco Industrial", "BAC Credomatic" }));
 
         cmbLocalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Zona Tecnica - VIP", "Palcos Ejecutivos - Premium ", "Tribuna Lateral Referente", "Tribuna Popular", "Tribuna Norte", "Tribuna Sur" }));
         cmbLocalidad.addItemListener(new java.awt.event.ItemListener() {
@@ -305,10 +314,8 @@ public class VentasPanel extends javax.swing.JPanel {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 460, 450));
 
         LabelFondo2.setText("jLabel1");
+        LabelFondo2.setFocusable(false);
         jPanel1.add(LabelFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 630));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back-30.png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1097, 0, 50, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -361,6 +368,10 @@ public class VentasPanel extends javax.swing.JPanel {
         mainFrame.loadConfirmacionVenta(partidoSeleccionado, ventaCreada, detalleVenta, banco, nombreLocalidad, precioTotal);
         
     }//GEN-LAST:event_btnRegistrarVentaActionPerformed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        mainFrame.ShowPanel("VendedorApp");
+    }//GEN-LAST:event_jLabel6MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

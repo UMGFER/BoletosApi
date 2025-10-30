@@ -179,7 +179,7 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 1010, 394, 49));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back-30.png"))); // NOI18N
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
@@ -339,14 +339,13 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         }
 
         detalle.setId_venta(ventaCreada.getId_venta());
-        
+        //detalle.setId_detalle(null); 
         try{
             serviceDetalle.createDetalleVenta(detalle);
         }catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
             return;
         }
-        
         
         JOptionPane.showMessageDialog(this, "Venta registrada");
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -416,7 +415,6 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         BigDecimal descuento1 = BigDecimal.ZERO;
         BigDecimal descuento2 = BigDecimal.ZERO;
 
-        
         BigDecimal tempAmount = subTotal;
 
         if(partido.getEstado().equals("En Curso")){
@@ -436,6 +434,7 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
             descuento2 = discount;
             lblDescuento2.setText("Banco afiliado. -Q " + discount);
         }else{
+            
             lblDescuento2.setText("");
         }
 
@@ -449,9 +448,6 @@ public class ConfimacionDeVenta extends javax.swing.JPanel {
         
         venta.setTotal_venta(total);
         detalle.setDescuento(descuentoTotal);
-        
-        
+               
     }
-    
-
 }

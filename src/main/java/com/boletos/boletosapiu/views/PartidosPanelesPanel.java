@@ -97,7 +97,14 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
-        Cerrar.setText("jLabel5");
+        Cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/log-out-30.png"))); // NOI18N
+        Cerrar.setToolTipText("");
+        Cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CerrarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -191,6 +198,10 @@ public class PartidosPanelesPanel extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CerrarMouseClicked
+        mainFrame.ShowPanel("login");
+    }//GEN-LAST:event_CerrarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
