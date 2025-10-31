@@ -14,6 +14,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -697,7 +698,7 @@ public class AdminResumenVentasPanel extends javax.swing.JPanel {
             total = total.add(t);
         }
         
-        BigDecimal promedio = total.divide(BigDecimal.valueOf(totalDias));
+        BigDecimal promedio = total.divide(BigDecimal.valueOf(totalDias) , RoundingMode.HALF_UP);
         lblPromedio.setText("Q " + promedio.toPlainString());
         
         for(DetalleVenta dv : listaDetalleVentas){
